@@ -1,0 +1,59 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # The registry repo can refresh the catalog after publishing a skill:
+  #   gh api repos/skills-yaml/skills-yaml.github.io/dispatches \
+  #     -f event_type=registry-updated
+  repository_dispatch:
+    types: [registry-updated]
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Check out the registry
+        uses: actions/checkout@v4
+        with:
+          repository: skills-yaml/registry
+          path: .registry
+
+      - name: Generate the catalog
+        run: python3 scripts/build_catalog.py --registry .registry --site .
+
+      - name: Stage the site
+        run: |
+          mkdir -p _site
+          cp -r index.html catalog.html assets data CNAME .nojekyll _site/
+
+      - name: Upload the artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

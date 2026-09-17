@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill catalog — skills.yaml</title>
+<meta name="description" content="Every skill in the default skills-yaml registry, with its versions, support files and the skm command that adds it to your project.">
+<link rel="canonical" href="https://skills-yaml.tech/catalog.html">
+<meta property="og:title" content="Skill catalog — skills.yaml">
+<meta property="og:description" content="Every skill in the default skills-yaml registry, with the command that adds it.">
+<meta property="og:url" content="https://skills-yaml.tech/catalog.html">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead dark">
+  <div class="wrap">
+    <a class="wordmark" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="index.html#disk">How it works</a>
+      <a href="index.html#manifest">Manifest</a>
+      <a href="index.html#commands">Commands</a>
+      <a href="catalog.html" aria-current="page">Catalog</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="catalog-head dark">
+  <div class="wrap">
+    <h1>Skill catalog</h1>
+    <p>Everything published in the default registry. Add one to your project with the command on its entry, then run <code>skm install</code>.</p>
+    <p class="meta">registries.default: git@github.com:skills-yaml/registry.git</p>
+  </div>
+</section>
+
+<main id="main">
+  <div class="wrap">
+    <div class="controls">
+      <div class="search">
+        <label for="q">Search</label>
+        <input id="q" type="search" placeholder="name, tag or description" autocomplete="off">
+      </div>
+      <div class="filters" role="group" aria-label="Filter by category">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        <!-- FILTERS:START -->
+          <button class="filter" type="button" data-filter="software-development">software development</button>
+          <button class="filter" type="button" data-filter="system">system</button>
+        <!-- FILTERS:END -->
+      </div>
+    </div>
+
+    <div class="entries" id="entries">
+      <!-- CATALOG:START -->
+        <article class="entry" id="spec" data-search="software-development/spec write clear, reviewable software specs with a symphony-style structure: problem, goals, non-goals, design, alternatives, rollout, risks, and open questions. use this when drafting a spec, rfc, design doc, or implementation plan that should be easy for humans and agents to review. " data-category="software-development">
+          <div class="entry-head">
+            <h3 class="entry-name">spec</h3>
+            <p class="entry-path"><span>software-development/</span>spec</p>
+          </div>
+          <p class="entry-desc">Write clear, reviewable software specs with a Symphony-style structure: problem, goals, non-goals, design, alternatives, rollout, risks, and open questions. Use this when drafting a spec, RFC, design doc, or implementation plan that should be easy for humans and agents to review.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>1.0.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 1.0.0, latest = 1.0.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>3 references</li><li>1 template</li></ul></dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add software-development/spec</code><button class="copy" type="button" data-copy="skm add software-development/spec">Copy</button></p>
+        </article>
+        <article class="entry" id="devops-manager" data-search="system/devops-manager manage system services, check health, security, and updates on this debian/docker machine. use when the user needs to inspect docker containers, system logs, update software, or check the status of core services like nginx or postgresql. " data-category="system">
+          <div class="entry-head">
+            <h3 class="entry-name">devops-manager</h3>
+            <p class="entry-path"><span>system/</span>devops-manager</p>
+          </div>
+          <p class="entry-desc">Manage system services, check health, security, and updates on this Debian/Docker machine. Use when the user needs to inspect Docker containers, system logs, update software, or check the status of core services like Nginx or PostgreSQL.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>1.0.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 1.0.0, latest = 1.0.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>3 scripts</li></ul></dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add system/devops-manager</code><button class="copy" type="button" data-copy="skm add system/devops-manager">Copy</button></p>
+        </article>
+        <article class="entry" id="gcp-debug" data-search="system/gcp-debug debug gcp services using logs and interrogate status of cloud run, cloud functions, gke, and compute engine. gcp cloud-logging cloud-run gke devops troubleshooting" data-category="system">
+          <div class="entry-head">
+            <h3 class="entry-name">gcp-debug</h3>
+            <p class="entry-path"><span>system/</span>gcp-debug</p>
+          </div>
+          <p class="entry-desc">Debug GCP services using logs and interrogate status of Cloud Run, Cloud Functions, GKE, and Compute Engine.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>1 reference</li></ul></dd>
+            <dt>Tags</dt><dd><ul class="inline"><li class="tag">gcp</li><li class="tag">cloud-logging</li><li class="tag">cloud-run</li><li class="tag">gke</li><li class="tag">devops</li></ul></dd>
+          </dl>
+          <p class="entry-add"><code>skm add system/gcp-debug</code><button class="copy" type="button" data-copy="skm add system/gcp-debug">Copy</button></p>
+        </article>
+        <!-- CATALOG:END -->
+    </div>
+
+    <p class="empty" id="empty" hidden>No skill matches that. Clear the search, or <a href="https://github.com/skills-yaml/registry#adding-new-skills">contribute the one you need</a>.</p>
+  </div>
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <p>Generated from the registry repository on every deploy.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/skills-yaml/skm">skm</a>
+      <a href="https://github.com/skills-yaml/registry">registry</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

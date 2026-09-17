@@ -1,0 +1,76 @@
+{
+  "generated": "2026-09-17",
+  "registry": "https://github.com/skills-yaml/registry",
+  "categories": [
+    "software-development",
+    "system"
+  ],
+  "skills": [
+    {
+      "name": "spec",
+      "category": "software-development",
+      "id": "software-development/spec",
+      "description": "Write clear, reviewable software specs with a Symphony-style structure: problem, goals, non-goals, design, alternatives, rollout, risks, and open questions. Use this when drafting a spec, RFC, design doc, or implementation plan that should be easy for humans and agents to review.",
+      "version": "1.0.0",
+      "tags": [],
+      "versions": [
+        "1.0.0"
+      ],
+      "aliases": {
+        "latest": "v1.0.0",
+        "default": "v1.0.0"
+      },
+      "support": {
+        "references": 3,
+        "templates": 1
+      },
+      "deprecated": false
+    },
+    {
+      "name": "devops-manager",
+      "category": "system",
+      "id": "system/devops-manager",
+      "description": "Manage system services, check health, security, and updates on this Debian/Docker machine. Use when the user needs to inspect Docker containers, system logs, update software, or check the status of core services like Nginx or PostgreSQL.",
+      "version": "1.0.0",
+      "tags": [],
+      "versions": [
+        "1.0.0"
+      ],
+      "aliases": {
+        "latest": "v1.0.0",
+        "default": "v1.0.0"
+      },
+      "support": {
+        "references": 2,
+        "scripts": 3
+      },
+      "deprecated": false
+    },
+    {
+      "name": "gcp-debug",
+      "category": "system",
+      "id": "system/gcp-debug",
+      "description": "Debug GCP services using logs and interrogate status of Cloud Run, Cloud Functions, GKE, and Compute Engine.",
+      "version": "0.1.0",
+      "tags": [
+        "gcp",
+        "cloud-logging",
+        "cloud-run",
+        "gke",
+        "devops",
+        "troubleshooting"
+      ],
+      "versions": [
+        "0.1.0"
+      ],
+      "aliases": {
+        "latest": "v0.1.0",
+        "default": "v0.1.0"
+      },
+      "support": {
+        "references": 1
+      },
+      "deprecated": false
+    }
+  ]
+}
