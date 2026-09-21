@@ -69,17 +69,21 @@ li { list-style: none; }
   letter-spacing: -0.03em; color: var(--paper); text-decoration: none; margin-right: auto;
 }
 .wordmark span { color: var(--link-dark); }
-.masthead nav { display: flex; gap: 22px; font-size: 15px; }
+.masthead nav { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 15px; }
+.masthead nav a { white-space: nowrap; }
 .masthead nav a { color: var(--text-dim); text-decoration: none; }
 .masthead nav a:hover, .masthead nav a[aria-current="page"] { color: var(--paper); text-decoration: underline; }
 
-.hero .wrap { padding-block: 72px 80px; display: grid; gap: 56px; }
+.hero .wrap {
+  padding-block: 72px 80px; display: grid; gap: 56px;
+  grid-template-columns: minmax(0, 1fr);
+}
 @media (min-width: 900px) {
   .hero .wrap { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; align-items: start; }
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 6.4vw, 4.3rem);
+  font-size: clamp(2.05rem, 8.5vw, 4.3rem);
   font-weight: 700; letter-spacing: -0.045em; margin-bottom: 22px;
 }
 .hero h1 em { font-style: normal; display: block; }
@@ -93,7 +97,7 @@ li { list-style: none; }
   border: 1px solid var(--rule-dark); background: var(--ink-2);
 }
 .cmd code {
-  flex: 1; padding: 12px 14px; overflow-x: auto; white-space: nowrap;
+  flex: 1; min-width: 0; padding: 12px 14px; overflow-x: auto; white-space: nowrap;
   color: var(--paper); font-size: 13.5px; line-height: 1.5;
 }
 .cmd code b { color: var(--ok-dark); font-weight: 400; }
@@ -108,8 +112,8 @@ li { list-style: none; }
 
 /* the symlink figure: a manifest resolving into agent directories */
 
-.figure { font-family: var(--mono); font-size: 13px; line-height: 1.85; }
-.figure-file { border: 1px solid var(--rule-dark); background: var(--ink-2); }
+.figure { font-family: var(--mono); font-size: 13px; line-height: 1.85; min-width: 0; margin: 0; }
+.figure-file { border: 1px solid var(--rule-dark); background: var(--ink-2); min-width: 0; }
 .figure-name {
   display: flex; justify-content: space-between; gap: 16px;
   padding: 9px 14px; border-bottom: 1px solid var(--rule-dark);
@@ -131,9 +135,9 @@ li { list-style: none; }
 }
 .figure-run b { color: var(--ok-dark); font-weight: 400; }
 
-.tree { color: var(--text-dim); }
-.tree li { display: flex; gap: 0; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
-.tree li::-webkit-scrollbar { display: none; }
+.tree { color: var(--text-dim); overflow-x: auto; scrollbar-width: none; }
+.tree::-webkit-scrollbar { display: none; }
+.tree li { display: flex; gap: 0; white-space: nowrap; width: max-content; }
 .tree .branch { color: #4a507f; }
 .tree .path { color: var(--paper); }
 .tree .arrow { color: var(--link-dark); padding-inline: 8px; }
@@ -155,7 +159,7 @@ li { list-style: none; }
 .band h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 12px; }
 .band > .wrap > p { max-width: var(--measure); color: var(--text-2); }
 
-.split { display: grid; gap: 40px; margin-top: 36px; }
+.split { display: grid; gap: 40px; margin-top: 36px; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 820px) { .split { grid-template-columns: 1fr 1fr; gap: 48px; } }
 
 .panel-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
@@ -173,7 +177,7 @@ li { list-style: none; }
 
 /* annotated manifest */
 
-.annotated { display: grid; gap: 28px; margin-top: 36px; align-items: start; }
+.annotated { display: grid; gap: 28px; margin-top: 36px; align-items: start; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 900px) { .annotated { grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: 44px; } }
 .annotated pre {
   margin: 0; padding: 18px; border: 1px solid var(--rule); background: #fff;
@@ -187,7 +191,8 @@ li { list-style: none; }
 
 /* command table */
 
-.commands { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 15px; }
+.table-scroll { margin-top: 30px; overflow-x: auto; }
+.commands { width: 100%; border-collapse: collapse; font-size: 15px; }
 .commands caption { text-align: left; color: var(--text-2); font-size: 14.5px; padding-bottom: 12px; }
 .commands th, .commands td { text-align: left; vertical-align: baseline; padding: 11px 16px 11px 0; border-bottom: 1px solid var(--rule); }
 .commands thead th { font-size: 13.5px; font-weight: 600; color: var(--text-2); border-bottom-color: var(--text-2); }
@@ -199,7 +204,7 @@ li { list-style: none; }
 
 /* guardrails */
 
-.rails { display: grid; gap: 30px; margin-top: 34px; }
+.rails { display: grid; gap: 30px; margin-top: 34px; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 760px) { .rails { grid-template-columns: repeat(3, 1fr); gap: 36px; } }
 .rails h3 { font-size: 1.02rem; margin-bottom: 8px; }
 .rails p { color: var(--text-2); font-size: 15px; }
@@ -241,7 +246,10 @@ li { list-style: none; }
 .filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
 .entries { padding-block: 8px 72px; }
-.entry { padding-block: 30px; border-bottom: 1px solid var(--rule); display: grid; gap: 14px; }
+.entry {
+  padding-block: 30px; border-bottom: 1px solid var(--rule);
+  display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr);
+}
 @media (min-width: 900px) { .entry { grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); column-gap: 40px; } }
 .entry[hidden] { display: none; }
 .entry-name { font-size: 1.25rem; }
@@ -275,3 +283,20 @@ footer nav a:hover { color: var(--paper); text-decoration: underline; }
 /* keep the symlink arrows in a column while the paths vary in length */
 .tree .path { display: inline-block; min-width: 19ch; }
 .entry-meta dd code { color: var(--text); }
+
+/* ---------- phone adjustments ---------- */
+
+/* The command table is two columns of prose at desktop. Below this width the
+   description column is too narrow to read, so each row becomes a block: the
+   command on one line, what it does underneath at full width. */
+@media (max-width: 700px) {
+  .table-scroll { overflow-x: visible; }
+  .commands, .commands tbody, .commands tr, .commands tbody th, .commands td { display: block; }
+  .commands thead { display: none; }
+  .commands tbody th, .commands td { width: auto; padding-right: 0; }
+  .commands tbody th { border-bottom: 0; padding: 18px 0 2px; white-space: normal; }
+  .commands td { padding: 0 0 16px; border-bottom: 1px solid var(--rule); }
+  .commands tr.group th { padding: 30px 0 6px; border-bottom: 1px solid var(--text); }
+  .commands tr.group td { display: none; }
+  .commands caption { display: block; width: auto; padding-bottom: 6px; }
+}
