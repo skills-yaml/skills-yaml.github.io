@@ -11,6 +11,7 @@ fixed subset of YAML (scalars and string lists), so a full parser is overkill.
 """
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -187,6 +188,39 @@ def preview_html(skills):
     return "\n".join(items)
 
 
+ASSET_REFERENCE = re.compile(r'(assets/(?:style\.css|site\.js))(\?v=[0-9a-f]+)?')
+
+
+def version_assets(site, pages):
+    """Stamp each asset reference with a hash of the asset's contents.
+
+    The CDN in front of this site caches assets for four hours but serves the
+    HTML fresh. Without this, a deploy leaves visitors on a stale stylesheet
+    until the cache expires. Changing the query string changes the cache key,
+    so a new stylesheet is fetched the moment the HTML referencing it goes out.
+    """
+    digests = {}
+    for name in ("assets/style.css", "assets/site.js"):
+        path = os.path.join(site, name)
+        if os.path.isfile(path):
+            with open(path, "rb") as handle:
+                digests[name] = hashlib.sha256(handle.read()).hexdigest()[:10]
+
+    def stamp(match):
+        name = match.group(1)
+        return f"{name}?v={digests[name]}" if name in digests else match.group(0)
+
+    for page in pages:
+        path = os.path.join(site, page)
+        with open(path, encoding="utf-8") as handle:
+            content = handle.read()
+        updated = ASSET_REFERENCE.sub(stamp, content)
+        if updated != content:
+            with open(path, "w", encoding="utf-8") as handle:
+                handle.write(updated)
+    return digests
+
+
 def inject(path, marker, body):
     start, end = f"<!-- {marker}:START -->", f"<!-- {marker}:END -->"
     with open(path, encoding="utf-8") as handle:
@@ -232,7 +266,11 @@ def main():
     inject(os.path.join(args.site, "catalog.html"), "FILTERS", filters)
     inject(os.path.join(args.site, "index.html"), "PREVIEW", preview_html(skills))
 
+    digests = version_assets(args.site, ("index.html", "catalog.html"))
+
     print(f"catalog: {len(skills)} skills across {len(categories)} categories")
+    for name, digest in sorted(digests.items()):
+        print(f"asset:   {name}?v={digest}")
 
 
 if __name__ == "__main__":

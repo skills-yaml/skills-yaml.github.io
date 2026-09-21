@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=17aff431f1">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -52,6 +52,7 @@
         <!-- FILTERS:START -->
           <button class="filter" type="button" data-filter="software-development">software development</button>
           <button class="filter" type="button" data-filter="system">system</button>
+          <button class="filter" type="button" data-filter="workspace">workspace</button>
         <!-- FILTERS:END -->
       </div>
     </div>
@@ -72,33 +73,285 @@
           </dl>
           <p class="entry-add"><code>skm add software-development/spec</code><button class="copy" type="button" data-copy="skm add software-development/spec">Copy</button></p>
         </article>
-        <article class="entry" id="devops-manager" data-search="system/devops-manager manage system services, check health, security, and updates on this debian/docker machine. use when the user needs to inspect docker containers, system logs, update software, or check the status of core services like nginx or postgresql. " data-category="system">
+        <article class="entry" id="devops-manager" data-search="system/devops-manager manage services, health, security and updates on a debian host running docker. use when the user needs to inspect docker containers, read system logs, apply updates, or check core services such as nginx or postgresql. " data-category="system">
           <div class="entry-head">
             <h3 class="entry-name">devops-manager</h3>
             <p class="entry-path"><span>system/</span>devops-manager</p>
           </div>
-          <p class="entry-desc">Manage system services, check health, security, and updates on this Debian/Docker machine. Use when the user needs to inspect Docker containers, system logs, update software, or check the status of core services like Nginx or PostgreSQL.</p>
+          <p class="entry-desc">Manage services, health, security and updates on a Debian host running Docker. Use when the user needs to inspect Docker containers, read system logs, apply updates, or check core services such as Nginx or PostgreSQL.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>1.0.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 1.0.0, latest = 1.0.0</code></dd>
+            <dt>Versions</dt><dd><code>1.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 1.1.0, latest = 1.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>3 scripts</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
           <p class="entry-add"><code>skm add system/devops-manager</code><button class="copy" type="button" data-copy="skm add system/devops-manager">Copy</button></p>
         </article>
-        <article class="entry" id="gcp-debug" data-search="system/gcp-debug debug gcp services using logs and interrogate status of cloud run, cloud functions, gke, and compute engine. gcp cloud-logging cloud-run gke devops troubleshooting" data-category="system">
+        <article class="entry" id="address-review-feedback" data-search="workspace/address-review-feedback triage and implement selected actionable feedback from a pull request, branch review, or review report. use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits. " data-category="workspace">
           <div class="entry-head">
-            <h3 class="entry-name">gcp-debug</h3>
-            <p class="entry-path"><span>system/</span>gcp-debug</p>
+            <h3 class="entry-name">address-review-feedback</h3>
+            <p class="entry-path"><span>workspace/</span>address-review-feedback</p>
           </div>
-          <p class="entry-desc">Debug GCP services using logs and interrogate status of Cloud Run, Cloud Functions, GKE, and Compute Engine.</p>
+          <p class="entry-desc">Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/address-review-feedback</code><button class="copy" type="button" data-copy="skm add workspace/address-review-feedback">Copy</button></p>
+        </article>
+        <article class="entry" id="adopt-workspace-structure" data-search="workspace/adopt-workspace-structure adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">adopt-workspace-structure</h3>
+            <p class="entry-path"><span>workspace/</span>adopt-workspace-structure</p>
+          </div>
+          <p class="entry-desc">Adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. Use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/adopt-workspace-structure</code><button class="copy" type="button" data-copy="skm add workspace/adopt-workspace-structure">Copy</button></p>
+        </article>
+        <article class="entry" id="analyze-repository" data-search="workspace/analyze-repository analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. use when a repository needs assessment, onboarding context, or current-state discovery before planning work. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">analyze-repository</h3>
+            <p class="entry-path"><span>workspace/</span>analyze-repository</p>
+          </div>
+          <p class="entry-desc">Analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. Use when a repository needs assessment, onboarding context, or current-state discovery before planning work.</p>
           <dl class="entry-meta">
             <dt>Versions</dt><dd><code>0.1.0</code></dd>
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
-            <dt>Ships</dt><dd><ul class="inline"><li>1 reference</li></ul></dd>
-            <dt>Tags</dt><dd><ul class="inline"><li class="tag">gcp</li><li class="tag">cloud-logging</li><li class="tag">cloud-run</li><li class="tag">gke</li><li class="tag">devops</li></ul></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
-          <p class="entry-add"><code>skm add system/gcp-debug</code><button class="copy" type="button" data-copy="skm add system/gcp-debug">Copy</button></p>
+          <p class="entry-add"><code>skm add workspace/analyze-repository</code><button class="copy" type="button" data-copy="skm add workspace/analyze-repository">Copy</button></p>
+        </article>
+        <article class="entry" id="fix-bug" data-search="workspace/fix-bug reproduce, isolate, and fix a reported software defect with regression coverage. use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">fix-bug</h3>
+            <p class="entry-path"><span>workspace/</span>fix-bug</p>
+          </div>
+          <p class="entry-desc">Reproduce, isolate, and fix a reported software defect with regression coverage. Use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/fix-bug</code><button class="copy" type="button" data-copy="skm add workspace/fix-bug">Copy</button></p>
+        </article>
+        <article class="entry" id="fix-ci" data-search="workspace/fix-ci diagnose and fix failing continuous-integration checks with the smallest verified change. use when ci or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">fix-ci</h3>
+            <p class="entry-path"><span>workspace/</span>fix-ci</p>
+          </div>
+          <p class="entry-desc">Diagnose and fix failing continuous-integration checks with the smallest verified change. Use when CI or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/fix-ci</code><button class="copy" type="button" data-copy="skm add workspace/fix-ci">Copy</button></p>
+        </article>
+        <article class="entry" id="implement-spec" data-search="workspace/implement-spec implement an approved development specification through validated, reviewable changes. use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">implement-spec</h3>
+            <p class="entry-path"><span>workspace/</span>implement-spec</p>
+          </div>
+          <p class="entry-desc">Implement an approved development specification through validated, reviewable changes. Use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/implement-spec</code><button class="copy" type="button" data-copy="skm add workspace/implement-spec">Copy</button></p>
+        </article>
+        <article class="entry" id="maintain-project-docs" data-search="workspace/maintain-project-docs create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">maintain-project-docs</h3>
+            <p class="entry-path"><span>workspace/</span>maintain-project-docs</p>
+          </div>
+          <p class="entry-desc">Create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. Use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/maintain-project-docs</code><button class="copy" type="button" data-copy="skm add workspace/maintain-project-docs">Copy</button></p>
+        </article>
+        <article class="entry" id="monitor-ci" data-search="workspace/monitor-ci monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. use when the user asks to watch, babysit, follow, or wait for ci without changing code or workflow configuration. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">monitor-ci</h3>
+            <p class="entry-path"><span>workspace/</span>monitor-ci</p>
+          </div>
+          <p class="entry-desc">Monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. Use when the user asks to watch, babysit, follow, or wait for CI without changing code or workflow configuration.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/monitor-ci</code><button class="copy" type="button" data-copy="skm add workspace/monitor-ci">Copy</button></p>
+        </article>
+        <article class="entry" id="plan-implementation" data-search="workspace/plan-implementation build an ordered, evidence-backed implementation plan from an approved development specification. use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">plan-implementation</h3>
+            <p class="entry-path"><span>workspace/</span>plan-implementation</p>
+          </div>
+          <p class="entry-desc">Build an ordered, evidence-backed implementation plan from an approved development specification. Use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/plan-implementation</code><button class="copy" type="button" data-copy="skm add workspace/plan-implementation">Copy</button></p>
+        </article>
+        <article class="entry" id="review-changes" data-search="workspace/review-changes review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">review-changes</h3>
+            <p class="entry-path"><span>workspace/</span>review-changes</p>
+          </div>
+          <p class="entry-desc">Review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. Use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/review-changes</code><button class="copy" type="button" data-copy="skm add workspace/review-changes">Copy</button></p>
+        </article>
+        <article class="entry" id="review-security" data-search="workspace/review-security perform a threat-focused review of code, configuration, dependencies, or proposed changes. use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">review-security</h3>
+            <p class="entry-path"><span>workspace/</span>review-security</p>
+          </div>
+          <p class="entry-desc">Perform a threat-focused review of code, configuration, dependencies, or proposed changes. Use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/review-security</code><button class="copy" type="button" data-copy="skm add workspace/review-security">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-adopt" data-search="workspace/wk-adopt run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository&#x27;s workspace structure through the focused adoption workflow. invoke explicitly when the user requests workspace adoption or migration. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-adopt</h3>
+            <p class="entry-path"><span>workspace/</span>wk-adopt</p>
+          </div>
+          <p class="entry-desc">Run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository&#x27;s Workspace structure through the focused adoption workflow. Invoke explicitly when the user requests Workspace adoption or migration.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-adopt</code><button class="copy" type="button" data-copy="skm add workspace/wk-adopt">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-analyze" data-search="workspace/wk-analyze run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. invoke explicitly when the user wants repository structure, stack, sdlc, policy, documentation, active-work, risk, and gap analysis. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-analyze</h3>
+            <p class="entry-path"><span>workspace/</span>wk-analyze</p>
+          </div>
+          <p class="entry-desc">Run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. Invoke explicitly when the user wants repository structure, stack, SDLC, policy, documentation, active-work, risk, and gap analysis.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-analyze</code><button class="copy" type="button" data-copy="skm add workspace/wk-analyze">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-deliver" data-search="workspace/wk-deliver run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository&#x27;s authorized delivery workflow. invoke explicitly for end-to-end delivery rather than read-only review. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-deliver</h3>
+            <p class="entry-path"><span>workspace/</span>wk-deliver</p>
+          </div>
+          <p class="entry-desc">Run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository&#x27;s authorized delivery workflow. Invoke explicitly for end-to-end delivery rather than read-only review.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-deliver</code><button class="copy" type="button" data-copy="skm add workspace/wk-deliver">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-document" data-search="workspace/wk-document run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. invoke explicitly when documentation must be reconciled with current behavior and validated. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-document</h3>
+            <p class="entry-path"><span>workspace/</span>wk-document</p>
+          </div>
+          <p class="entry-desc">Run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. Invoke explicitly when documentation must be reconciled with current behavior and validated.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-document</code><button class="copy" type="button" data-copy="skm add workspace/wk-document">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-plan" data-search="workspace/wk-plan run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-plan</h3>
+            <p class="entry-path"><span>workspace/</span>wk-plan</p>
+          </div>
+          <p class="entry-desc">Run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. Invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-plan</code><button class="copy" type="button" data-copy="skm add workspace/wk-plan">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-review" data-search="workspace/wk-review run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. invoke explicitly when findings and validation gaps are needed without remediation. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-review</h3>
+            <p class="entry-path"><span>workspace/</span>wk-review</p>
+          </div>
+          <p class="entry-desc">Run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. Invoke explicitly when findings and validation gaps are needed without remediation.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-review</code><button class="copy" type="button" data-copy="skm add workspace/wk-review">Copy</button></p>
+        </article>
+        <article class="entry" id="wk-spec" data-search="workspace/wk-spec run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">wk-spec</h3>
+            <p class="entry-path"><span>workspace/</span>wk-spec</p>
+          </div>
+          <p class="entry-desc">Run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. Invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/wk-spec</code><button class="copy" type="button" data-copy="skm add workspace/wk-spec">Copy</button></p>
+        </article>
+        <article class="entry" id="write-spec" data-search="workspace/write-spec turn an accepted problem or feature request into a lifecycle-managed development specification. use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">write-spec</h3>
+            <p class="entry-path"><span>workspace/</span>write-spec</p>
+          </div>
+          <p class="entry-desc">Turn an accepted problem or feature request into a lifecycle-managed development specification. Use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Ships</dt><dd>SKILL.md only</dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/write-spec</code><button class="copy" type="button" data-copy="skm add workspace/write-spec">Copy</button></p>
         </article>
         <!-- CATALOG:END -->
     </div>
@@ -118,6 +371,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js?v=959ca3842f" defer></script>
 </body>
 </html>
