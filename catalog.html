@@ -51,6 +51,7 @@
       <div class="filters" role="group" aria-label="Filter by category">
         <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
         <!-- FILTERS:START -->
+          <button class="filter" type="button" data-filter="skills-yaml">skills yaml</button>
           <button class="filter" type="button" data-filter="software-development">software development</button>
           <button class="filter" type="button" data-filter="system">system</button>
           <button class="filter" type="button" data-filter="workspace">workspace</button>
@@ -60,6 +61,34 @@
 
     <div class="entries" id="entries">
       <!-- CATALOG:START -->
+        <article class="entry" id="skill-creator" data-search="skills-yaml/skill-creator author a new skill package for a skills-yaml registry so it passes the registry gates on the first attempt. use when adding a skill, packaging an existing prompt or workflow as a skill, publishing a new version of one, or fixing a package that ci rejected for structure, frontmatter, symlink or payload errors. " data-category="skills-yaml">
+          <div class="entry-head">
+            <h3 class="entry-name">skill-creator</h3>
+            <p class="entry-path"><span>skills-yaml/</span>skill-creator</p>
+          </div>
+          <p class="entry-desc">Author a new skill package for a skills-yaml registry so it passes the registry gates on the first attempt. Use when adding a skill, packaging an existing prompt or workflow as a skill, publishing a new version of one, or fixing a package that CI rejected for structure, frontmatter, symlink or payload errors.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>1 template</li></ul></dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add skills-yaml/skill-creator</code><button class="copy" type="button" data-copy="skm add skills-yaml/skill-creator">Copy</button></p>
+        </article>
+        <article class="entry" id="skill-reviewer" data-search="skills-yaml/skill-reviewer review a skill package before it is published or installed, for compliance with the registry contract and for unsafe or malicious behavior in its scripts and instructions. use when reviewing a contributed skill, auditing one from an untrusted registry, deciding whether to install a third-party skill, or checking a package after ci passed but before release. " data-category="skills-yaml">
+          <div class="entry-head">
+            <h3 class="entry-name">skill-reviewer</h3>
+            <p class="entry-path"><span>skills-yaml/</span>skill-reviewer</p>
+          </div>
+          <p class="entry-desc">Review a skill package before it is published or installed, for compliance with the registry contract and for unsafe or malicious behavior in its scripts and instructions. Use when reviewing a contributed skill, auditing one from an untrusted registry, deciding whether to install a third-party skill, or checking a package after CI passed but before release.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>2 references</li></ul></dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add skills-yaml/skill-reviewer</code><button class="copy" type="button" data-copy="skm add skills-yaml/skill-reviewer">Copy</button></p>
+        </article>
         <article class="entry" id="spec" data-search="software-development/spec write clear, reviewable software specs with a symphony-style structure: problem, goals, non-goals, design, alternatives, rollout, risks, and open questions. use this when drafting a spec, rfc, design doc, or implementation plan that should be easy for humans and agents to review. " data-category="software-development">
           <div class="entry-head">
             <h3 class="entry-name">spec</h3>
@@ -88,6 +117,20 @@
           </dl>
           <p class="entry-add"><code>skm add system/devops-manager</code><button class="copy" type="button" data-copy="skm add system/devops-manager">Copy</button></p>
         </article>
+        <article class="entry" id="gcp-debug" data-search="system/gcp-debug debug gcp services using logs and interrogate status of cloud run, cloud functions, gke, and compute engine. " data-category="system">
+          <div class="entry-head">
+            <h3 class="entry-name">gcp-debug</h3>
+            <p class="entry-path"><span>system/</span>gcp-debug</p>
+          </div>
+          <p class="entry-desc">Debug GCP services using logs and interrogate status of Cloud Run, Cloud Functions, GKE, and Compute Engine.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>1 reference</li></ul></dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add system/gcp-debug</code><button class="copy" type="button" data-copy="skm add system/gcp-debug">Copy</button></p>
+        </article>
         <article class="entry" id="address-review-feedback" data-search="workspace/address-review-feedback triage and implement selected actionable feedback from a pull request, branch review, or review report. use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits. " data-category="workspace">
           <div class="entry-head">
             <h3 class="entry-name">address-review-feedback</h3>
@@ -95,8 +138,8 @@
           </div>
           <p class="entry-desc">Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -109,8 +152,8 @@
           </div>
           <p class="entry-desc">Adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. Use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -123,12 +166,26 @@
           </div>
           <p class="entry-desc">Analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. Use when a repository needs assessment, onboarding context, or current-state discovery before planning work.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/analyze-repository</code><button class="copy" type="button" data-copy="skm add workspace/analyze-repository">Copy</button></p>
+        </article>
+        <article class="entry" id="coordinate-multi-agent-development" data-search="workspace/coordinate-multi-agent-development let peer agents coordinate on one machine through atomic task and version claims, self-created detached worktrees, shared file scopes, independent review, serialized integration, and lossless recovery. no coordinator agent is required. " data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name">coordinate-multi-agent-development</h3>
+            <p class="entry-path"><span>workspace/</span>coordinate-multi-agent-development</p>
+          </div>
+          <p class="entry-desc">Let peer agents coordinate on one machine through atomic task and version claims, self-created detached worktrees, shared file scopes, independent review, serialized integration, and lossless recovery. No coordinator agent is required.</p>
+          <dl class="entry-meta">
+            <dt>Versions</dt><dd><code>0.1.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Ships</dt><dd><ul class="inline"><li>1 script</li></ul></dd>
+            <dt>Tags</dt><dd><span class="none">none</span></dd>
+          </dl>
+          <p class="entry-add"><code>skm add workspace/coordinate-multi-agent-development</code><button class="copy" type="button" data-copy="skm add workspace/coordinate-multi-agent-development">Copy</button></p>
         </article>
         <article class="entry" id="fix-bug" data-search="workspace/fix-bug reproduce, isolate, and fix a reported software defect with regression coverage. use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change. " data-category="workspace">
           <div class="entry-head">
@@ -137,8 +194,8 @@
           </div>
           <p class="entry-desc">Reproduce, isolate, and fix a reported software defect with regression coverage. Use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -151,8 +208,8 @@
           </div>
           <p class="entry-desc">Diagnose and fix failing continuous-integration checks with the smallest verified change. Use when CI or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -165,8 +222,8 @@
           </div>
           <p class="entry-desc">Implement an approved development specification through validated, reviewable changes. Use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -179,8 +236,8 @@
           </div>
           <p class="entry-desc">Create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. Use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -193,8 +250,8 @@
           </div>
           <p class="entry-desc">Monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. Use when the user asks to watch, babysit, follow, or wait for CI without changing code or workflow configuration.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -207,8 +264,8 @@
           </div>
           <p class="entry-desc">Build an ordered, evidence-backed implementation plan from an approved development specification. Use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -221,8 +278,8 @@
           </div>
           <p class="entry-desc">Review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. Use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -235,8 +292,8 @@
           </div>
           <p class="entry-desc">Perform a threat-focused review of code, configuration, dependencies, or proposed changes. Use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -249,8 +306,8 @@
           </div>
           <p class="entry-desc">Run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository&#x27;s Workspace structure through the focused adoption workflow. Invoke explicitly when the user requests Workspace adoption or migration.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -263,8 +320,8 @@
           </div>
           <p class="entry-desc">Run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. Invoke explicitly when the user wants repository structure, stack, SDLC, policy, documentation, active-work, risk, and gap analysis.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -277,8 +334,8 @@
           </div>
           <p class="entry-desc">Run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository&#x27;s authorized delivery workflow. Invoke explicitly for end-to-end delivery rather than read-only review.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -291,8 +348,8 @@
           </div>
           <p class="entry-desc">Run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. Invoke explicitly when documentation must be reconciled with current behavior and validated.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -305,8 +362,8 @@
           </div>
           <p class="entry-desc">Run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. Invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -319,8 +376,8 @@
           </div>
           <p class="entry-desc">Run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. Invoke explicitly when findings and validation gaps are needed without remediation.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -333,8 +390,8 @@
           </div>
           <p class="entry-desc">Run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. Invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
@@ -347,8 +404,8 @@
           </div>
           <p class="entry-desc">Turn an accepted problem or feature request into a lifecycle-managed development specification. Use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
           </dl>
