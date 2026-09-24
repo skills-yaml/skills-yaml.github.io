@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authoring guide — skills.yaml</title>
+<meta name="description" content="How to create a skill package that installs into every agent skm supports, and how to publish a bundle of skills.">
+<link rel="canonical" href="https://skills-yaml.tech/guide.html">
+<meta property="og:title" content="Authoring guide — skills.yaml">
+<meta property="og:description" content="Create a compatible skill package, and bundle skills together.">
+<meta property="og:url" content="https://skills-yaml.tech/guide.html">
+<meta property="og:type" content="article">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=7977f5744a">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead dark">
+  <div class="wrap">
+    <a class="wordmark" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="index.html#disk">How it works</a>
+      <a href="index.html#manifest">Manifest</a>
+      <a href="index.html#commands">Commands</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="guide.html" aria-current="page">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="catalog-head dark">
+  <div class="wrap">
+    <h1>Authoring guide</h1>
+    <p>How to write a skill that installs into every agent skm supports, and how to offer several skills together as a bundle.</p>
+    <p class="meta">Describes skm 0.6.0 and the skills-yaml registry contract</p>
+  </div>
+</section>
+
+<main id="main" class="guide">
+  <div class="wrap guide-layout">
+
+    <nav class="toc" aria-label="On this page">
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#package">What a package is</a></li>
+        <li><a href="#skill-md">Write SKILL.md</a></li>
+        <li><a href="#layout">Build the layout</a></li>
+        <li><a href="#dependencies">Declare dependencies</a></li>
+        <li><a href="#validate">Validate</a></li>
+        <li><a href="#publish">Publish and version</a></li>
+        <li><a href="#install">Where it lands</a></li>
+        <li><a href="#bundles">Bundle skills</a></li>
+      </ol>
+    </nav>
+
+    <article class="doc">
+
+      <section id="package">
+        <h2>What a package is</h2>
+        <p>A skill is a directory with a <code>SKILL.md</code>: instructions an agent loads when a task matches, plus any references, templates or scripts it needs.</p>
+        <p>A <em>registry package</em> is that skill made installable and versioned. It adds three things a plain skill does not have: an exact version directory, two alias symlinks, and a second copy of the latest payload at the package root. Most rejected contributions get one of those three wrong, so the steps below build them in order.</p>
+        <p>The rules come from the registry's <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">SKILL_STRUCTURE.md</a>, <a href="https://github.com/skills-yaml/registry/blob/main/VERSIONING.md">VERSIONING.md</a> and its validator. Where this guide and those disagree, they win.</p>
+      </section>
+
+      <section id="skill-md">
+        <h2>1. Write SKILL.md</h2>
+        <p>Frontmatter first. Keep it to three fields:</p>
+        <div class="listing"><pre>---
+name: release-notes
+description: Draft release notes from merged pull requests. Use when preparing a release, summarizing changes since the last tag, or writing a changelog entry.
+metadata:
+  skm-version: "0.1.0"
+---</pre></div>
+
+        <dl class="notes">
+          <dt>name</dt>
+          <dd>Equal to the directory name. Lowercase letters, digits and single hyphens, 1–64 characters, with no hyphen at the start or end.</dd>
+          <dt>description</dt>
+          <dd>Most agents read only this before deciding whether to load the skill, so say what it does <em>and</em> when to use it. At most 1024 characters.</dd>
+          <dt>metadata.skm-version</dt>
+          <dd>The package version, as a quoted string. Everything under <code>metadata</code> must be a string.</dd>
+        </dl>
+
+        <p>The body is instructions for an agent that is about to act, not documentation for someone browsing. Start with what to do. Move long reference material into <code>references/</code> and link it, so the agent loads it only when it needs it.</p>
+
+        <h3>Stay inside the portable subset</h3>
+        <p>One <code>SKILL.md</code> is installed into many agents, and their rules conflict. Following the strictest rule on each point gives you a file that works everywhere:</p>
+        <div class="table-scroll">
+          <table class="commands">
+            <thead><tr><th scope="col">Rule</th><th scope="col">Strictest agents</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">name required</th><td>Codex, Cursor, Copilot, OpenCode, Kilo Code</td></tr>
+              <tr><th scope="row">name equals directory</th><td>OpenCode</td></tr>
+              <tr><th scope="row">name ≤ 64, kebab-case</th><td>OpenCode, Copilot</td></tr>
+              <tr><th scope="row">description required</th><td>Codex, Cursor, Copilot, OpenCode, Antigravity</td></tr>
+              <tr><th scope="row">description ≤ 1024</th><td>Roo Code, Kilo Code</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Leave out agent-specific fields such as <code>allowed-tools</code>, <code>paths</code>, <code>icon</code>, <code>model</code> or <code>disable-model-invocation</code>. They work only in the agent that defines them. If a skill needs one, it isn't portable, and it belongs in your own project rather than a shared registry.</p>
+      </section>
+
+      <section id="layout">
+        <h2>2. Build the layout</h2>
+        <div class="listing"><pre>skills/&lt;namespace&gt;/release-notes/
+├── SKILL.md            <span class="target"># identical to v0.1.0/SKILL.md</span>
+├── references/         <span class="target"># identical to v0.1.0/references/</span>
+├── latest <span class="arrow">-&gt;</span> v0.1.0
+├── default <span class="arrow">-&gt;</span> v0.1.0
+└── v0.1.0/
+    ├── SKILL.md
+    └── references/
+        └── style.md</pre></div>
+
+        <p>Build the version directory first, then copy its whole payload to the root. The validator compares the two byte for byte, including file permissions, so copy the files rather than retyping them:</p>
+        <div class="listing"><pre>cd skills/&lt;namespace&gt;/release-notes
+cp -a v0.1.0/SKILL.md v0.1.0/references .
+ln -s v0.1.0 latest
+ln -s v0.1.0 default</pre></div>
+
+        <ul class="rules">
+          <li><strong>Links must work from both copies.</strong> Skills get installed from the root and from the version directory, so every relative link has to resolve in both places. The usual mistake is copying <code>SKILL.md</code> to the root but not the <code>references/</code> directory it links to.</li>
+          <li><strong>Aliases are relative and stay inside the package.</strong> Each alias target is a single path segment like <code>v0.1.0</code>, with no slashes and no <code>..</code>. <code>latest</code> must point to the highest version.</li>
+          <li><strong>Scripts need the executable bit</strong> in both copies. <code>cp -a</code> keeps it.</li>
+          <li><strong>Limits:</strong> at most 256 files and 10 MB per package, and no symlinks inside a version directory.</li>
+        </ul>
+      </section>
+
+      <section id="dependencies">
+        <h2>3. Declare dependencies</h2>
+        <p>Use a dependency only when your skill can't work without another one:</p>
+        <div class="listing"><pre>metadata:
+  skm-version: "0.1.0"
+  skm-dependencies: "workspace/write-spec@0.2.0, workspace/review-changes@0.2.0"</pre></div>
+        <p>Each entry is an exact version from the same registry. Separate entries with a comma and one space, don't repeat any, and make sure no chain of dependencies loops back on itself. Version ranges, aliases and paths are rejected.</p>
+        <p class="status">Don't use a dependency to group skills that are merely useful together. That is a bundle — see <a href="#bundles">section 7</a>.</p>
+      </section>
+
+      <section id="validate">
+        <h2>4. Validate</h2>
+        <p>Run the registry's gates before you open a pull request:</p>
+        <div class="listing"><pre>task check    <span class="target"># structure, aliases, payloads, frontmatter, dependencies, immutability</span>
+task test     <span class="target"># the validator's own test suite</span></pre></div>
+        <p>If a check fails, the error message names the rule it broke. Search <a href="https://github.com/skills-yaml/registry/blob/main/scripts/validate_registry.py">validate_registry.py</a> for that message to see exactly what it checks.</p>
+        <p>The gates confirm that a package is well formed. They can't tell whether it's safe. Before you trust a skill, especially one with scripts, read what it actually tells the agent to do. The <code>skills-yaml/skill-reviewer</code> skill gives you a structured way to do that; it will be installable once the registry's next release reaches <code>main</code>.</p>
+      </section>
+
+      <section id="publish">
+        <h2>5. Publish and version</h2>
+        <p>Add the skill to the registry README's catalog, then open a pull request against <code>develop</code>. Merging into <code>develop</code> <em>integrates</em> the skill; it becomes installable only when <code>develop</code> is released into <code>main</code>, which is what skm resolves against.</p>
+        <ul class="rules">
+          <li><strong>Published versions are immutable.</strong> Once a version directory reaches <code>main</code>, its files, permissions and bytes are frozen. You can't edit it or delete it.</li>
+          <li><strong>To change a skill, publish a new version.</strong> Add a new version directory, point <code>latest</code> at it, update the root payload, and leave the old directory in place for anyone pinned to it.</li>
+          <li><strong>Choose the version number by what changed for users.</strong> If the skill now tells an agent to do something different, that's at least a minor release.</li>
+          <li><strong>To take a version down, withdraw it.</strong> Delete its directory and record it in <code>WITHDRAWN.yaml</code> with a date and a reason. This doesn't remove it from Git history, so treat anything it contained as already public.</li>
+        </ul>
+      </section>
+
+      <section id="install">
+        <h2>6. Where it lands</h2>
+        <p>A user adds your skill by name, and skm links it into each configured agent's skill directory:</p>
+        <div class="listing"><pre>skm add &lt;namespace&gt;/release-notes --source default
+skm install</pre></div>
+        <p>skm 0.6.0 supports sixteen agents. Several read the shared <code>.agents/skills</code> directory, and skm creates one link there for all of them rather than one per agent.</p>
+        <div class="table-scroll">
+          <table class="commands">
+            <thead><tr><th scope="col">Agent</th><th scope="col">Project</th><th scope="col">Global</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>claude</code></th><td><code>.claude/skills</code></td><td><code>~/.claude/skills</code></td></tr>
+              <tr><th scope="row"><code>codex</code></th><td><code>.agents/skills</code></td><td><code>~/.agents/skills</code></td></tr>
+              <tr><th scope="row"><code>copilot</code></th><td><code>.github/skills</code></td><td><code>~/.copilot/skills</code></td></tr>
+              <tr><th scope="row"><code>cursor</code></th><td><code>.cursor/skills</code></td><td><code>~/.cursor/skills</code></td></tr>
+              <tr><th scope="row"><code>antigravity</code></th><td><code>.agents/skills</code></td><td><code>~/.gemini/config/skills</code></td></tr>
+              <tr><th scope="row"><code>pi</code></th><td><code>.pi/skills</code></td><td><code>~/.pi/agent/skills</code></td></tr>
+              <tr><th scope="row"><code>opencode</code></th><td><code>.opencode/skills</code></td><td><code>~/.config/opencode/skills</code></td></tr>
+              <tr><th scope="row"><code>cline</code></th><td><code>.cline/skills</code></td><td><code>~/.cline/skills</code></td></tr>
+              <tr><th scope="row"><code>kilo</code></th><td><code>.kilo/skills</code></td><td><code>~/.kilo/skills</code></td></tr>
+              <tr><th scope="row"><code>gemini-cli</code></th><td><code>.gemini/skills</code></td><td><code>~/.gemini/skills</code></td></tr>
+              <tr><th scope="row"><code>goose</code></th><td><code>.agents/skills</code></td><td><code>~/.agents/skills</code></td></tr>
+              <tr><th scope="row"><code>crush</code></th><td><code>.crush/skills</code></td><td><code>~/.config/crush/skills</code></td></tr>
+              <tr><th scope="row"><code>openhands</code></th><td><code>.agents/skills</code></td><td><code>~/.openhands/skills</code></td></tr>
+              <tr><th scope="row"><code>grok</code></th><td><code>.grok/skills</code></td><td><code>~/.grok/skills</code></td></tr>
+              <tr><th scope="row"><code>qwen</code></th><td><code>.qwen/skills</code></td><td><code>~/.qwen/skills</code></td></tr>
+              <tr><th scope="row"><code>hermes</code></th><td>none</td><td><code>~/.hermes/skills</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Two cases where installing isn't enough on its own: Pi loads project skills only after you trust the project, and Hermes has no project directory at all, so it only picks up skills installed with <code>--global</code>.</p>
+      </section>
+
+      <section id="bundles">
+        <h2>7. Bundle skills</h2>
+        <p class="status"><strong>Not available yet.</strong> The registry doesn't yet accept bundles outside the <code>workspace</code> namespace, and <code>skm bundle add</code> isn't in skm 0.6.0. This section describes the agreed contract so you can plan for it. skm's search already shows any bundles a registry publishes.</p>
+
+        <p>A bundle is a name for a set of skills that are offered together. It is <em>not</em> a skill, and it is <em>not</em> a dependency:</p>
+        <dl class="notes">
+          <dt>Dependency</dt>
+          <dd>"This skill needs that one to work." It's declared inside a skill, and skm always installs it along with that skill.</dd>
+          <dt>Bundle</dt>
+          <dd>"These skills are useful together." It's declared in the namespace manifest, and a user chooses to add it.</dd>
+        </dl>
+        <p>Don't build a bundle as an empty skill that lists its members as dependencies. Every agent would still index it and show it as something you can run, and it misdescribes how the skills relate to each other.</p>
+
+        <h3>Declare it in the namespace manifest</h3>
+        <p>A bundle lives in <code>skills/&lt;namespace&gt;/manifest.yaml</code>:</p>
+        <div class="listing"><pre>schema_version: 2
+namespace: skills-yaml
+packages:
+  skill-creator: "0.1.0"
+  skill-reviewer: "0.1.0"
+bundles:
+  authoring-toolkit:
+    packages:
+      - skill-creator
+      - skill-reviewer</pre></div>
+
+        <ul class="rules">
+          <li><code>namespace</code> must match the name of the directory the manifest is in.</li>
+          <li><code>packages</code> must list <strong>exactly</strong> the current version of every package in the namespace. That keeps a bundle from pointing at versions that aren't published.</li>
+          <li>Every bundle member must also appear in <code>packages</code>, listed once, in a fixed order.</li>
+          <li>Bundle names follow the same rules as skill names.</li>
+          <li>Membership is always written out. skm never works it out from the directories.</li>
+          <li>The manifest is optional, but it's not allowed in a namespace that has no packages.</li>
+        </ul>
+        <p>The <code>workspace</code> namespace needs a few more fields, which record the source repository and revision its skills were generated from. Namespaces you write by hand, like the example above, need only the fields shown.</p>
+
+        <h3>How users will install it</h3>
+        <div class="listing"><pre>skm bundle add skills-yaml/authoring-toolkit --source default --dry-run
+skm bundle add skills-yaml/authoring-toolkit --source default --yes</pre></div>
+        <p>Adding a bundle writes each of its skills into <code>skills.yaml</code> as its own entry, pinned to an exact version. After that, the entries behave like any other: <code>skm install</code>, <code>skm check</code> and version changes work as usual. skm doesn't remember that the entries came from a bundle, and it won't update them automatically if the bundle's membership changes later.</p>
+      </section>
+
+    </article>
+  </div>
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <p>Corrections welcome through the registry repository.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/skills-yaml/skm">skm</a>
+      <a href="https://github.com/skills-yaml/registry">registry</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=959ca3842f" defer></script>
+</body>
+</html>

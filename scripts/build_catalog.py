@@ -266,7 +266,7 @@ def main():
     inject(os.path.join(args.site, "catalog.html"), "FILTERS", filters)
     inject(os.path.join(args.site, "index.html"), "PREVIEW", preview_html(skills))
 
-    digests = version_assets(args.site, ("index.html", "catalog.html"))
+    digests = version_assets(args.site, ("index.html", "catalog.html", "guide.html"))
 
     print(f"catalog: {len(skills)} skills across {len(categories)} categories")
     for name, digest in sorted(digests.items()):

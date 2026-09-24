@@ -300,3 +300,37 @@ footer nav a:hover { color: var(--paper); text-decoration: underline; }
   .commands tr.group td { display: none; }
   .commands caption { display: block; width: auto; padding-bottom: 6px; }
 }
+
+/* ---------- authoring guide ---------- */
+
+.guide-layout { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); padding-block: 48px 80px; }
+@media (min-width: 960px) { .guide-layout { grid-template-columns: 13rem minmax(0, 1fr); gap: 56px; } }
+
+.toc { font-size: 14.5px; }
+@media (min-width: 960px) { .toc { position: sticky; top: 24px; align-self: start; } }
+.toc-title { font-weight: 600; margin-bottom: 10px; }
+.toc ol { counter-reset: step; }
+.toc li { padding: 5px 0; border-bottom: 1px solid var(--rule); }
+.toc a { color: var(--text-2); text-decoration: none; }
+.toc a:hover { color: var(--link); text-decoration: underline; }
+
+.doc { max-width: 46rem; min-width: 0; }
+.doc section { padding-bottom: 44px; margin-bottom: 44px; border-bottom: 1px solid var(--rule); }
+.doc section:last-child { border-bottom: 0; }
+.doc h2 { font-size: clamp(1.4rem, 2.6vw, 1.75rem); margin-bottom: 16px; scroll-margin-top: 20px; }
+.doc h3 { font-size: 1.05rem; margin: 30px 0 10px; }
+.doc p { color: var(--text); margin-bottom: 14px; max-width: 68ch; }
+.doc .listing { margin: 6px 0 18px; }
+.doc .listing pre { margin: 0; }
+.doc .notes { margin: 8px 0 18px; }
+.doc .table-scroll { margin: 8px 0 18px; }
+.doc .commands { margin-top: 0; }
+
+.rules { margin: 10px 0 18px; display: grid; gap: 12px; }
+.rules li { padding-left: 16px; border-left: 2px solid var(--rule); color: var(--text); max-width: 68ch; }
+.rules strong { font-weight: 600; }
+
+.status {
+  padding: 14px 16px; border-left: 3px solid var(--link);
+  background: var(--paper-2); color: var(--text); max-width: 68ch;
+}
