@@ -175,25 +175,27 @@
 
     <div class="table-scroll">
     <table class="commands">
-      <caption>Add <code>--global</code> to install, list and check to target your home directory. Add <code>--json</code> where a script needs to read the result.</caption>
+      <caption>Commands for skm 0.7.0. Add <code>--global</code> to install, list or check to work in your home directory instead of the project. Add <code>--json</code> to install, search, versions or a bundle add when a script needs to read the result.</caption>
       <thead>
         <tr><th scope="col">Command</th><th scope="col">What it does</th></tr>
       </thead>
       <tbody>
         <tr class="group"><th scope="row" colspan="2">Set up</th></tr>
-        <tr><th scope="row"><code>skm init</code></th><td>Builds <code>skills.yaml</code> in a terminal wizard, with a live preview and a searchable list of the skills in your registries. <code>--non-interactive</code> writes a default manifest for scripts.</td></tr>
-        <tr><th scope="row"><code>skm search &lt;query&gt;</code></th><td>Searches your registries by skill name and prints the command that adds each result. <code>--add</code> takes an unambiguous match straight into the manifest.</td></tr>
-        <tr><th scope="row"><code>skm add &lt;skill&gt;</code></th><td>Adds one skill to the manifest and links it.</td></tr>
+        <tr><th scope="row"><code>skm init</code></th><td>Creates or edits <code>skills.yaml</code> through a series of prompts, lets you search your registries for skills, and shows the finished file before saving it. <code>--non-interactive</code> writes a default manifest for scripts.</td></tr>
+        <tr><th scope="row"><code>skm search &lt;query&gt;</code></th><td>Searches your registries for skills and bundles in one list. Each result shows its version, description and registry, and the <code>skm add</code> command for it. Search never changes your project. <code>--registry</code> searches a single registry, and <code>--limit</code> caps the number of results.</td></tr>
+        <tr><th scope="row"><code>skm add &lt;skill&gt;</code></th><td>Adds one skill to the manifest and links it. <code>--path</code> adds a skill from a local folder.</td></tr>
+        <tr><th scope="row"><code>skm add &lt;bundle&gt;</code></th><td>Adds every skill in a published bundle, each pinned to an exact version, as one change that is rolled back if any part fails. <code>--dry-run</code> shows what would change, and <code>--yes</code> applies it. Add <code>--kind bundle</code> when a skill has the same name.</td></tr>
+        <tr><th scope="row"><code>skm remove &lt;skill&gt;</code></th><td>Removes a skill from the manifest and unlinks it. <code>--dry-run</code> shows what would be removed.</td></tr>
 
         <tr class="group"><th scope="row" colspan="2">Keep it correct</th></tr>
-        <tr><th scope="row"><code>skm install</code></th><td>Resolves every skill, checks each target before writing, links them, then writes the lockfile. <code>--dry-run</code> shows every write first.</td></tr>
+        <tr><th scope="row"><code>skm install</code></th><td>Resolves every skill, checks each target before writing, links them, then writes the lockfile. <code>--dry-run</code> shows every write first, and <code>--yes</code> applies without asking.</td></tr>
         <tr><th scope="row"><code>skm list</code></th><td>Reports link status, including sources that went missing and links that point somewhere wrong.</td></tr>
         <tr><th scope="row"><code>skm check</code></th><td>Verifies sources, <code>SKILL.md</code> files and symlink targets. Run it in CI.</td></tr>
-        <tr><th scope="row"><code>skm update</code></th><td>Updates the <code>skm</code> binary itself from the production or development channel.</td></tr>
+        <tr><th scope="row"><code>skm update</code></th><td>Updates the <code>skm</code> binary itself. <code>--check</code> only reports whether a new release is available, and <code>--channel prod|development</code> switches release channel.</td></tr>
 
         <tr class="group"><th scope="row" colspan="2">Move between versions</th></tr>
-        <tr><th scope="row"><code>skm versions &lt;skill&gt;</code></th><td>Lists the releases a registry offers for one skill.</td></tr>
-        <tr><th scope="row"><code>skm use &lt;skill&gt;@&lt;version&gt;</code></th><td>Switches a skill to a specific version and re-links it.</td></tr>
+        <tr><th scope="row"><code>skm versions &lt;skill&gt;</code></th><td>Lists the releases a registry offers for one skill. <code>--pre</code> includes prereleases.</td></tr>
+        <tr><th scope="row"><code>skm use &lt;skill&gt;@&lt;version&gt;</code></th><td>Switches a skill to a specific version and re-links it. <code>--dry-run</code> shows the change first.</td></tr>
         <tr><th scope="row"><code>skm update-skill &lt;skill&gt;</code></th><td>Moves a skill to its newest release and re-links it.</td></tr>
 
         <tr class="group"><th scope="row" colspan="2">Write a skill</th></tr>
@@ -201,9 +203,8 @@
         <tr><th scope="row"><code>skm dev list</code>, <code>show</code>, <code>mode</code></th><td>Shows what is linked in development, and turns development mode on or off.</td></tr>
         <tr><th scope="row"><code>skm dev unlink &lt;skill&gt;</code></th><td>Removes a development link.</td></tr>
 
-        <tr class="group"><th scope="row" colspan="2">Workspace toolkits</th></tr>
-        <tr><th scope="row"><code>skm workspace audit</code></th><td>Reports how your repo compares with a trusted <code>workspace-docs</code> package.</td></tr>
-        <tr><th scope="row"><code>skm workspace adopt</code></th><td>Also <code>upgrade</code> and <code>repair</code>. Each plans first and applies only with <code>--apply</code>, and can resume where it stopped.</td></tr>
+        <tr class="group"><th scope="row" colspan="2">Workspace Docs</th></tr>
+        <tr><th scope="row"><code>skm add workspace/wk-adopt</code></th><td>Adds the skill that assesses, adopts, upgrades and repairs the Workspace Docs structure. Invoke <code>wk-adopt</code> in your agent to do the work. skm no longer has a <code>workspace</code> command, and it no longer writes <code>.skm/workspace-plan.yaml</code>.</td></tr>
       </tbody>
     </table>
     </div>
