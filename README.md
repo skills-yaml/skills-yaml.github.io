@@ -8,7 +8,8 @@ a little JavaScript; no build step beyond the catalog generator.
 
 ```txt
 index.html                 landing page
-catalog.html               generated skill catalog
+catalog.html               generated catalog: metapackages, then skills
+metapackages/<scope>/      generated page per metapackage (registry bundle)
 assets/style.css           the whole stylesheet
 assets/site.js             copy buttons and catalog filtering
 scripts/build_catalog.py   reads a registry checkout, writes the catalog
@@ -19,15 +20,19 @@ CNAME                      skills-yaml.tech
 ## Regenerating the catalog
 
 The generator reads a checkout of the registry and fills the marked regions of
-`catalog.html` and `index.html`, plus `data/catalog.json`. It needs Python 3 and
-nothing else.
+`catalog.html` and `index.html`, plus `data/catalog.json`. It also turns every
+bundle in `skills/<scope>/manifest.yaml` into a metapackage: a card on the
+catalog and a page at `metapackages/<scope>/<name>.html` listing its scope and
+member skills at their pinned versions. That directory is rewritten on every
+run, so do not edit it by hand. It needs Python 3 and nothing else.
 
 ```sh
 python3 scripts/build_catalog.py --registry ../registry
 ```
 
 `--registry` defaults to a sibling `../registry` directory. The generated regions
-sit between `<!-- CATALOG:START -->`, `<!-- FILTERS:START -->` and
+sit between `<!-- CATALOG:START -->`, `<!-- METAPACKAGES:START -->`,
+`<!-- FILTERS:START -->` and
 `<!-- PREVIEW:START -->` markers; edit around them, not inside them.
 
 ## Previewing

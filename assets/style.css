@@ -334,3 +334,31 @@ footer nav a:hover { color: var(--paper); text-decoration: underline; }
   padding: 14px 16px; border-left: 3px solid var(--link);
   background: var(--paper-2); color: var(--text); max-width: 68ch;
 }
+
+/* ---------- metapackages ---------- */
+
+.group-head { padding-top: 40px; padding-bottom: 6px; border-bottom: 2px solid var(--text); }
+.group-head h2 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
+.group-head p { color: var(--text-2); font-size: 15px; max-width: 62ch; margin-top: 6px; }
+.group[hidden] { display: none; }
+.entry-name a { color: inherit; text-decoration: none; }
+.entry-name a:hover { color: var(--link); text-decoration: underline; }
+.entry-more { font-size: 15px; }
+@media (min-width: 900px) { .entry-bundle .entry-more { grid-column: 2; } }
+.entry-meta .inline a { font-family: var(--mono); font-size: 12.5px; }
+
+.crumbs { font-size: 14px; color: var(--text-dim); margin-bottom: 14px; }
+.catalog-head .crumbs a { color: var(--text-dim); }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin-top: 22px; font-size: 14.5px; }
+.facts dt { color: var(--text-dim); }
+.facts dd { margin: 0; color: var(--paper); }
+.facts code { color: var(--paper); }
+
+.bundle-install { display: grid; gap: 10px; padding-block: 36px 8px; grid-template-columns: minmax(0, 1fr); }
+.bundle-install .entry-add { grid-column: auto; flex-wrap: nowrap; }
+.bundle-install .entry-add code { min-width: 0; overflow-x: auto; white-space: nowrap; }
+.members { margin-bottom: 72px; }
+.members .member-version { white-space: nowrap; }
+.members tbody th a { text-decoration: none; }
+.members tbody th a:hover code { text-decoration: underline; }
+.members tbody th a code { color: var(--link); }

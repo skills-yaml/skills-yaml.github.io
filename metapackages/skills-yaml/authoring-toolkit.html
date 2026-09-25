@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>skills-yaml/authoring-toolkit — skills.yaml</title>
+<meta name="description" content="2 skills from the skills-yaml scope, installed together with one command.">
+<link rel="canonical" href="https://skills-yaml.tech/metapackages/skills-yaml/authoring-toolkit.html">
+<meta property="og:title" content="skills-yaml/authoring-toolkit — skills.yaml">
+<meta property="og:description" content="2 skills from the skills-yaml scope, installed together with one command.">
+<meta property="og:url" content="https://skills-yaml.tech/metapackages/skills-yaml/authoring-toolkit.html">
+<meta property="og:type" content="website">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=b8ebdc0263">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead dark">
+  <div class="wrap">
+    <a class="wordmark" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html" aria-current="page">Catalog</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="catalog-head dark">
+  <div class="wrap">
+    <p class="crumbs"><a href="/catalog.html">Catalog</a> / <a href="/catalog.html#metapackages">Metapackages</a></p>
+    <h1>authoring-toolkit</h1>
+    <p>2 skills from the skills-yaml scope, installed together with one command. skm writes each skill into <code>skills.yaml</code> as its own entry, pinned to the version listed below.</p>
+    <dl class="facts">
+      <dt>Package</dt><dd><code>skills-yaml/authoring-toolkit</code></dd>
+      <dt>Scope</dt><dd><code>skills-yaml/</code></dd>
+      <dt>Skills</dt><dd>2</dd>
+    </dl>
+  </div>
+</section>
+
+<main id="main">
+  <div class="wrap">
+    <div class="bundle-install">
+      <p class="panel-title">Add it to your project</p>
+      <p class="entry-add"><code>skm add skills-yaml/authoring-toolkit --kind bundle --dry-run</code><button class="copy" type="button" data-copy="skm add skills-yaml/authoring-toolkit --kind bundle --dry-run">Copy</button></p>
+      <p class="entry-add"><code>skm add skills-yaml/authoring-toolkit --kind bundle --yes</code><button class="copy" type="button" data-copy="skm add skills-yaml/authoring-toolkit --kind bundle --yes">Copy</button></p>
+      <p class="panel-note">The first command shows what would be added. The second adds it. Needs skm 0.7.0 or later.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="commands members">
+        <caption>Every skill in skills-yaml/authoring-toolkit</caption>
+        <thead><tr><th scope="col">Skill</th><th scope="col">Version</th><th scope="col">What it does</th></tr></thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="/catalog.html#skill-creator"><code>skill-creator</code></a></th>
+            <td class="member-version"><code>0.1.0</code></td>
+            <td>Author a new skill package for a skills-yaml registry so it passes the registry gates on the first attempt. Use when adding a skill, packaging an existing prompt or workflow as a skill, publishing a new version of one, or fixing a package that CI rejected for structure, frontmatter, symlink or payload errors.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#skill-reviewer"><code>skill-reviewer</code></a></th>
+            <td class="member-version"><code>0.1.0</code></td>
+            <td>Review a skill package before it is published or installed, for compliance with the registry contract and for unsafe or malicious behavior in its scripts and instructions. Use when reviewing a contributed skill, auditing one from an untrusted registry, deciding whether to install a third-party skill, or checking a package after CI passed but before release.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <p>Generated from the registry repository on every deploy.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/skills-yaml/skm">skm</a>
+      <a href="https://github.com/skills-yaml/registry/blob/main/skills/skills-yaml/manifest.yaml">manifest</a>
+      <a href="/catalog.html">Catalog</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/site.js?v=61030e1d09" defer></script>
+</body>
+</html>
