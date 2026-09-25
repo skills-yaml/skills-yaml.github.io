@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=7977f5744a">
+<link rel="stylesheet" href="assets/style.css?v=b8ebdc0263">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -36,7 +36,7 @@
 <section class="catalog-head dark">
   <div class="wrap">
     <h1>Skill catalog</h1>
-    <p>Everything published in the default registry. Add one to your project with the command on its entry, then run <code>skm install</code>.</p>
+    <p>Everything published in the default registry: metapackages first, then every skill. Add one to your project with the command on its entry, then run <code>skm install</code>.</p>
     <p class="meta">registries.default: git@github.com:skills-yaml/registry.git</p>
   </div>
 </section>
@@ -46,7 +46,7 @@
     <div class="controls">
       <div class="search">
         <label for="q">Search</label>
-        <input id="q" type="search" placeholder="name, tag or description" autocomplete="off">
+        <input id="q" type="search" placeholder="name, tag, description or metapackage" autocomplete="off">
       </div>
       <div class="filters" role="group" aria-label="Filter by category">
         <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
@@ -60,6 +60,37 @@
     </div>
 
     <div class="entries" id="entries">
+      <section class="group" id="metapackages" aria-labelledby="metapackages-title">
+        <div class="group-head">
+          <h2 id="metapackages-title">Metapackages</h2>
+          <p>A metapackage adds a set of skills in one step. Open one to see its scope and every skill it contains.</p>
+        </div>
+        <!-- METAPACKAGES:START -->
+        <article class="entry entry-bundle" id="metapackage-skills-yaml-authoring-toolkit" data-search="skills-yaml/authoring-toolkit skill-creator skill-reviewer" data-category="skills-yaml">
+          <div class="entry-head">
+            <h3 class="entry-name"><a href="metapackages/skills-yaml/authoring-toolkit.html">authoring-toolkit</a></h3>
+            <p class="entry-path"><span>skills-yaml/</span>authoring-toolkit</p>
+          </div>
+          <p class="entry-desc">2 skills from the <code>skills-yaml</code> scope, each pinned to an exact version: skill-creator, skill-reviewer.</p>
+          <p class="entry-more"><a href="metapackages/skills-yaml/authoring-toolkit.html">See all 2 skills</a></p>
+          <p class="entry-add"><code>skm add skills-yaml/authoring-toolkit --kind bundle --yes</code><button class="copy" type="button" data-copy="skm add skills-yaml/authoring-toolkit --kind bundle --yes">Copy</button></p>
+        </article>
+        <article class="entry entry-bundle" id="metapackage-workspace-all-workspace-skills" data-search="workspace/all-workspace-skills address-review-feedback adopt-workspace-structure analyze-repository coordinate-multi-agent-development fix-bug fix-ci implement-spec maintain-project-docs monitor-ci plan-implementation review-changes review-security wk-adopt wk-analyze wk-deliver wk-document wk-plan wk-review wk-spec write-spec" data-category="workspace">
+          <div class="entry-head">
+            <h3 class="entry-name"><a href="metapackages/workspace/all-workspace-skills.html">all-workspace-skills</a></h3>
+            <p class="entry-path"><span>workspace/</span>all-workspace-skills</p>
+          </div>
+          <p class="entry-desc">20 skills from the <code>workspace</code> scope, each pinned to an exact version: address-review-feedback, adopt-workspace-structure, analyze-repository, coordinate-multi-agent-development, fix-bug, fix-ci, and 14 more.</p>
+          <p class="entry-more"><a href="metapackages/workspace/all-workspace-skills.html">See all 20 skills</a></p>
+          <p class="entry-add"><code>skm add workspace/all-workspace-skills --kind bundle --yes</code><button class="copy" type="button" data-copy="skm add workspace/all-workspace-skills --kind bundle --yes">Copy</button></p>
+        </article>
+        <!-- METAPACKAGES:END -->
+      </section>
+
+      <section class="group" id="skills" aria-labelledby="skills-title">
+        <div class="group-head">
+          <h2 id="skills-title">Skills</h2>
+        </div>
       <!-- CATALOG:START -->
         <article class="entry" id="skill-creator" data-search="skills-yaml/skill-creator author a new skill package for a skills-yaml registry so it passes the registry gates on the first attempt. use when adding a skill, packaging an existing prompt or workflow as a skill, publishing a new version of one, or fixing a package that ci rejected for structure, frontmatter, symlink or payload errors. " data-category="skills-yaml">
           <div class="entry-head">
@@ -72,6 +103,7 @@
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>1 template</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/skills-yaml/authoring-toolkit.html">skills-yaml/authoring-toolkit</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add skills-yaml/skill-creator</code><button class="copy" type="button" data-copy="skm add skills-yaml/skill-creator">Copy</button></p>
         </article>
@@ -86,6 +118,7 @@
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/skills-yaml/authoring-toolkit.html">skills-yaml/authoring-toolkit</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add skills-yaml/skill-reviewer</code><button class="copy" type="button" data-copy="skm add skills-yaml/skill-reviewer">Copy</button></p>
         </article>
@@ -100,6 +133,7 @@
             <dt>Aliases</dt><dd><code>default = 1.0.0, latest = 1.0.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>3 references</li><li>1 template</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><span class="none">no metapackage</span></dd>
           </dl>
           <p class="entry-add"><code>skm add software-development/spec</code><button class="copy" type="button" data-copy="skm add software-development/spec">Copy</button></p>
         </article>
@@ -114,6 +148,7 @@
             <dt>Aliases</dt><dd><code>default = 1.1.0, latest = 1.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>3 scripts</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><span class="none">no metapackage</span></dd>
           </dl>
           <p class="entry-add"><code>skm add system/devops-manager</code><button class="copy" type="button" data-copy="skm add system/devops-manager">Copy</button></p>
         </article>
@@ -128,6 +163,7 @@
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>1 reference</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><span class="none">no metapackage</span></dd>
           </dl>
           <p class="entry-add"><code>skm add system/gcp-debug</code><button class="copy" type="button" data-copy="skm add system/gcp-debug">Copy</button></p>
         </article>
@@ -142,6 +178,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/address-review-feedback</code><button class="copy" type="button" data-copy="skm add workspace/address-review-feedback">Copy</button></p>
         </article>
@@ -156,6 +193,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/adopt-workspace-structure</code><button class="copy" type="button" data-copy="skm add workspace/adopt-workspace-structure">Copy</button></p>
         </article>
@@ -170,6 +208,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/analyze-repository</code><button class="copy" type="button" data-copy="skm add workspace/analyze-repository">Copy</button></p>
         </article>
@@ -184,6 +223,7 @@
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>1 script</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/coordinate-multi-agent-development</code><button class="copy" type="button" data-copy="skm add workspace/coordinate-multi-agent-development">Copy</button></p>
         </article>
@@ -198,6 +238,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/fix-bug</code><button class="copy" type="button" data-copy="skm add workspace/fix-bug">Copy</button></p>
         </article>
@@ -212,6 +253,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/fix-ci</code><button class="copy" type="button" data-copy="skm add workspace/fix-ci">Copy</button></p>
         </article>
@@ -226,6 +268,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/implement-spec</code><button class="copy" type="button" data-copy="skm add workspace/implement-spec">Copy</button></p>
         </article>
@@ -240,6 +283,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/maintain-project-docs</code><button class="copy" type="button" data-copy="skm add workspace/maintain-project-docs">Copy</button></p>
         </article>
@@ -254,6 +298,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/monitor-ci</code><button class="copy" type="button" data-copy="skm add workspace/monitor-ci">Copy</button></p>
         </article>
@@ -268,6 +313,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/plan-implementation</code><button class="copy" type="button" data-copy="skm add workspace/plan-implementation">Copy</button></p>
         </article>
@@ -282,6 +328,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/review-changes</code><button class="copy" type="button" data-copy="skm add workspace/review-changes">Copy</button></p>
         </article>
@@ -296,6 +343,7 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/review-security</code><button class="copy" type="button" data-copy="skm add workspace/review-security">Copy</button></p>
         </article>
@@ -310,6 +358,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-adopt</code><button class="copy" type="button" data-copy="skm add workspace/wk-adopt">Copy</button></p>
         </article>
@@ -324,6 +373,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-analyze</code><button class="copy" type="button" data-copy="skm add workspace/wk-analyze">Copy</button></p>
         </article>
@@ -338,6 +388,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-deliver</code><button class="copy" type="button" data-copy="skm add workspace/wk-deliver">Copy</button></p>
         </article>
@@ -352,6 +403,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-document</code><button class="copy" type="button" data-copy="skm add workspace/wk-document">Copy</button></p>
         </article>
@@ -366,6 +418,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-plan</code><button class="copy" type="button" data-copy="skm add workspace/wk-plan">Copy</button></p>
         </article>
@@ -380,6 +433,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-review</code><button class="copy" type="button" data-copy="skm add workspace/wk-review">Copy</button></p>
         </article>
@@ -394,6 +448,7 @@
             <dt>Aliases</dt><dd><code>default = 0.2.0, latest = 0.2.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/wk-spec</code><button class="copy" type="button" data-copy="skm add workspace/wk-spec">Copy</button></p>
         </article>
@@ -408,13 +463,15 @@
             <dt>Aliases</dt><dd><code>default = 0.3.0, latest = 0.3.0</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
+            <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
           </dl>
           <p class="entry-add"><code>skm add workspace/write-spec</code><button class="copy" type="button" data-copy="skm add workspace/write-spec">Copy</button></p>
         </article>
         <!-- CATALOG:END -->
+      </section>
     </div>
 
-    <p class="empty" id="empty" hidden>No skill matches that. Clear the search, or <a href="https://github.com/skills-yaml/registry#adding-new-skills">contribute the one you need</a>.</p>
+    <p class="empty" id="empty" hidden>Nothing matches that. Clear the search, or <a href="https://github.com/skills-yaml/registry#adding-new-skills">contribute the one you need</a>.</p>
   </div>
 </main>
 
@@ -429,6 +486,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=959ca3842f" defer></script>
+<script src="assets/site.js?v=61030e1d09" defer></script>
 </body>
 </html>

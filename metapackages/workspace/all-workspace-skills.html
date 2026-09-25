@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>workspace/all-workspace-skills — skills.yaml</title>
+<meta name="description" content="20 skills from the workspace scope, installed together with one command.">
+<link rel="canonical" href="https://skills-yaml.tech/metapackages/workspace/all-workspace-skills.html">
+<meta property="og:title" content="workspace/all-workspace-skills — skills.yaml">
+<meta property="og:description" content="20 skills from the workspace scope, installed together with one command.">
+<meta property="og:url" content="https://skills-yaml.tech/metapackages/workspace/all-workspace-skills.html">
+<meta property="og:type" content="website">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=b8ebdc0263">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead dark">
+  <div class="wrap">
+    <a class="wordmark" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html" aria-current="page">Catalog</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="catalog-head dark">
+  <div class="wrap">
+    <p class="crumbs"><a href="/catalog.html">Catalog</a> / <a href="/catalog.html#metapackages">Metapackages</a></p>
+    <h1>all-workspace-skills</h1>
+    <p>20 skills from the workspace scope, installed together with one command. skm writes each skill into <code>skills.yaml</code> as its own entry, pinned to the version listed below.</p>
+    <dl class="facts">
+      <dt>Package</dt><dd><code>workspace/all-workspace-skills</code></dd>
+      <dt>Scope</dt><dd><code>workspace/</code></dd>
+      <dt>Skills</dt><dd>20</dd>
+    </dl>
+  </div>
+</section>
+
+<main id="main">
+  <div class="wrap">
+    <div class="bundle-install">
+      <p class="panel-title">Add it to your project</p>
+      <p class="entry-add"><code>skm add workspace/all-workspace-skills --kind bundle --dry-run</code><button class="copy" type="button" data-copy="skm add workspace/all-workspace-skills --kind bundle --dry-run">Copy</button></p>
+      <p class="entry-add"><code>skm add workspace/all-workspace-skills --kind bundle --yes</code><button class="copy" type="button" data-copy="skm add workspace/all-workspace-skills --kind bundle --yes">Copy</button></p>
+      <p class="panel-note">The first command shows what would be added. The second adds it. Needs skm 0.7.0 or later.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="commands members">
+        <caption>Every skill in workspace/all-workspace-skills</caption>
+        <thead><tr><th scope="col">Skill</th><th scope="col">Version</th><th scope="col">What it does</th></tr></thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="/catalog.html#address-review-feedback"><code>address-review-feedback</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#adopt-workspace-structure"><code>adopt-workspace-structure</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. Use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#analyze-repository"><code>analyze-repository</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. Use when a repository needs assessment, onboarding context, or current-state discovery before planning work.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#coordinate-multi-agent-development"><code>coordinate-multi-agent-development</code></a></th>
+            <td class="member-version"><code>0.1.0</code></td>
+            <td>Let peer agents coordinate on one machine through atomic task and version claims, self-created detached worktrees, shared file scopes, independent review, serialized integration, and lossless recovery. No coordinator agent is required.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#fix-bug"><code>fix-bug</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Reproduce, isolate, and fix a reported software defect with regression coverage. Use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#fix-ci"><code>fix-ci</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Diagnose and fix failing continuous-integration checks with the smallest verified change. Use when CI or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#implement-spec"><code>implement-spec</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Implement an approved development specification through validated, reviewable changes. Use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#maintain-project-docs"><code>maintain-project-docs</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. Use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#monitor-ci"><code>monitor-ci</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. Use when the user asks to watch, babysit, follow, or wait for CI without changing code or workflow configuration.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#plan-implementation"><code>plan-implementation</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Build an ordered, evidence-backed implementation plan from an approved development specification. Use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#review-changes"><code>review-changes</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. Use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#review-security"><code>review-security</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Perform a threat-focused review of code, configuration, dependencies, or proposed changes. Use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-adopt"><code>wk-adopt</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository&#x27;s Workspace structure through the focused adoption workflow. Invoke explicitly when the user requests Workspace adoption or migration.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-analyze"><code>wk-analyze</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. Invoke explicitly when the user wants repository structure, stack, SDLC, policy, documentation, active-work, risk, and gap analysis.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-deliver"><code>wk-deliver</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository&#x27;s authorized delivery workflow. Invoke explicitly for end-to-end delivery rather than read-only review.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-document"><code>wk-document</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. Invoke explicitly when documentation must be reconciled with current behavior and validated.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-plan"><code>wk-plan</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. Invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-review"><code>wk-review</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. Invoke explicitly when findings and validation gaps are needed without remediation.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#wk-spec"><code>wk-spec</code></a></th>
+            <td class="member-version"><code>0.2.0</code></td>
+            <td>Run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. Invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/catalog.html#write-spec"><code>write-spec</code></a></th>
+            <td class="member-version"><code>0.3.0</code></td>
+            <td>Turn an accepted problem or feature request into a lifecycle-managed development specification. Use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <p>Generated from the registry repository on every deploy.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/skills-yaml/skm">skm</a>
+      <a href="https://github.com/skills-yaml/registry/blob/main/skills/workspace/manifest.yaml">manifest</a>
+      <a href="/catalog.html">Catalog</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/site.js?v=61030e1d09" defer></script>
+</body>
+</html>

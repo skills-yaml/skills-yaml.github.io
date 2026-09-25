@@ -40,7 +40,7 @@ jobs:
       - name: Stage the site
         run: |
           mkdir -p _site
-          cp -r index.html catalog.html guide.html assets data CNAME .nojekyll _site/
+          cp -r index.html catalog.html guide.html metapackages assets data CNAME .nojekyll _site/
 
       - name: Upload the artifact
         uses: actions/upload-pages-artifact@v3

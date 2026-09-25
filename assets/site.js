@@ -1,4 +1,4 @@
-// Copy buttons and catalog filtering. The page works without either.
+// Copy buttons and catalog filtering (skills and metapackages). The page works without either.
 
 document.addEventListener('click', async (event) => {
   const button = event.target.closest('.copy');
@@ -24,6 +24,7 @@ if (entries) {
   const input = document.getElementById('q');
   const empty = document.getElementById('empty');
   const cards = [...entries.querySelectorAll('.entry')];
+  const groups = [...entries.querySelectorAll('.group')];
   const filters = [...document.querySelectorAll('.filter')];
   let category = 'all';
 
@@ -36,6 +37,9 @@ if (entries) {
         (!query || card.dataset.search.includes(query));
       card.hidden = !match;
       if (match) shown += 1;
+    }
+    for (const group of groups) {
+      group.hidden = ![...group.querySelectorAll('.entry')].some((card) => !card.hidden);
     }
     empty.hidden = shown > 0;
   };
