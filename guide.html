@@ -234,7 +234,7 @@ bundles:
         <p>With skm 0.7.0 or later, people can preview a bundle first and then add it to their project:</p>
         <div class="listing"><pre>skm add skills-yaml/authoring-toolkit --source default --kind bundle --dry-run
 skm add skills-yaml/authoring-toolkit --source default --kind bundle --yes</pre></div>
-        <p>The command <code>skm bundle add skills-yaml/authoring-toolkit --source default --yes</code> does the same thing. You can also find published bundles with <code>skm search</code>, which lists each bundle together with the skills it contains.</p>
+        <p>The command <code>skm bundle add skills-yaml/authoring-toolkit --source default --yes</code> does the same thing. You can also find published bundles with <code>skm search</code>, which lists bundles and skills in one result list, sums up each bundle&rsquo;s member skills, and shows the <code>skm add</code> command for each result.</p>
         <p>Adding a bundle writes each of its skills into <code>skills.yaml</code> as a separate entry, pinned to an exact version. From then on, those entries behave like any others, so <code>skm install</code>, <code>skm check</code> and version changes all work as usual. skm does not remember that the entries came from a bundle, which also means that it will not update them automatically if the bundle changes later.</p>
       </section>
 
