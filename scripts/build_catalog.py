@@ -22,6 +22,7 @@ import re
 import shutil
 import sys
 from datetime import date
+from urllib.parse import quote
 
 SCALARS = ("name", "description", "version", "deprecated", "superseded_by")
 LISTS = ("tags", "authors")
@@ -79,6 +80,14 @@ def support_files(version_dir):
     return found
 
 
+def github_skill_url(category, name, version=None):
+    """Link to exact published contents, or the root of an unversioned package."""
+    path = f"{quote(category, safe='')}/{quote(name, safe='')}"
+    if version and version != "unversioned":
+        path += f"/v{quote(str(version), safe='')}"
+    return f"https://github.com/skills-yaml/registry/tree/main/skills/{path}"
+
+
 def read_skill(category, skill_dir):
     versions = sorted(
         entry
@@ -104,6 +113,10 @@ def read_skill(category, skill_dir):
         "name": name,
         "category": category,
         "id": f"{category}/{name}",
+        "source_url": github_skill_url(
+            category, os.path.basename(skill_dir),
+            resolved[1:] if os.path.dirname(manifest) != skill_dir else None,
+        ),
         "description": front.get("description", "").strip(),
         "version": front.get("version") or (resolved[1:] if resolved else "unversioned"),
         "tags": front.get("tags", []),
@@ -194,6 +207,9 @@ def read_metapackages(root, skills):
                     "name": package,
                     "id": f"{scope}/{package}",
                     "version": pinned.get(package) or skill.get("version", ""),
+                    "source_url": github_skill_url(
+                        scope, package, pinned.get(package) or skill.get("version"),
+                    ),
                     "description": skill.get("description", ""),
                 })
             metapackages.append({
@@ -249,6 +265,7 @@ def row_html(skill, metapackages):
           </div>
           <p class="entry-desc">{html.escape(skill['description'])}</p>
           <dl class="entry-meta">
+            <dt>Source</dt><dd><a href="{html.escape(skill['source_url'])}" aria-label="View {html.escape(skill['id'])} on GitHub">GitHub</a></dd>
             <dt>Versions</dt><dd><code>{html.escape(versions)}</code></dd>
             <dt>Aliases</dt><dd><code>{html.escape(aliases) if aliases else '<span class="none">none</span>'}</code></dd>
             <dt>Ships</dt><dd>{f'<ul class="inline">{support}</ul>' if support else 'SKILL.md only'}</dd>
@@ -291,6 +308,7 @@ def metapackage_page_html(metapackage):
         f"""          <tr>
             <th scope="row"><a href="/catalog.html#{html.escape(m['name'])}"><code>{html.escape(m['name'])}</code></a></th>
             <td class="member-version"><code>{html.escape(m['version'])}</code></td>
+            <td><a href="{html.escape(m['source_url'])}" aria-label="View {html.escape(m['id'])} {html.escape(m['version'])} on GitHub">GitHub</a></td>
             <td>{html.escape(m['description']) or '<span class="none">not in this registry</span>'}</td>
           </tr>"""
         for m in members
@@ -395,7 +413,7 @@ def metapackage_page_html(metapackage):
         <h2>Skills in this metapackage</h2>
         <div class="table-wrap">
           <table class="dtable members">
-            <thead><tr><th scope="col">Skill</th><th scope="col">Version</th><th scope="col">What it does</th></tr></thead>
+            <thead><tr><th scope="col">Skill</th><th scope="col">Version</th><th scope="col">Source</th><th scope="col">What it does</th></tr></thead>
             <tbody>
 {rows}
             </tbody>
@@ -453,6 +471,7 @@ def preview_html(skills):
             <span class="pv-desc">{html.escape(clamp(skill['description'], 120))}</span>
           </a>
           <span class="pv-version">{html.escape(skill['version'])}</span>
+          <a class="pv-source" href="{html.escape(skill['source_url'])}" aria-label="View {html.escape(skill['id'])} on GitHub">GitHub</a>
         </li>"""
         )
     return "\n".join(items)

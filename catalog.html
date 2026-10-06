@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=fae1767f9f">
+<link rel="stylesheet" href="assets/style.css?v=b9570faf57">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -127,6 +127,7 @@
           </div>
           <p class="entry-desc">Author a new skill package for a skills-yaml registry so it passes the registry gates on the first attempt. Use when adding a skill, packaging an existing prompt or workflow as a skill, publishing a new version of one, or fixing a package that CI rejected for structure, frontmatter, symlink or payload errors.</p>
           <dl class="entry-meta">
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/skills-yaml/skill-creator/v0.1.0" aria-label="View skills-yaml/skill-creator on GitHub">GitHub</a></dd>
             <dt>Versions</dt><dd><code>0.1.0</code></dd>
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>1 template</li></ul></dd>
@@ -142,6 +143,7 @@
           </div>
           <p class="entry-desc">Review a skill package before it is published or installed, for compliance with the registry contract and for unsafe or malicious behavior in its scripts and instructions. Use when reviewing a contributed skill, auditing one from an untrusted registry, deciding whether to install a third-party skill, or checking a package after CI passed but before release.</p>
           <dl class="entry-meta">
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/skills-yaml/skill-reviewer/v0.1.0" aria-label="View skills-yaml/skill-reviewer on GitHub">GitHub</a></dd>
             <dt>Versions</dt><dd><code>0.1.0</code></dd>
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li></ul></dd>
@@ -157,6 +159,7 @@
           </div>
           <p class="entry-desc">Write clear, reviewable software specs with a Symphony-style structure: problem, goals, non-goals, design, alternatives, rollout, risks, and open questions. Use this when drafting a spec, RFC, design doc, or implementation plan that should be easy for humans and agents to review.</p>
           <dl class="entry-meta">
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/software-development/spec/v1.0.0" aria-label="View software-development/spec on GitHub">GitHub</a></dd>
             <dt>Versions</dt><dd><code>1.0.0</code></dd>
             <dt>Aliases</dt><dd><code>default = 1.0.0, latest = 1.0.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>3 references</li><li>1 template</li></ul></dd>
@@ -172,6 +175,7 @@
           </div>
           <p class="entry-desc">Manage services, health, security and updates on a Debian host running Docker. Use when the user needs to inspect Docker containers, read system logs, apply updates, or check core services such as Nginx or PostgreSQL.</p>
           <dl class="entry-meta">
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/system/devops-manager/v1.1.0" aria-label="View system/devops-manager on GitHub">GitHub</a></dd>
             <dt>Versions</dt><dd><code>1.1.0</code></dd>
             <dt>Aliases</dt><dd><code>default = 1.1.0, latest = 1.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>2 references</li><li>3 scripts</li></ul></dd>
@@ -187,6 +191,7 @@
           </div>
           <p class="entry-desc">Debug GCP services using logs and interrogate status of Cloud Run, Cloud Functions, GKE, and Compute Engine.</p>
           <dl class="entry-meta">
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/system/gcp-debug/v0.1.0" aria-label="View system/gcp-debug on GitHub">GitHub</a></dd>
             <dt>Versions</dt><dd><code>0.1.0</code></dd>
             <dt>Aliases</dt><dd><code>default = 0.1.0, latest = 0.1.0</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>1 reference</li></ul></dd>
@@ -202,8 +207,9 @@
           </div>
           <p class="entry-desc">Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/address-review-feedback/v0.4.2" aria-label="View workspace/address-review-feedback on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -217,8 +223,9 @@
           </div>
           <p class="entry-desc">Adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. Use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.4.0, 0.5.0, 0.6.0, 0.6.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.6.1, latest = 0.6.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/adopt-workspace-structure/v0.6.2" aria-label="View workspace/adopt-workspace-structure on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.4.0, 0.5.0, 0.6.0, 0.6.1, 0.6.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.6.2, latest = 0.6.2</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>88 references</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -232,8 +239,9 @@
           </div>
           <p class="entry-desc">Analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. Use when a repository needs assessment, onboarding context, or current-state discovery before planning work.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/analyze-repository/v0.3.2" aria-label="View workspace/analyze-repository on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -247,8 +255,9 @@
           </div>
           <p class="entry-desc">Let peer agents coordinate on one machine through atomic task and version claims, self-created detached worktrees, shared file scopes, independent review, serialized integration, and lossless recovery. No coordinator agent is required.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.1.1, 0.1.2, 0.1.3, 0.2.0, 0.2.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.2.1, latest = 0.2.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/coordinate-multi-agent-development/v0.2.2" aria-label="View workspace/coordinate-multi-agent-development on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.1.1, 0.1.2, 0.1.3, 0.2.0, 0.2.1, 0.2.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.2.2, latest = 0.2.2</code></dd>
             <dt>Ships</dt><dd><ul class="inline"><li>1 script</li></ul></dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -262,8 +271,9 @@
           </div>
           <p class="entry-desc">Reproduce, isolate, and fix a reported software defect with regression coverage. Use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/fix-bug/v0.4.2" aria-label="View workspace/fix-bug on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -277,8 +287,9 @@
           </div>
           <p class="entry-desc">Diagnose and fix failing continuous-integration checks with the smallest verified change. Use when CI or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/fix-ci/v0.4.2" aria-label="View workspace/fix-ci on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -292,8 +303,9 @@
           </div>
           <p class="entry-desc">Implement an approved development specification through validated, reviewable changes. Use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/implement-spec/v0.4.2" aria-label="View workspace/implement-spec on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -307,8 +319,9 @@
           </div>
           <p class="entry-desc">Create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. Use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/maintain-project-docs/v0.3.2" aria-label="View workspace/maintain-project-docs on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -322,8 +335,9 @@
           </div>
           <p class="entry-desc">Monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. Use when the user asks to watch, babysit, follow, or wait for CI without changing code or workflow configuration.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/monitor-ci/v0.4.2" aria-label="View workspace/monitor-ci on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -337,8 +351,9 @@
           </div>
           <p class="entry-desc">Build an ordered, evidence-backed implementation plan from an approved development specification. Use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/plan-implementation/v0.4.2" aria-label="View workspace/plan-implementation on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -352,8 +367,9 @@
           </div>
           <p class="entry-desc">Review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. Use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/review-changes/v0.4.2" aria-label="View workspace/review-changes on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -367,8 +383,9 @@
           </div>
           <p class="entry-desc">Perform a threat-focused review of code, configuration, dependencies, or proposed changes. Use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/review-security/v0.4.2" aria-label="View workspace/review-security on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -382,8 +399,9 @@
           </div>
           <p class="entry-desc">Run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository&#x27;s Workspace structure through the focused adoption workflow. Invoke explicitly when the user requests Workspace adoption or migration.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-adopt/v0.3.2" aria-label="View workspace/wk-adopt on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -397,8 +415,9 @@
           </div>
           <p class="entry-desc">Run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. Invoke explicitly when the user wants repository structure, stack, SDLC, policy, documentation, active-work, risk, and gap analysis.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-analyze/v0.3.2" aria-label="View workspace/wk-analyze on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -412,8 +431,9 @@
           </div>
           <p class="entry-desc">Run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository&#x27;s authorized delivery workflow. Invoke explicitly for end-to-end delivery rather than read-only review.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-deliver/v0.3.2" aria-label="View workspace/wk-deliver on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -427,8 +447,9 @@
           </div>
           <p class="entry-desc">Run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. Invoke explicitly when documentation must be reconciled with current behavior and validated.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-document/v0.3.2" aria-label="View workspace/wk-document on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -442,8 +463,9 @@
           </div>
           <p class="entry-desc">Run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. Invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-plan/v0.3.2" aria-label="View workspace/wk-plan on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -457,8 +479,9 @@
           </div>
           <p class="entry-desc">Run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. Invoke explicitly when findings and validation gaps are needed without remediation.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-review/v0.3.2" aria-label="View workspace/wk-review on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -472,8 +495,9 @@
           </div>
           <p class="entry-desc">Run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. Invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.3.1, latest = 0.3.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/wk-spec/v0.3.2" aria-label="View workspace/wk-spec on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.1.0, 0.2.0, 0.2.1, 0.2.2, 0.2.3, 0.3.0, 0.3.1, 0.3.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.3.2, latest = 0.3.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
@@ -487,8 +511,9 @@
           </div>
           <p class="entry-desc">Turn an accepted problem or feature request into a lifecycle-managed development specification. Use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins.</p>
           <dl class="entry-meta">
-            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1</code></dd>
-            <dt>Aliases</dt><dd><code>default = 0.4.1, latest = 0.4.1</code></dd>
+            <dt>Source</dt><dd><a href="https://github.com/skills-yaml/registry/tree/main/skills/workspace/write-spec/v0.4.2" aria-label="View workspace/write-spec on GitHub">GitHub</a></dd>
+            <dt>Versions</dt><dd><code>0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.4.0, 0.4.1, 0.4.2</code></dd>
+            <dt>Aliases</dt><dd><code>default = 0.4.2, latest = 0.4.2</code></dd>
             <dt>Ships</dt><dd>SKILL.md only</dd>
             <dt>Tags</dt><dd><span class="none">none</span></dd>
             <dt>Included in</dt><dd><ul class="inline"><li><a href="metapackages/workspace/all-workspace-skills.html">workspace/all-workspace-skills</a></li></ul></dd>
