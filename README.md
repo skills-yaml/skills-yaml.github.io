@@ -11,7 +11,7 @@ index.html                 landing page
 catalog.html               generated catalog: metapackages, then skills
 metapackages/<scope>/      generated page per metapackage (registry bundle)
 assets/style.css           the whole stylesheet
-assets/site.js             copy buttons and catalog filtering
+assets/site.js             copy buttons, catalog filtering, page outline
 scripts/build_catalog.py   reads a registry checkout, writes the catalog
 data/catalog.json          generated, machine-readable catalog
 CNAME                      skills-yaml.tech

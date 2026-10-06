@@ -310,15 +310,15 @@ def metapackage_page_html(metapackage):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead dark">
-  <div class="wrap">
-    <a class="wordmark" href="/">skills<span>.</span>yaml</a>
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
     <nav aria-label="Primary">
       <a href="/index.html#disk">How it works</a>
       <a href="/index.html#manifest">Manifest</a>
@@ -330,50 +330,97 @@ def metapackage_page_html(metapackage):
   </div>
 </header>
 
-<section class="catalog-head dark">
-  <div class="wrap">
-    <p class="crumbs"><a href="/catalog.html">Catalog</a> / <a href="/catalog.html#metapackages">Metapackages</a></p>
-    <h1>{html.escape(name)}</h1>
-    <p>{html.escape(summary)} skm writes each skill into <code>skills.yaml</code> as its own entry, pinned to the version listed below.</p>
-    <dl class="facts">
-      <dt>Package</dt><dd><code>{html.escape(metapackage['id'])}</code></dd>
-      <dt>Scope</dt><dd><code>{html.escape(scope)}/</code></dd>
-      <dt>Skills</dt><dd>{len(members)}</dd>
-    </dl>
-  </div>
-</section>
+<div class="docs-shell">
 
-<main id="main">
-  <div class="wrap">
-    <div class="bundle-install">
-      <p class="panel-title">Add it to your project</p>
-      <p class="entry-add"><code>{html.escape(preview)}</code><button class="copy" type="button" data-copy="{html.escape(preview)}">Copy</button></p>
-      <p class="entry-add"><code>{html.escape(command)}</code><button class="copy" type="button" data-copy="{html.escape(command)}">Copy</button></p>
-      <p class="panel-note">The first command shows what would be added. The second adds it. Needs skm 0.7.0 or later.</p>
-    </div>
+  <nav class="docs-sidebar" aria-label="Site">
+    <p class="docs-sidebar-group">Get started</p>
+    <ul>
+      <li><a href="/index.html">Overview</a></li>
+      <li><a href="/index.html#install">Install skm</a></li>
+      <li><a href="/index.html#disk">How it works</a></li>
+      <li><a href="/index.html#manifest">The manifest</a></li>
+      <li><a href="/index.html#commands">Commands</a></li>
+      <li><a href="/index.html#guardrails">Guardrails</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/catalog.html">Catalog</a></li>
+      <li><a href="/catalog.html#metapackages" aria-current="page">Metapackages</a></li>
+      <li><a href="/guide.html">Authoring guide</a></li>
+      <li><a href="https://github.com/skills-yaml/registry">Registry on GitHub</a></li>
+    </ul>
+  </nav>
 
-    <div class="table-scroll">
-      <table class="commands members">
-        <caption>Every skill in {html.escape(metapackage['id'])}</caption>
-        <thead><tr><th scope="col">Skill</th><th scope="col">Version</th><th scope="col">What it does</th></tr></thead>
-        <tbody>
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb"><a href="/catalog.html">Catalog</a> / <a href="/catalog.html#metapackages">Metapackages</a></p>
+        <h1>{html.escape(name)}</h1>
+        <p class="docs-lead">{html.escape(summary)}</p>
+      </header>
+
+      <div class="table-wrap">
+        <table class="dtable">
+          <tbody>
+            <tr><th scope="row">Package</th><td><code>{html.escape(metapackage['id'])}</code></td></tr>
+            <tr><th scope="row">Scope</th><td><code>{html.escape(scope)}/</code></td></tr>
+            <tr><th scope="row">Skills</th><td>{len(members)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section id="add">
+        <h2>Add it to your project</h2>
+        <p>Here is how to add every skill in <code>{html.escape(metapackage['id'])}</code> with skm 0.7.0 or later:</p>
+        <ol class="stepper">
+          <li class="step">
+            <h4>Preview the change</h4>
+            <p>This command shows what would be added, without changing anything:</p>
+            <p class="entry-add"><code>{html.escape(preview)}</code><button class="copy" type="button" data-copy="{html.escape(preview)}">Copy</button></p>
+          </li>
+          <li class="step">
+            <h4>Add the metapackage</h4>
+            <p>This command adds it:</p>
+            <p class="entry-add"><code>{html.escape(command)}</code><button class="copy" type="button" data-copy="{html.escape(command)}">Copy</button></p>
+          </li>
+        </ol>
+        <div class="hint hint-info" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
+          <div><p>skm writes each skill into <code>skills.yaml</code> as its own entry, pinned to the version listed below.</p></div>
+        </div>
+      </section>
+
+      <section id="members">
+        <h2>Skills in this metapackage</h2>
+        <div class="table-wrap">
+          <table class="dtable members">
+            <thead><tr><th scope="col">Skill</th><th scope="col">Version</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
 {rows}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</main>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-<footer class="dark">
-  <div class="wrap">
-    <p>Generated from the registry repository on every deploy.</p>
-    <nav aria-label="Footer">
-      <a href="https://github.com/skills-yaml/skm">skm</a>
-      <a href="https://github.com/skills-yaml/registry/blob/main/skills/{html.escape(scope)}/manifest.yaml">manifest</a>
-      <a href="/catalog.html">Catalog</a>
-    </nav>
-  </div>
-</footer>
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-prev" href="/catalog.html#metapackages"><span>Back to</span>Catalog</a>
+        <a class="pager-next" href="https://github.com/skills-yaml/registry/blob/main/skills/{html.escape(scope)}/manifest.yaml"><span>Source</span>manifest.yaml</a>
+      </nav>
+
+      <p class="docs-footnote">Generated from the registry repository on every deploy.</p>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#add">Add it to your project</a></li>
+      <li><a href="#members">Skills in this metapackage</a></li>
+    </ul>
+  </aside>
+
+</div>
 
 <script src="/assets/site.js" defer></script>
 </body>

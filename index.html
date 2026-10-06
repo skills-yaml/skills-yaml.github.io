@@ -13,15 +13,15 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=a4c479a4f4">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=fae1767f9f">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead dark">
-  <div class="wrap">
-    <a class="wordmark" href="/">skills<span>.</span>yaml</a>
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
     <nav aria-label="Primary">
       <a href="#disk">How it works</a>
       <a href="#manifest">Manifest</a>
@@ -33,97 +33,136 @@
   </div>
 </header>
 
-<main id="main">
+<div class="docs-shell">
 
-<section class="hero dark">
-  <div class="wrap">
-    <div>
-      <h1>One manifest.<em>Every agent.</em></h1>
-      <p class="lede">You write the skills your project needs into <code>skills.yaml</code> and commit it. <code>skm</code> resolves them from a registry and links them into Claude, Codex, Cursor, Copilot, Grok and Hermes, so every agent working in the repo reads the same instructions.</p>
-      <p class="lede">Skills are versioned directories in Git. Pin one, follow <code>latest</code>, or track the maintainer's <code>default</code>.</p>
+  <nav class="docs-sidebar" aria-label="Site">
+    <p class="docs-sidebar-group">Get started</p>
+    <ul>
+      <li><a href="index.html" aria-current="page">Overview</a></li>
+      <li><a href="index.html#install">Install skm</a></li>
+      <li><a href="index.html#disk">How it works</a></li>
+      <li><a href="index.html#manifest">The manifest</a></li>
+      <li><a href="index.html#commands">Commands</a></li>
+      <li><a href="index.html#guardrails">Guardrails</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="catalog.html">Catalog</a></li>
+      <li><a href="catalog.html#metapackages">Metapackages</a></li>
+      <li><a href="guide.html">Authoring guide</a></li>
+      <li><a href="https://github.com/skills-yaml/registry">Registry on GitHub</a></li>
+    </ul>
+  </nav>
 
-      <div class="install">
-        <p class="install-label">Install on macOS or Linux</p>
-        <div class="cmd">
-          <code id="install-cmd">curl -fsSL https://raw.githubusercontent.com/skills-yaml/skm/main/scripts/install.sh | sh</code>
-          <button class="copy" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/skills-yaml/skm/main/scripts/install.sh | sh">Copy</button>
-        </div>
-        <p class="install-alt">Windows PowerShell, Cargo and the development channel are covered in the <a href="https://github.com/skills-yaml/skm#install">install guide</a>.</p>
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb">Get started</p>
+        <h1>One manifest. Every agent.</h1>
+        <p class="docs-lead">This page explains how skm installs the agent skills you declare in one file into every agent your project uses.</p>
+      </header>
+
+      <p>You <strong>declare</strong> the skills your project needs in <code>skills.yaml</code> and commit it. skm <strong>resolves</strong> them from a registry and <strong>links</strong> them into Claude, Codex, Cursor, Copilot, Grok and Hermes, so every agent working in the repo reads the same instructions.</p>
+      <p>Skills are versioned folders in Git. You can pin one, follow <code>latest</code>, or track the maintainer's <code>default</code>. See also: <a href="https://github.com/skills-yaml/skm">skm</a> (GitHub).</p>
+
+      <div class="cards">
+        <a class="card" href="#install"><p class="card-title">Install skm</p><p>One command on macOS or Linux.</p></a>
+        <a class="card" href="catalog.html"><p class="card-title">Browse the catalog</p><p>Every published skill and metapackage.</p></a>
+        <a class="card" href="guide.html"><p class="card-title">Write a skill</p><p>Publish a package that works in every agent.</p></a>
       </div>
-    </div>
 
-    <figure class="figure">
-      <div class="figure-file">
-        <figcaption class="figure-name">skills.yaml <span>committed to your repo</span></figcaption>
-<pre><span class="k">name</span>: <span class="v">my-project</span>
+      <section id="install">
+        <h2>Install skm</h2>
+        <p>On macOS or Linux, run the install script:</p>
+        <div class="code">
+          <div class="code-title">Terminal<button class="copy" type="button">Copy</button></div>
+          <pre>curl -fsSL https://raw.githubusercontent.com/skills-yaml/skm/main/scripts/install.sh | sh</pre>
+        </div>
+        <div class="hint hint-info" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
+          <div><p>Windows PowerShell, Cargo and the development channel are covered in the <a href="https://github.com/skills-yaml/skm#install">install guide</a>.</p></div>
+        </div>
+      </section>
+
+      <section id="disk">
+        <h2>How it works</h2>
+        <p><strong>Concept:</strong> &ldquo;I want <strong><em>every agent</em></strong> in my repo to read the <strong><em>same skills</em></strong>.&rdquo;</p>
+        <p>For example, Sam's team works in one repository with Claude Code, Codex and Cursor. Each agent reads skills from its own folder, so the team's spec-writing skill would otherwise need three copies that slowly drift apart. If the team declares the skill once in <code>skills.yaml</code>, skm <strong>links</strong> that one copy into the skill folder of every agent.</p>
+        <p>Here is how to set it up:</p>
+
+        <ol class="stepper">
+          <li class="step">
+            <h4>Declare the skills</h4>
+            <p>Create <code>skills.yaml</code> at the root of the project. List the registries to fetch from, the agents to link into, and the skills you want:</p>
+            <div class="code">
+              <div class="code-title">skills.yaml</div>
+              <pre><span class="k">name</span>: my-project
 <span class="k">registries</span>:
-  <span class="k">default</span>: <span class="v">git@github.com:skills-yaml/registry.git</span>
-<span class="k">agents</span>: [<span class="v">claude, codex, cursor, copilot, grok, hermes</span>]
+  default: git@github.com:skills-yaml/registry.git
+<span class="k">agents</span>: [claude, codex, cursor, copilot, grok, hermes]
 <span class="k">skills</span>:
-  - <span class="k">name</span>: <span class="v">software-development/spec</span>
-    <span class="k">version</span>: <span class="v">1.0.0</span>
-    <span class="k">source</span>: <span class="v">default</span></pre>
-      </div>
+  - name: software-development/spec
+    version: 1.0.0
+    source: default</pre>
+            </div>
+            <div class="hint hint-info" role="note">
+              <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
+              <div><p><code>skm init</code> can write this file for you through a series of prompts, and lets you search your registries for skills along the way.</p></div>
+            </div>
+          </li>
+          <li class="step">
+            <h4>Install them</h4>
+            <p>Run the install command in the project:</p>
+            <div class="code">
+              <div class="code-title">Terminal<button class="copy" type="button">Copy</button></div>
+              <pre>skm install</pre>
+            </div>
+            <p>skm resolves every skill, checks each target before writing, links them, and then writes <code>skills.lock.yaml</code>.</p>
+          </li>
+          <li class="step">
+            <h4>Commit the manifest and the lockfile</h4>
+            <p>Commit <code>skills.yaml</code> and <code>skills.lock.yaml</code>. The lockfile records the resolved versions, integrity hashes and every path skm manages, so a second install on another machine is byte-for-byte identical.</p>
+          </li>
+        </ol>
 
-      <p class="figure-run">$&nbsp;<b>skm install</b></p>
-
-      <ul class="tree">
-        <li style="--i:0"><span class="branch">├──&nbsp;</span><span class="path"><span class="agent">.claude</span>/skills/spec</span><span class="arrow">-&gt;</span><span class="target">registry/software-development/spec/v1.0.0</span></li>
-        <li style="--i:1"><span class="branch">├──&nbsp;</span><span class="path"><span class="agent">.codex</span>/skills/spec</span><span class="arrow">-&gt;</span><span class="target">registry/software-development/spec/v1.0.0</span></li>
-        <li style="--i:2"><span class="branch">├──&nbsp;</span><span class="path"><span class="agent">.cursor</span>/skills/spec</span><span class="arrow">-&gt;</span><span class="target">registry/software-development/spec/v1.0.0</span></li>
-        <li style="--i:3"><span class="branch">├──&nbsp;</span><span class="path"><span class="agent">.github</span>/skills/spec</span><span class="arrow">-&gt;</span><span class="target">registry/software-development/spec/v1.0.0</span></li>
-        <li style="--i:4"><span class="branch">├──&nbsp;</span><span class="path"><span class="agent">.grok</span>/skills/spec</span><span class="arrow">-&gt;</span><span class="target">registry/software-development/spec/v1.0.0</span></li>
-        <li style="--i:5"><span class="branch">└──&nbsp;</span><span class="path"><span class="agent">.hermes</span>/skills/spec</span><span class="arrow">-&gt;</span><span class="target">registry/software-development/spec/v1.0.0</span></li>
-      </ul>
-    </figure>
-  </div>
-</section>
-
-<section class="band" id="disk">
-  <div class="wrap">
-    <h2>What lands on disk</h2>
-    <p>Nothing is copied into your tree. <code>skm</code> creates symlinks, so a skill update is a re-link, and reviewers see one manifest change instead of hundreds of vendored files.</p>
-
-    <div class="split">
-      <div>
-        <h3 class="panel-title">In a project</h3>
-        <p class="panel-note">Run <code>skm install</code> in a repo. Links go next to the agent configuration already in the project.</p>
-        <div class="listing">
-<pre>my-project/
-├── skills.yaml
+        <p>The resulting links look like this:</p>
+        <div class="code">
+          <div class="code-title">my-project/</div>
+          <pre>├── skills.yaml
 ├── skills.lock.yaml
-├── <span class="agent">.claude</span>/skills/  <span class="arrow">-&gt;</span> <span class="target">linked skills</span>
-├── <span class="agent">.codex</span>/skills/   <span class="arrow">-&gt;</span> <span class="target">linked skills</span>
-├── <span class="agent">.cursor</span>/skills/  <span class="arrow">-&gt;</span> <span class="target">linked skills</span>
-├── <span class="agent">.github</span>/skills/  <span class="arrow">-&gt;</span> <span class="target">linked skills</span>
-├── <span class="agent">.grok</span>/skills/    <span class="arrow">-&gt;</span> <span class="target">linked skills</span>
-└── <span class="agent">.hermes</span>/skills/  <span class="arrow">-&gt;</span> <span class="target">linked skills</span></pre>
+├── <span class="a">.claude</span>/skills/spec  <span class="k">-&gt;</span> <span class="c">registry/software-development/spec/v1.0.0</span>
+├── <span class="a">.codex</span>/skills/spec   <span class="k">-&gt;</span> <span class="c">registry/software-development/spec/v1.0.0</span>
+├── <span class="a">.cursor</span>/skills/spec  <span class="k">-&gt;</span> <span class="c">registry/software-development/spec/v1.0.0</span>
+├── <span class="a">.github</span>/skills/spec  <span class="k">-&gt;</span> <span class="c">registry/software-development/spec/v1.0.0</span>
+├── <span class="a">.grok</span>/skills/spec    <span class="k">-&gt;</span> <span class="c">registry/software-development/spec/v1.0.0</span>
+└── <span class="a">.hermes</span>/skills/spec  <span class="k">-&gt;</span> <span class="c">registry/software-development/spec/v1.0.0</span></pre>
         </div>
-      </div>
-      <div>
-        <h3 class="panel-title">For your user account</h3>
-        <p class="panel-note">Add <code>--global</code> to <code>install</code>, <code>list</code> or <code>check</code> to work on the agent directories in your home folder instead.</p>
-        <div class="listing">
-<pre>~/
-├── <span class="agent">.claude</span>/skills/
-├── <span class="agent">.codex</span>/skills/
-├── <span class="agent">.cursor</span>/skills/
-├── <span class="agent">.copilot</span>/skills/
-├── <span class="agent">.grok</span>/skills/
-└── <span class="agent">.hermes</span>/skills/</pre>
+        <div class="hint hint-info" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
+          <div><p>Nothing is copied into your tree. skm creates symlinks, so a skill update is a re-link, and reviewers see one manifest change instead of hundreds of vendored files.</p></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="band band-alt" id="manifest">
-  <div class="wrap">
-    <h2>The manifest</h2>
-    <p>Everything <code>skm</code> does starts here. Fields you leave out keep working defaults.</p>
+        <h3>Install for your user account</h3>
+        <p>Add <code>--global</code> to <code>install</code>, <code>list</code> or <code>check</code> to work on the agent folders in your home directory instead of the project:</p>
+        <div class="code">
+          <div class="code-title">~/</div>
+          <pre>├── <span class="a">.claude</span>/skills/
+├── <span class="a">.codex</span>/skills/
+├── <span class="a">.cursor</span>/skills/
+├── <span class="a">.copilot</span>/skills/
+├── <span class="a">.grok</span>/skills/
+└── <span class="a">.hermes</span>/skills/</pre>
+        </div>
+      </section>
 
-    <div class="annotated">
-<pre><span class="k">name</span>: my-project
+      <section id="manifest">
+        <h2>The manifest</h2>
+        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>choose</em></strong> which skills, versions and agents my project uses.&rdquo;</p>
+        <p>Everything skm does starts with <code>skills.yaml</code>. Fields you leave out keep working defaults:</p>
+        <div class="code">
+          <div class="code-title">skills.yaml</div>
+          <pre><span class="k">name</span>: my-project
 <span class="k">version</span>: 0.1.0
 
 <span class="k">registries</span>:
@@ -147,73 +186,89 @@
   - name: local/my-skill  <span class="c"># no registry needed</span>
     version: latest
     path: ./skills/local/my-skill</pre>
+        </div>
+        <dl class="fields">
+          <dt><code>registries</code></dt>
+          <dd>Git remotes or local paths to fetch skills from. Name them, then refer to a name in <code>source</code>. A project inherits your global registries too.</dd>
+          <dt><code>agents</code></dt>
+          <dd>Which agents get links. Add one later and re-run <code>skm install</code> to fill its folder.</dd>
+          <dt><code>version</code></dt>
+          <dd>A pinned release such as <code>1.0.0</code>, or the <code>latest</code> and <code>default</code> aliases the skill's maintainer moves. Leave it out and you get <code>latest</code>.</dd>
+          <dt><code>path</code></dt>
+          <dd>Points at a folder in the repo instead of a registry. Useful for a skill that is not ready to publish.</dd>
+          <dt><code>skills.lock.yaml</code></dt>
+          <dd>Written by <code>skm install</code>, committed by you. It records the resolved versions, integrity hashes and every path skm manages.</dd>
+        </dl>
+        <div class="hint hint-warning" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75 18 17H2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="14.4" r="0.95" fill="currentColor"/></svg>
+          <div><p>Make sure every source contains a <code>SKILL.md</code> file, whether it comes from a registry or a local <code>path</code>.</p></div>
+        </div>
+      </section>
 
-      <dl class="notes">
-        <dt>registries</dt>
-        <dd>Git remotes or local paths to fetch skills from. Name them, then refer to a name in <code>source</code>. A project inherits your global registries too.</dd>
+      <section id="commands">
+        <h2>Commands</h2>
+        <p>One binary, no daemon, and no project scaffolding beyond the manifest. These are the commands in skm 0.7.0.</p>
+        <div class="hint hint-info" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
+          <div><p>Add <code>--global</code> to <code>install</code>, <code>list</code> or <code>check</code> to work in your home directory instead of the project. Add <code>--json</code> to <code>install</code>, <code>search</code>, <code>versions</code> or a bundle add when a script needs to read the result.</p></div>
+        </div>
 
-        <dt>agents</dt>
-        <dd>Which agents get links. Add one later and re-run <code>skm install</code> to fill its directory.</dd>
+        <h3>Set up</h3>
+        <div class="table-wrap">
+          <table class="dtable dtable-commands">
+            <thead><tr><th scope="col">Command</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>skm init</code></th><td>Creates or edits <code>skills.yaml</code> through a series of prompts, lets you search your registries for skills, and shows the finished file before saving it. <code>--non-interactive</code> writes a default manifest for scripts.</td></tr>
+              <tr><th scope="row"><code>skm search &lt;query&gt;</code></th><td>Searches your registries for skills and bundles in one list. Each result shows its version, description and registry, and the <code>skm add</code> command for it. Search never changes your project. <code>--registry</code> searches a single registry, and <code>--limit</code> caps the number of results.</td></tr>
+              <tr><th scope="row"><code>skm add &lt;skill&gt;</code></th><td>Adds one skill to the manifest and links it. <code>--path</code> adds a skill from a local folder.</td></tr>
+              <tr><th scope="row"><code>skm add &lt;bundle&gt;</code></th><td>Adds every skill in a published bundle, each pinned to an exact version, as one change that is rolled back if any part fails. <code>--dry-run</code> shows what would change, and <code>--yes</code> applies it. Add <code>--kind bundle</code> when a skill has the same name.</td></tr>
+              <tr><th scope="row"><code>skm remove &lt;skill&gt;</code></th><td>Removes a skill from the manifest and unlinks it. <code>--dry-run</code> shows what would be removed.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <dt>version</dt>
-        <dd>A pinned release such as <code>1.0.0</code>, or the <code>latest</code> and <code>default</code> aliases the skill's maintainer moves. Omit it and you get <code>latest</code>.</dd>
+        <h3>Keep it correct</h3>
+        <div class="table-wrap">
+          <table class="dtable dtable-commands">
+            <thead><tr><th scope="col">Command</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>skm install</code></th><td>Resolves every skill, checks each target before writing, links them, then writes the lockfile. <code>--dry-run</code> shows every write first, and <code>--yes</code> applies without asking.</td></tr>
+              <tr><th scope="row"><code>skm list</code></th><td>Reports link status, including sources that went missing and links that point somewhere wrong.</td></tr>
+              <tr><th scope="row"><code>skm check</code></th><td>Verifies sources, <code>SKILL.md</code> files and symlink targets. Run it in CI.</td></tr>
+              <tr><th scope="row"><code>skm update</code></th><td>Updates the <code>skm</code> binary itself. <code>--check</code> only reports whether a new release is available, and <code>--channel prod|development</code> switches release channel.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <dt>path</dt>
-        <dd>Point at a directory in the repo instead of a registry. Useful for a skill that is not ready to publish. Every source needs a <code>SKILL.md</code>.</dd>
+        <h3>Move between versions</h3>
+        <div class="table-wrap">
+          <table class="dtable dtable-commands">
+            <thead><tr><th scope="col">Command</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>skm versions &lt;skill&gt;</code></th><td>Lists the releases a registry offers for one skill. <code>--pre</code> includes prereleases.</td></tr>
+              <tr><th scope="row"><code>skm use &lt;skill&gt;@&lt;version&gt;</code></th><td>Switches a skill to a specific version and re-links it. <code>--dry-run</code> shows the change first.</td></tr>
+              <tr><th scope="row"><code>skm update-skill &lt;skill&gt;</code></th><td>Moves a skill to its newest release and re-links it.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <dt>skills.lock.yaml</dt>
-        <dd>Written by <code>skm install</code>, committed by you. It records the resolved versions, integrity hashes and every path skm manages, so a second install is byte-for-byte identical.</dd>
-      </dl>
-    </div>
-  </div>
-</section>
+        <h3>Write a skill</h3>
+        <div class="table-wrap">
+          <table class="dtable dtable-commands">
+            <thead><tr><th scope="col">Command</th><th scope="col">What it does</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>skm dev link &lt;path&gt;</code></th><td>Links a skill you are editing straight from disk, so you can try it in your agents before publishing.</td></tr>
+              <tr><th scope="row"><code>skm dev list</code>, <code>show</code>, <code>mode</code></th><td>Shows what is linked in development, and turns development mode on or off.</td></tr>
+              <tr><th scope="row"><code>skm dev unlink &lt;skill&gt;</code></th><td>Removes a development link.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-<section class="band" id="commands">
-  <div class="wrap">
-    <h2>Commands</h2>
-    <p>One binary, no daemon, no project scaffolding beyond the manifest.</p>
-
-    <div class="table-scroll">
-    <table class="commands">
-      <caption>Commands for skm 0.7.0. Add <code>--global</code> to install, list or check to work in your home directory instead of the project. Add <code>--json</code> to install, search, versions or a bundle add when a script needs to read the result.</caption>
-      <thead>
-        <tr><th scope="col">Command</th><th scope="col">What it does</th></tr>
-      </thead>
-      <tbody>
-        <tr class="group"><th scope="row" colspan="2">Set up</th></tr>
-        <tr><th scope="row"><code>skm init</code></th><td>Creates or edits <code>skills.yaml</code> through a series of prompts, lets you search your registries for skills, and shows the finished file before saving it. <code>--non-interactive</code> writes a default manifest for scripts.</td></tr>
-        <tr><th scope="row"><code>skm search &lt;query&gt;</code></th><td>Searches your registries for skills and bundles in one list. Each result shows its version, description and registry, and the <code>skm add</code> command for it. Search never changes your project. <code>--registry</code> searches a single registry, and <code>--limit</code> caps the number of results.</td></tr>
-        <tr><th scope="row"><code>skm add &lt;skill&gt;</code></th><td>Adds one skill to the manifest and links it. <code>--path</code> adds a skill from a local folder.</td></tr>
-        <tr><th scope="row"><code>skm add &lt;bundle&gt;</code></th><td>Adds every skill in a published bundle, each pinned to an exact version, as one change that is rolled back if any part fails. <code>--dry-run</code> shows what would change, and <code>--yes</code> applies it. Add <code>--kind bundle</code> when a skill has the same name.</td></tr>
-        <tr><th scope="row"><code>skm remove &lt;skill&gt;</code></th><td>Removes a skill from the manifest and unlinks it. <code>--dry-run</code> shows what would be removed.</td></tr>
-
-        <tr class="group"><th scope="row" colspan="2">Keep it correct</th></tr>
-        <tr><th scope="row"><code>skm install</code></th><td>Resolves every skill, checks each target before writing, links them, then writes the lockfile. <code>--dry-run</code> shows every write first, and <code>--yes</code> applies without asking.</td></tr>
-        <tr><th scope="row"><code>skm list</code></th><td>Reports link status, including sources that went missing and links that point somewhere wrong.</td></tr>
-        <tr><th scope="row"><code>skm check</code></th><td>Verifies sources, <code>SKILL.md</code> files and symlink targets. Run it in CI.</td></tr>
-        <tr><th scope="row"><code>skm update</code></th><td>Updates the <code>skm</code> binary itself. <code>--check</code> only reports whether a new release is available, and <code>--channel prod|development</code> switches release channel.</td></tr>
-
-        <tr class="group"><th scope="row" colspan="2">Move between versions</th></tr>
-        <tr><th scope="row"><code>skm versions &lt;skill&gt;</code></th><td>Lists the releases a registry offers for one skill. <code>--pre</code> includes prereleases.</td></tr>
-        <tr><th scope="row"><code>skm use &lt;skill&gt;@&lt;version&gt;</code></th><td>Switches a skill to a specific version and re-links it. <code>--dry-run</code> shows the change first.</td></tr>
-        <tr><th scope="row"><code>skm update-skill &lt;skill&gt;</code></th><td>Moves a skill to its newest release and re-links it.</td></tr>
-
-        <tr class="group"><th scope="row" colspan="2">Write a skill</th></tr>
-        <tr><th scope="row"><code>skm dev link &lt;path&gt;</code></th><td>Links a skill you are editing straight from disk, so you can try it in your agents before publishing.</td></tr>
-        <tr><th scope="row"><code>skm dev list</code>, <code>show</code>, <code>mode</code></th><td>Shows what is linked in development, and turns development mode on or off.</td></tr>
-        <tr><th scope="row"><code>skm dev unlink &lt;skill&gt;</code></th><td>Removes a development link.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</section>
-
-<section class="band band-alt" id="registry">
-  <div class="wrap">
-    <h2>The registry</h2>
-    <p>Skills in the default registry, generated from the repository itself. Each one is a versioned directory holding a <code>SKILL.md</code> and whatever references, templates or scripts it needs.</p>
-
-    <ul class="preview">
+      <section id="registry">
+        <h2>The registry</h2>
+        <p>These skills are in the default registry, and the list is generated from the repository itself. Each one is a versioned folder holding a <code>SKILL.md</code> and whatever references, templates or scripts it needs.</p>
+        <ul class="preview">
         <!-- PREVIEW:START -->
         <li>
           <a href="catalog.html#skill-creator">
@@ -255,48 +310,45 @@
             <span class="pv-name">workspace/address-review-feedback</span>
             <span class="pv-desc">Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the…</span>
           </a>
-          <span class="pv-version">0.3.0</span>
+          <span class="pv-version">0.4.1</span>
         </li>
         <!-- PREVIEW:END -->
+        </ul>
+        <p><a href="catalog.html">Browse the full catalog</a>, or read the <a href="guide.html">authoring guide</a> to publish a skill of your own.</p>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails</h2>
+        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>trust</em></strong> what skm writes to disk.&rdquo;</p>
+        <p>Agent skills end up as instructions your team executes, so skm treats writing them to disk as a transaction:</p>
+        <div class="cards">
+          <div class="card"><p class="card-title">It refuses collisions</p><p>Before writing anything, skm checks every target. A file it does not already manage stops the install instead of being overwritten.</p></div>
+          <div class="card"><p class="card-title">It rolls back</p><p>A local journal backs up managed paths during apply. A failure part-way through restores what was there, and the lockfile is written last.</p></div>
+          <div class="card"><p class="card-title">It verifies sources</p><p>Git sources need a full commit revision and an expected SHA-256. Names are validated before any filesystem call: no absolute paths, no <code>..</code>, no unsupported agents.</p></div>
+        </div>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-next" href="catalog.html"><span>Next</span>Catalog</a>
+      </nav>
+
+      <p class="docs-footnote">skm and the registry are open source and MIT licensed.</p>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#install">Install skm</a></li>
+      <li><a href="#disk">How it works</a></li>
+      <li><a href="#manifest">The manifest</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="#registry">The registry</a></li>
+      <li><a href="#guardrails">Guardrails</a></li>
     </ul>
-    <p class="preview-more"><a href="catalog.html">Browse the full catalog</a>, or read <a href="https://github.com/skills-yaml/registry#adding-new-skills">how to contribute a skill</a>.</p>
-  </div>
-</section>
+  </aside>
 
-<section class="band">
-  <div class="wrap">
-    <h2>Guardrails</h2>
-    <p>Agent skills end up as instructions your team executes. <code>skm</code> treats writing them to disk as a transaction.</p>
-
-    <ul class="rails">
-      <li>
-        <h3>It refuses collisions</h3>
-        <p>Before writing anything, skm checks every target. A file it does not already manage stops the install instead of being overwritten.</p>
-      </li>
-      <li>
-        <h3>It rolls back</h3>
-        <p>A local journal backs up managed paths during apply. A failure part-way through restores what was there, and the lockfile is written last.</p>
-      </li>
-      <li>
-        <h3>It verifies sources</h3>
-        <p>Git sources need a full commit revision and an expected SHA-256. Skill and registry names are validated before any filesystem call: no absolute paths, no <code>..</code>, no unsupported agents.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-</main>
-
-<footer class="dark">
-  <div class="wrap">
-    <p>skm and the registry are open source, MIT licensed.</p>
-    <nav aria-label="Footer">
-      <a href="https://github.com/skills-yaml/skm">skm</a>
-      <a href="https://github.com/skills-yaml/registry">registry</a>
-      <a href="catalog.html">Catalog</a>
-    </nav>
-  </div>
-</footer>
+</div>
 
 <script src="assets/site.js?v=c14a35b761" defer></script>
 </body>

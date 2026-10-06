@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-25",
+  "generated": "2026-10-06",
   "registry": "https://github.com/skills-yaml/registry",
   "categories": [
     "skills-yaml",
@@ -37,121 +37,121 @@
         {
           "name": "address-review-feedback",
           "id": "workspace/address-review-feedback",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits."
         },
         {
           "name": "adopt-workspace-structure",
           "id": "workspace/adopt-workspace-structure",
-          "version": "0.3.0",
+          "version": "0.6.1",
           "description": "Adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. Use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration."
         },
         {
           "name": "analyze-repository",
           "id": "workspace/analyze-repository",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. Use when a repository needs assessment, onboarding context, or current-state discovery before planning work."
         },
         {
           "name": "coordinate-multi-agent-development",
           "id": "workspace/coordinate-multi-agent-development",
-          "version": "0.1.0",
+          "version": "0.2.1",
           "description": "Let peer agents coordinate on one machine through atomic task and version claims, self-created detached worktrees, shared file scopes, independent review, serialized integration, and lossless recovery. No coordinator agent is required."
         },
         {
           "name": "fix-bug",
           "id": "workspace/fix-bug",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Reproduce, isolate, and fix a reported software defect with regression coverage. Use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change."
         },
         {
           "name": "fix-ci",
           "id": "workspace/fix-ci",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Diagnose and fix failing continuous-integration checks with the smallest verified change. Use when CI or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring."
         },
         {
           "name": "implement-spec",
           "id": "workspace/implement-spec",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Implement an approved development specification through validated, reviewable changes. Use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion."
         },
         {
           "name": "maintain-project-docs",
           "id": "workspace/maintain-project-docs",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. Use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions."
         },
         {
           "name": "monitor-ci",
           "id": "workspace/monitor-ci",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. Use when the user asks to watch, babysit, follow, or wait for CI without changing code or workflow configuration."
         },
         {
           "name": "plan-implementation",
           "id": "workspace/plan-implementation",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Build an ordered, evidence-backed implementation plan from an approved development specification. Use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin."
         },
         {
           "name": "review-changes",
           "id": "workspace/review-changes",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. Use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation."
         },
         {
           "name": "review-security",
           "id": "workspace/review-security",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Perform a threat-focused review of code, configuration, dependencies, or proposed changes. Use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review."
         },
         {
           "name": "wk-adopt",
           "id": "workspace/wk-adopt",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository's Workspace structure through the focused adoption workflow. Invoke explicitly when the user requests Workspace adoption or migration."
         },
         {
           "name": "wk-analyze",
           "id": "workspace/wk-analyze",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. Invoke explicitly when the user wants repository structure, stack, SDLC, policy, documentation, active-work, risk, and gap analysis."
         },
         {
           "name": "wk-deliver",
           "id": "workspace/wk-deliver",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository's authorized delivery workflow. Invoke explicitly for end-to-end delivery rather than read-only review."
         },
         {
           "name": "wk-document",
           "id": "workspace/wk-document",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. Invoke explicitly when documentation must be reconciled with current behavior and validated."
         },
         {
           "name": "wk-plan",
           "id": "workspace/wk-plan",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. Invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates."
         },
         {
           "name": "wk-review",
           "id": "workspace/wk-review",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. Invoke explicitly when findings and validation gaps are needed without remediation."
         },
         {
           "name": "wk-spec",
           "id": "workspace/wk-spec",
-          "version": "0.2.0",
+          "version": "0.3.1",
           "description": "Run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. Invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact."
         },
         {
           "name": "write-spec",
           "id": "workspace/write-spec",
-          "version": "0.3.0",
+          "version": "0.4.1",
           "description": "Turn an accepted problem or feature request into a lifecycle-managed development specification. Use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins."
         }
       ]
@@ -270,15 +270,20 @@
       "category": "workspace",
       "id": "workspace/address-review-feedback",
       "description": "Triage and implement selected actionable feedback from a pull request, branch review, or review report. Use when the user asks to address review comments, requested changes, or unresolved threads and authorizes the corresponding code or documentation edits.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -291,17 +296,24 @@
       "category": "workspace",
       "id": "workspace/adopt-workspace-structure",
       "description": "Adopt, upgrade, repair, or assess the workspace-docs repository structure and its agent governance. Use when an agent must initialize workspace documentation in a project, migrate workspace-docs 1.x or 2.0 layouts to a newer version, update an existing pinned version, repair a partial or mixed adoption, check conformance and implement requested fixes, or complete and validate an in-progress workspace migration.",
-      "version": "0.3.0",
+      "version": "0.6.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.4.0",
+        "0.5.0",
+        "0.6.0",
+        "0.6.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.6.1",
+        "default": "v0.6.1"
       },
-      "support": {},
+      "support": {
+        "references": 88
+      },
       "deprecated": false,
       "metapackages": [
         "workspace/all-workspace-skills"
@@ -312,15 +324,20 @@
       "category": "workspace",
       "id": "workspace/analyze-repository",
       "description": "Analyze a repository without modifying it, producing an evidence-backed account of its purpose, structure, technology stack, development lifecycle, policies, documentation state, active work, risks, and evidence gaps. Use when a repository needs assessment, onboarding context, or current-state discovery before planning work.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -333,14 +350,19 @@
       "category": "workspace",
       "id": "workspace/coordinate-multi-agent-development",
       "description": "Let peer agents coordinate on one machine through atomic task and version claims, self-created detached worktrees, shared file scopes, independent review, serialized integration, and lossless recovery. No coordinator agent is required.",
-      "version": "0.1.0",
+      "version": "0.2.1",
       "tags": [],
       "versions": [
-        "0.1.0"
+        "0.1.0",
+        "0.1.1",
+        "0.1.2",
+        "0.1.3",
+        "0.2.0",
+        "0.2.1"
       ],
       "aliases": {
-        "latest": "v0.1.0",
-        "default": "v0.1.0"
+        "latest": "v0.2.1",
+        "default": "v0.2.1"
       },
       "support": {
         "scripts": 1
@@ -355,15 +377,20 @@
       "category": "workspace",
       "id": "workspace/fix-bug",
       "description": "Reproduce, isolate, and fix a reported software defect with regression coverage. Use when observed behavior differs from a requirement or established contract and the user authorizes a focused implementation change.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -376,15 +403,20 @@
       "category": "workspace",
       "id": "workspace/fix-ci",
       "description": "Diagnose and fix failing continuous-integration checks with the smallest verified change. Use when CI or pull-request checks are failing and the user authorizes implementation, including log inspection, local reproduction, regression coverage, and rerun monitoring.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -397,15 +429,20 @@
       "category": "workspace",
       "id": "workspace/implement-spec",
       "description": "Implement an approved development specification through validated, reviewable changes. Use when a spec is active in development and the request authorizes code or documentation changes, including required tests, compatibility work, lifecycle reconciliation, and memory-impact completion.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -418,15 +455,20 @@
       "category": "workspace",
       "id": "workspace/maintain-project-docs",
       "description": "Create, update, reconcile, or review human-facing project documentation within repository-declared documentation roots. Use when project reference, architecture, operational, onboarding, or work documentation must reflect current repository behavior without changing governed agent instructions.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -439,15 +481,20 @@
       "category": "workspace",
       "id": "workspace/monitor-ci",
       "description": "Monitor a continuous-integration run or pull-request checks through a terminal outcome and report meaningful transitions. Use when the user asks to watch, babysit, follow, or wait for CI without changing code or workflow configuration.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -460,15 +507,20 @@
       "category": "workspace",
       "id": "workspace/plan-implementation",
       "description": "Build an ordered, evidence-backed implementation plan from an approved development specification. Use when a feature, migration, or refactor has an active spec and needs dependency ordering, concrete file areas, validation strategy, compatibility handling, and completion gates before code changes begin.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -481,15 +533,20 @@
       "category": "workspace",
       "id": "workspace/review-changes",
       "description": "Review a working tree, branch, commit range, or pull request for correctness, regressions, and missing validation. Use when the user asks for a code review, branch review, pull-request review, or an evidence-backed assessment of proposed changes without implementation.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -502,15 +559,20 @@
       "category": "workspace",
       "id": "workspace/review-security",
       "description": "Perform a threat-focused review of code, configuration, dependencies, or proposed changes. Use when a change affects authentication, authorization, secrets, untrusted input, file or network access, supply chain, execution boundaries, sensitive data, or when the user requests a security review.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
@@ -523,15 +585,20 @@
       "category": "workspace",
       "id": "workspace/wk-adopt",
       "description": "Run the wk.adopt lifecycle facade to assess, adopt, repair, or upgrade a repository's Workspace structure through the focused adoption workflow. Invoke explicitly when the user requests Workspace adoption or migration.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -544,15 +611,20 @@
       "category": "workspace",
       "id": "workspace/wk-analyze",
       "description": "Run the wk.analyze lifecycle facade to produce a read-only, evidence-backed repository assessment. Invoke explicitly when the user wants repository structure, stack, SDLC, policy, documentation, active-work, risk, and gap analysis.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -565,15 +637,20 @@
       "category": "workspace",
       "id": "workspace/wk-deliver",
       "description": "Run the wk.deliver lifecycle facade to implement, validate, review, remediate, and advance an approved development specification through the repository's authorized delivery workflow. Invoke explicitly for end-to-end delivery rather than read-only review.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -586,15 +663,20 @@
       "category": "workspace",
       "id": "workspace/wk-document",
       "description": "Run the wk.document lifecycle facade to create or maintain human-facing project documentation within repository ownership boundaries. Invoke explicitly when documentation must be reconciled with current behavior and validated.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -607,15 +689,20 @@
       "category": "workspace",
       "id": "workspace/wk-plan",
       "description": "Run the wk.plan lifecycle facade to validate or create an active specification and produce an executable implementation plan. Invoke explicitly when approved work needs ordered steps, affected files, migration handling, validation, rollback, and completion gates.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -628,15 +715,20 @@
       "category": "workspace",
       "id": "workspace/wk-review",
       "description": "Run the wk.review lifecycle facade for a read-only correctness and applicable security review of a working tree, branch, commit range, or pull request. Invoke explicitly when findings and validation gaps are needed without remediation.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -649,15 +741,20 @@
       "category": "workspace",
       "id": "workspace/wk-spec",
       "description": "Run the wk.spec lifecycle facade to turn an accepted request into a complete, categorized, lifecycle-managed development specification. Invoke explicitly when implementation needs scope, acceptance criteria, affected areas, validation, risks, and memory impact.",
-      "version": "0.2.0",
+      "version": "0.3.1",
       "tags": [],
       "versions": [
         "0.1.0",
-        "0.2.0"
+        "0.2.0",
+        "0.2.1",
+        "0.2.2",
+        "0.2.3",
+        "0.3.0",
+        "0.3.1"
       ],
       "aliases": {
-        "latest": "v0.2.0",
-        "default": "v0.2.0"
+        "latest": "v0.3.1",
+        "default": "v0.3.1"
       },
       "support": {},
       "deprecated": false,
@@ -670,15 +767,20 @@
       "category": "workspace",
       "id": "workspace/write-spec",
       "description": "Turn an accepted problem or feature request into a lifecycle-managed development specification. Use when work needs explicit scope, acceptance criteria, affected areas, validation gates, risks, migration considerations, and memory impact before implementation begins.",
-      "version": "0.3.0",
+      "version": "0.4.1",
       "tags": [],
       "versions": [
         "0.2.0",
-        "0.3.0"
+        "0.3.0",
+        "0.3.1",
+        "0.3.2",
+        "0.3.3",
+        "0.4.0",
+        "0.4.1"
       ],
       "aliases": {
-        "latest": "v0.3.0",
-        "default": "v0.3.0"
+        "latest": "v0.4.1",
+        "default": "v0.4.1"
       },
       "support": {},
       "deprecated": false,
