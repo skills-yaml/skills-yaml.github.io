@@ -23,7 +23,10 @@ The generator reads a checkout of the registry and fills the marked regions of
 `catalog.html` and `index.html`, plus `data/catalog.json`. It also turns every
 bundle in `skills/<scope>/manifest.yaml` into a metapackage: a card on the
 catalog and a page at `metapackages/<scope>/<name>.html` listing its scope and
-member skills at their pinned versions. That directory is rewritten on every
+member skills at their pinned versions. Every catalog, preview, and member entry
+links to its published contents on GitHub; metapackage links follow the pinned
+version rather than latest. Catalog JSON exposes each `source_url`. That directory
+is rewritten on every
 run, so do not edit it by hand. It needs Python 3 and nothing else.
 
 ```sh
