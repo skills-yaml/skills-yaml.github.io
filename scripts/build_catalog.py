@@ -372,7 +372,7 @@ def metapackage_page_html(metapackage):
 
       <section id="add">
         <h2>Add it to your project</h2>
-        <p>Here is how to add every skill in <code>{html.escape(metapackage['id'])}</code> with skm 0.7.0 or later:</p>
+        <p>Adding a metapackage requires skm 0.7.0 or later.</p>
         <ol class="stepper">
           <li class="step">
             <h4>Preview the change</h4>

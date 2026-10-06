@@ -63,7 +63,7 @@
         <p class="docs-lead">This page explains how skm installs the agent skills you declare in one file into every agent your project uses.</p>
       </header>
 
-      <p>You <strong>declare</strong> the skills your project needs in <code>skills.yaml</code> and commit it. skm <strong>resolves</strong> them from a registry and <strong>links</strong> them into Claude, Codex, Cursor, Copilot, Grok and Hermes, so every agent working in the repo reads the same instructions.</p>
+      <p>You declare the skills your project needs in <code>skills.yaml</code> and commit it. skm resolves them from a registry and links them into Claude, Codex, Cursor, Copilot, Grok and Hermes, so every agent working in the repo reads the same instructions.</p>
       <p>Skills are versioned folders in Git. You can pin one, follow <code>latest</code>, or track the maintainer's <code>default</code>. See also: <a href="https://github.com/skills-yaml/skm">skm</a> (GitHub).</p>
 
       <div class="cards">
@@ -87,9 +87,8 @@
 
       <section id="disk">
         <h2>How it works</h2>
-        <p><strong>Concept:</strong> &ldquo;I want <strong><em>every agent</em></strong> in my repo to read the <strong><em>same skills</em></strong>.&rdquo;</p>
-        <p>For example, Sam's team works in one repository with Claude Code, Codex and Cursor. Each agent reads skills from its own folder, so the team's spec-writing skill would otherwise need three copies that slowly drift apart. If the team declares the skill once in <code>skills.yaml</code>, skm <strong>links</strong> that one copy into the skill folder of every agent.</p>
-        <p>Here is how to set it up:</p>
+        <p>Each agent reads skills from its own folder. skm keeps one copy of each skill and links it into the skill folder of every agent declared in <code>skills.yaml</code>, so all agents in the repository run the same version of the same instructions.</p>
+        <p>To set up a project:</p>
 
         <ol class="stepper">
           <li class="step">
@@ -158,8 +157,7 @@
 
       <section id="manifest">
         <h2>The manifest</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>choose</em></strong> which skills, versions and agents my project uses.&rdquo;</p>
-        <p>Everything skm does starts with <code>skills.yaml</code>. Fields you leave out keep working defaults:</p>
+        <p><code>skills.yaml</code> declares the registries, agents and skills of a project. Everything skm does starts from this file. Fields you leave out keep working defaults:</p>
         <div class="code">
           <div class="code-title">skills.yaml</div>
           <pre><span class="k">name</span>: my-project
@@ -319,7 +317,6 @@
 
       <section id="guardrails">
         <h2>Guardrails</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>trust</em></strong> what skm writes to disk.&rdquo;</p>
         <p>Agent skills end up as instructions your team executes, so skm treats writing them to disk as a transaction:</p>
         <div class="cards">
           <div class="card"><p class="card-title">It refuses collisions</p><p>Before writing anything, skm checks every target. A file it does not already manage stops the install instead of being overwritten.</p></div>

@@ -63,8 +63,8 @@
         <p class="docs-lead">This page explains how to write a skill package that installs into every agent skm supports, and how to offer several skills together as a bundle.</p>
       </header>
 
-      <p>A skill is a folder that contains a <code>SKILL.md</code> file. The file holds the instructions an agent <strong>follows</strong> when a task calls for the skill, and the folder can also hold reference documents, templates or scripts that those instructions point to.</p>
-      <p>To <strong>share</strong> a skill through a registry, you publish it as a <strong>package</strong>: the same skill, but versioned, so that people can pin the exact release they rely on. skm then reads the package from the registry and links it into the skill folder of every agent a project uses. See also: <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">SKILL_STRUCTURE.md</a> and <a href="https://github.com/skills-yaml/registry/blob/main/VERSIONING.md">VERSIONING.md</a> (skills-yaml registry).</p>
+      <p>A skill is a folder that contains a <code>SKILL.md</code> file. The file holds the instructions an agent follows when a task calls for the skill, and the folder can also hold reference documents, templates or scripts that those instructions point to.</p>
+      <p>To share a skill through a registry, you publish it as a package: the same skill, but versioned, so that people can pin the exact release they rely on. skm then reads the package from the registry and links it into the skill folder of every agent a project uses. See also: <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">SKILL_STRUCTURE.md</a> and <a href="https://github.com/skills-yaml/registry/blob/main/VERSIONING.md">VERSIONING.md</a> (skills-yaml registry).</p>
 
       <div class="hint hint-info" role="note">
         <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
@@ -73,9 +73,7 @@
 
       <section id="package">
         <h2>Publish a skill package</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>share</em></strong> a skill so that anyone can <strong><em>install</em></strong> it, whichever agent they use.&rdquo;</p>
-        <p>For example, Mira has written a <code>release-notes</code> skill that drafts release notes from merged pull requests. Mira's teammates use Claude Code, Codex and Cursor. If Mira publishes the skill as a package in the registry, each teammate can <strong>add</strong> it with a single <code>skm add</code> command, and skm links it into the right folder for every agent.</p>
-        <p>Here is how to set it up:</p>
+        <p>A package in the registry can be added to any project with <code>skm add</code>, and skm links it into the skill folder of every agent the project uses. The steps below publish a skill called <code>release-notes</code> as version <code>0.1.0</code>.</p>
 
         <ol class="stepper">
           <li class="step" id="skill-md">
@@ -94,7 +92,7 @@ metadata:
               <dt><code>name</code></dt>
               <dd>Exactly the same as the name of the skill's folder. Lowercase letters, digits and single hyphens, at most 64 characters, and no hyphen at the start or end.</dd>
               <dt><code>description</code></dt>
-              <dd>Most agents read only the description when they decide whether a skill is relevant, so say both <strong>what</strong> the skill does and <strong>when</strong> to use it. Up to 1,024 characters.</dd>
+              <dd>Most agents read only the description when they decide whether a skill is relevant, so say both what the skill does and when to use it. Up to 1,024 characters.</dd>
               <dt><code>metadata.skm-version</code></dt>
               <dd>The version number of the package. Write it in quotes, because every value under <code>metadata</code> must be text.</dd>
             </dl>
@@ -128,7 +126,7 @@ metadata:
 
           <li class="step" id="layout">
             <h4>Create the version folder</h4>
-            <p>Create a folder named after the version, such as <code>v0.1.0</code>, and put the <code>SKILL.md</code> file and everything else the skill needs inside it. This folder <strong>is</strong> the release.</p>
+            <p>Create a folder named after the version, such as <code>v0.1.0</code>, and put the <code>SKILL.md</code> file and everything else the skill needs inside it. This folder is the release.</p>
             <div class="hint hint-warning" role="note">
               <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75 18 17H2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="14.4" r="0.95" fill="currentColor"/></svg>
               <div><p>Make sure the package stays within the registry's limits:</p>
@@ -202,9 +200,7 @@ task test     <span class="c"># runs the tests for the checks themselves</span><
 
       <section id="dependencies">
         <h2>Declare dependencies</h2>
-        <p><strong>Concept:</strong> &ldquo;My skill <strong><em>cannot work</em></strong> without another skill.&rdquo;</p>
-        <p>For example, Mira's team has a <code>ship-feature</code> skill that relies on two other skills, <code>write-spec</code> and <code>review-changes</code>, for some of its steps. If the team declares those two as dependencies, skm <strong>installs them automatically</strong> whenever someone adds <code>ship-feature</code>.</p>
-        <p>Add the dependencies to the frontmatter, under <code>metadata</code>:</p>
+        <p>Declare a dependency when a skill cannot work without another skill. skm installs the dependencies automatically whenever the skill is added. List them in the frontmatter, under <code>metadata</code>:</p>
         <div class="code">
           <div class="code-title">SKILL.md</div>
           <pre>metadata:
@@ -224,9 +220,8 @@ task test     <span class="c"># runs the tests for the checks themselves</span><
 
       <section id="update">
         <h2>Update a published skill</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>change</em></strong> a skill that people already use.&rdquo;</p>
         <p>Once a version has been released to <code>main</code>, it can no longer be changed or removed. This protects everyone who has pinned that version in their projects. To change the skill, you publish a <strong>new version</strong> next to the old one.</p>
-        <p>Here is how to do it:</p>
+        <p>To publish a new version:</p>
 
         <ol class="stepper">
           <li class="step">
@@ -255,7 +250,6 @@ task test     <span class="c"># runs the tests for the checks themselves</span><
 
       <section id="install">
         <h2>Where the skill is installed</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to know <strong><em>where</em></strong> my skill ends up in each agent.&rdquo;</p>
         <p>People add your skill to their project by name, and skm then links it into the skill folder of each agent they use:</p>
         <div class="code">
           <div class="code-title">Terminal<button class="copy" type="button">Copy</button></div>
@@ -299,20 +293,19 @@ skm install</pre>
 
       <section id="bundles">
         <h2>Bundle skills together</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>offer</em></strong> several skills that are useful <strong><em>together</em></strong>.&rdquo;</p>
-        <p>For example, the <code>skills-yaml</code> namespace publishes <code>skill-creator</code>, which helps you write a skill, and <code>skill-reviewer</code>, which helps you review one. Neither needs the other to work, but authors usually want both. So the namespace offers them as the <code>authoring-toolkit</code> bundle, and people can <strong>add both</strong> with one command.</p>
+        <p>A bundle is a named group of skills that are meant to be used together, added to a project with one command. The <code>skills-yaml</code> namespace, for instance, publishes <code>skill-creator</code> and <code>skill-reviewer</code> together as the <code>authoring-toolkit</code> bundle.</p>
         <p>A bundle contains no instructions of its own, which makes it different from a skill. It is also different from a dependency:</p>
         <dl class="fields">
           <dt>Dependency</dt>
-          <dd>One skill <strong>needs</strong> another one in order to work. It is declared inside the skill, and skm always installs the two together.</dd>
+          <dd>One skill needs another one in order to work. It is declared inside the skill, and skm always installs the two together.</dd>
           <dt>Bundle</dt>
-          <dd>Several skills are <strong>useful</strong> together. It is declared in the namespace manifest, and people choose whether they want to add it.</dd>
+          <dd>Several skills are useful together. It is declared in the namespace manifest, and people choose whether they want to add it.</dd>
         </dl>
         <div class="hint hint-warning" role="note">
           <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75 18 17H2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="14.4" r="0.95" fill="currentColor"/></svg>
           <div><p>Do not create a bundle as an empty skill that lists the other skills as its dependencies. Every agent would still show the empty skill as something it can run, and it would describe a relationship between the skills that does not really exist.</p></div>
         </div>
-        <p>Here is how to set it up:</p>
+        <p>To declare a bundle:</p>
 
         <ol class="stepper">
           <li class="step">
@@ -380,7 +373,6 @@ bundles:
 
       <section id="add-bundle">
         <h2>Add a bundle to a project</h2>
-        <p><strong>Concept:</strong> &ldquo;I want to <strong><em>use</em></strong> a bundle that someone has published.&rdquo;</p>
         <p>With skm 0.7.0 or later, preview the bundle first, and then add it to the project:</p>
         <div class="code">
           <div class="code-title">Terminal<button class="copy" type="button">Copy</button></div>
