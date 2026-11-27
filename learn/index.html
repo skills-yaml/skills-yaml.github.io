@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Skills learning center — skills.yaml</title>
+<meta name="description" content="Learn to write, evaluate, install, and maintain Agent Skills with a release-notes example.">
+<link rel="canonical" href="https://skills-yaml.tech/learn/">
+<meta property="og:title" content="Agent Skills learning center — skills.yaml">
+<meta property="og:description" content="Learn to write, evaluate, install, and maintain Agent Skills with a release-notes example.">
+<meta property="og:url" content="https://skills-yaml.tech/learn/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=9744fac2f0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html">Catalog</a>
+      <a href="/learn/" aria-current="page">Learn</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+
+  <nav class="docs-sidebar" aria-label="Learning center">
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/" aria-current="page">Agent Skills learning center</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Understand and build</p>
+    <ul>
+      <li><a href="/learn/what-are-agent-skills.html">What are Agent Skills?</a></li>
+      <li><a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></li>
+      <li><a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Use skills in your agent</p>
+    <ul>
+      <li><a href="/learn/claude-skills.html">Use skills in Claude</a></li>
+      <li><a href="/learn/google-skills.html">Use skills in Google developer tools</a></li>
+      <li><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Review and maintain</p>
+    <ul>
+      <li><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></li>
+      <li><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/guide.html">Authoring guide</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <h1>Agent Skills learning center</h1>
+        <p class="docs-lead">An Agent Skill is a folder of reusable instructions and optional resources. Its <code>SKILL.md</code> file describes when to use the skill and how to carry out the task.</p>
+      </header>
+
+      <p>For your first run, <a href="/learn/write-your-first-skill.html">write a skill that drafts release notes</a>, <a href="#use-skills">choose one host</a> to try it in, then <a href="/learn/evaluate-and-improve.html">evaluate it with sample requests</a>.</p>
+      <p>Installing a skill someone else wrote? <a href="/learn/review-skill-safety.html">Review the skill before you install it</a>.</p>
+
+      <section id="understand-and-build">
+        <h2>Understand and build</h2>
+        <dl class="fields">
+          <dt><a href="/learn/what-are-agent-skills.html">What are Agent Skills?</a></dt>
+          <dd>See what an agent loads from a skill and decide when a reusable workflow will help.</dd>
+          <dt><a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></dt>
+          <dd>Create a skill that drafts release notes from supplied changes and check the first result.</dd>
+          <dt><a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></dt>
+          <dd>Test which requests activate the skill and check the drafts against realistic examples.</dd>
+        </dl>
+      </section>
+
+      <section id="use-skills">
+        <h2>Use skills in your agent</h2>
+        <dl class="fields">
+          <dt><a href="/learn/claude-skills.html">Use skills in Claude</a></dt>
+          <dd>Load and check a skill in Claude, Claude Code, or the Messages API.</dd>
+          <dt><a href="/learn/google-skills.html">Use skills in Google developer tools</a></dt>
+          <dd>Choose the setup for Antigravity, Gemini CLI, or the Agent Development Kit.</dd>
+          <dt><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></dt>
+          <dd>Make a skill available in a local Codex project, a ChatGPT workspace, or an API runtime.</dd>
+        </dl>
+      </section>
+
+      <section id="review-and-maintain">
+        <h2>Review and maintain</h2>
+        <dl class="fields">
+          <dt><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></dt>
+          <dd>Check what a skill can read, run, or send before you enable it.</dd>
+          <dt><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></dt>
+          <dd>Move a skill between hosts and pinpoint where a workflow stops working.</dd>
+        </dl>
+      </section>
+
+      <section id="publish">
+        <h2>Publish through skills-yaml</h2>
+        <p>Once you’ve tested a skill you want to share, the skills-yaml registry lets projects install a specific release using skm. Pin a version when teammates or CI need to use the same tested release until you choose to upgrade.</p>
+        <p>Follow the <a href="/guide.html#package">registry guide to publish a skill package</a>, or <a href="/catalog.html">browse the catalog</a> to see what is available.</p>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-next" href="/learn/what-are-agent-skills.html"><span>Next</span>What are Agent Skills?</a>
+      </nav>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#understand-and-build">Understand and build</a></li>
+      <li><a href="#use-skills">Use skills in your agent</a></li>
+      <li><a href="#review-and-maintain">Review and maintain</a></li>
+      <li><a href="#publish">Publish through skills-yaml</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="/assets/site.js?v=c14a35b761" defer></script>
+</body>
+</html>

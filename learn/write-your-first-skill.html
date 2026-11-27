@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Write your first SKILL.md — skills.yaml</title>
+<meta name="description" content="Write a complete Agent Skills SKILL.md, validate its frontmatter, and test a release-notes draft with sample change notes.">
+<link rel="canonical" href="https://skills-yaml.tech/learn/write-your-first-skill.html">
+<meta property="og:title" content="Write your first SKILL.md — skills.yaml">
+<meta property="og:description" content="Write a complete Agent Skills SKILL.md, validate its frontmatter, and test a release-notes draft with sample change notes.">
+<meta property="og:url" content="https://skills-yaml.tech/learn/write-your-first-skill.html">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=9744fac2f0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html">Catalog</a>
+      <a href="/learn/" aria-current="location">Learn</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+
+  <nav class="docs-sidebar" aria-label="Learning center">
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Understand and build</p>
+    <ul>
+      <li><a href="/learn/what-are-agent-skills.html">What are Agent Skills?</a></li>
+      <li><a href="/learn/write-your-first-skill.html" aria-current="page">Write your first SKILL.md</a></li>
+      <li><a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Use skills in your agent</p>
+    <ul>
+      <li><a href="/learn/claude-skills.html">Use skills in Claude</a></li>
+      <li><a href="/learn/google-skills.html">Use skills in Google developer tools</a></li>
+      <li><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Review and maintain</p>
+    <ul>
+      <li><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></li>
+      <li><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/guide.html">Authoring guide</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb"><a href="/learn/">Agent Skills learning center</a></p>
+        <h1>Write your first SKILL.md</h1>
+        <p class="docs-lead">Create a skill that turns supplied change notes into a reviewable draft. Copy the entire file, check that it follows the Agent Skills format, and try it with sample notes in your agent.</p>
+      </header>
+
+      <section id="create-the-folder">
+        <h2>Create release-notes/SKILL.md</h2>
+        <p>Create a folder called <code>release-notes</code> and save a plain-text file named <code>SKILL.md</code> inside it. Start with this single file. You can move the whole folder into the location your agent expects when you are ready to try it. <a href="https://agentskills.io/specification#directory-structure">Agent Skills directory structure</a></p>
+        <pre><code>release-notes/
+└── SKILL.md</code></pre>
+      </section>
+
+      <section id="write-the-instructions">
+        <h2>Copy the complete skill</h2>
+        <p>Copy the whole block into <code>SKILL.md</code>. Start the file with the first <code>---</code> line. The second <code>---</code> line ends the YAML frontmatter, and the Markdown instructions begin below it.</p>
+        <div class="code">
+          <div class="code-title">release-notes/SKILL.md<button class="copy" type="button">Copy</button></div>
+          <pre>---
+name: release-notes
+description: &gt;
+  Draft user-facing release notes from supplied change notes.
+  Use when the user asks for a release-note draft or a draft changelog entry.
+---
+
+# Draft release notes
+
+1. If the user supplies no change notes, ask them to paste the notes and wait before drafting.
+2. Use only the supplied notes as evidence. Include user-visible changes that the notes present as confirmed. Preserve any stated limits on availability or scope.
+3. Put tentative, contradictory, or unsupported claims under a separate "Needs confirmation" heading for the reviewer. Identify what must be confirmed and keep those claims out of the release notes. Avoid inferring dates, versions, or benefits.
+4. Start with "Release notes draft". Group bullets under "Added", "Changed", or "Fixed" as appropriate and omit empty groups. If no user-facing change is confirmed, say so.
+5. Return the draft and any confirmation items in the conversation. Never publish or send the draft elsewhere.
+</pre>
+        </div>
+        <p>The description gives an agent enough information to decide when to load the skill. Here, “release-note draft” and “draft changelog entry” describe the user's intent. The body covers what to do after activation. It names the evidence to use, the exception for missing notes, and the structure of a finished draft. Keep instructions specific to the workflow so the body stays short as you refine it. <a href="https://agentskills.io/skill-creation/best-practices">Best practices for skill creators</a> · <a href="https://agentskills.io/skill-creation/optimizing-descriptions">Optimizing skill descriptions</a></p>
+      </section>
+
+      <section id="frontmatter">
+        <h2>Read the frontmatter</h2>
+        <p>The specification requires <code>name</code> and <code>description</code>. <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter specification</a></p>
+        <ul>
+          <li><code>name</code> must match the parent folder exactly. Use 1–64 characters made up of lowercase letters (<code>a-z</code>), digits (<code>0-9</code>), and hyphens. Hyphens cannot appear at either end or in consecutive pairs.</li>
+          <li><code>description</code> must be 1–1,024 characters. Describe what the skill does and when to use it. The YAML <code>&gt;</code> folds the indented lines in the example into a single description. Keep both lines indented with spaces.</li>
+        </ul>
+        <p>Use the optional fields when they serve the skill. <a href="https://agentskills.io/specification#frontmatter">Agent Skills optional fields</a></p>
+        <ul>
+          <li><code>license</code> identifies the license by name or points to a bundled license file.</li>
+          <li><code>compatibility</code> documents specific environment requirements, such as system packages. Use 1–500 characters if supplied.</li>
+          <li><code>metadata</code> holds additional properties as string keys and string values. For example, put <code>version: "1.0"</code> under <code>metadata</code> to keep the version a string.</li>
+          <li><code>allowed-tools</code> is experimental. It lists preapproved tools as a space-separated string. Whether a host honors it depends on its implementation.</li>
+        </ul>
+        <p>The Skills Directory guide lists <code>version</code>, <code>author</code>, <code>tags</code>, and <code>requires</code> as optional top-level fields. The Agent Skills reference validator rejects these extra top-level fields. Put author and version under <code>metadata</code> as strings, and describe runtime requirements in <code>compatibility</code>. <a href="https://www.skillsdirectory.com/docs/skill-md-format#optional-fields">Skills Directory optional fields</a> · <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter specification</a></p>
+      </section>
+
+      <section id="validate-and-test">
+        <h2>Validate and test a draft</h2>
+        <h3>Check the file format</h3>
+        <p>With Git and Python 3.11 or later available, run these commands from the directory that contains <code>release-notes/</code>. They install the official reference validator in a virtual environment and pass the skill folder to it. The commands below use a macOS or Linux shell. The reference library also provides Windows installation steps. <a href="https://github.com/agentskills/agentskills/blob/main/skills-ref/README.md#installation">Reference library installation</a> · <a href="https://agentskills.io/specification#validation">Agent Skills validation</a></p>
+        <pre><code>git clone https://github.com/agentskills/agentskills.git
+python3 -m venv .skills-ref-venv
+.skills-ref-venv/bin/python -m pip install ./agentskills/skills-ref
+.skills-ref-venv/bin/skills-ref validate ./release-notes</code></pre>
+        <p>Look for <code>Valid skill: release-notes</code>. Use the validator's errors to fix frontmatter or folder naming, then run it again. The following prompts check how the agent uses the instructions.</p>
+
+        <h3>Try a draft in your agent</h3>
+        <p>Once the validator accepts the frontmatter and folder name, install the skill in your host and explicitly select it for the first test. Follow the setup guide for your host. <a href="/learn/claude-skills.html">Claude</a> · <a href="/learn/google-skills.html">Google developer tools</a> · <a href="/learn/openai-skills.html">Codex, ChatGPT, and the OpenAI API</a></p>
+        <p>Paste this prompt with its sample change notes.</p>
+        <pre><code>Use the release-notes skill to draft release notes from these change notes.
+
+- Confirmed: The activity log now offers CSV export.
+- Confirmed: Fixed duplicate entries in the activity log after a refresh.
+- Unverified: CSV export may be twice as fast as the previous internal prototype.
+</code></pre>
+        <p>Expect a draft similar to this. Check that both confirmed changes appear under the right headings and the speed claim appears only as a confirmation item.</p>
+        <pre><code># Release notes draft
+
+## Added
+- Export the activity log as a CSV file.
+
+## Fixed
+- Fixed duplicate entries in the activity log after a refresh.
+
+## Needs confirmation
+- Verify the claim that CSV export is twice as fast as the previous internal prototype.
+</code></pre>
+        <p>In a fresh conversation, select the skill again and ask it to draft release notes without supplying any notes. It should ask you to paste them and wait. For both tests, check that the agent returns its work in the conversation and makes no attempt to publish or send it.</p>
+
+        <h3>Check when the skill loads</h3>
+        <p>If your agent supports automatic activation, run each prompt in a fresh conversation without explicitly selecting the skill. Check the agent's skill indicator or execution trace, if available. <a href="https://agentskills.io/skill-creation/optimizing-descriptions#testing-whether-a-description-triggers">Testing whether a description triggers</a></p>
+        <ul>
+          <li>“Turn these confirmed changes and open questions into a customer-facing changelog entry.” Include the sample notes. Expect the agent to load <code>release-notes</code>.</li>
+          <li>“Explain how CSV export works in an activity log.” Expect the agent to answer without loading <code>release-notes</code>. It shares the topic of the sample but asks for an explanation.</li>
+        </ul>
+        <p>Repeat automatic activation checks when results vary. If the agent loads the skill for unrelated work, narrow the description. If it loads the skill and produces a poor draft, tighten the instructions and repeat the explicit test. <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></p>
+      </section>
+
+      <section id="add-resources">
+        <h2>Add a reference or template</h2>
+        <p>When you have a house style to apply, save it in <code>release-notes/references/style-guide.md</code>. In <code>SKILL.md</code>, add a step that tells the agent when to read the guide. Link straight from <code>SKILL.md</code> to the file using a path relative to <code>release-notes/</code>. <a href="https://agentskills.io/specification#file-references">Agent Skills file references</a></p>
+        <pre><code>For customer-facing drafts, read [the style guide](references/style-guide.md) before writing.</code></pre>
+        <p>Use <code>assets/</code> for static resources. For example, save a required output template as <code>assets/release-template.md</code> and point to it in the drafting step. Keep detailed guidance in <code>references/</code> and tell the agent which task calls for each file. <a href="https://agentskills.io/specification#optional-directories">Agent Skills optional directories</a></p>
+        <p>Use <code>scripts/</code> for a repeatable check the agent can run, such as a script that validates draft headings. If you add one, document the command, where to run it, its input and output, and any runtime or package requirements. Use <code>compatibility</code> for environment prerequisites such as a minimum Python version. Confirm that the host allows script execution and tell the agent how to proceed if the script is unavailable. <a href="https://agentskills.io/skill-creation/using-scripts">Using scripts in skills</a></p>
+        <p>When you want to distribute a tested skill through the registry, use the packaging guide. <a href="/guide.html#package">Package a skill for skills-yaml</a></p>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-prev" href="/learn/what-are-agent-skills.html"><span>Previous</span>What are Agent Skills?</a>
+        <a class="pager-next" href="/learn/evaluate-and-improve.html"><span>Next</span>Evaluate and improve a skill</a>
+      </nav>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#create-the-folder">Create release-notes/SKILL.md</a></li>
+      <li><a href="#write-the-instructions">Copy the complete skill</a></li>
+      <li><a href="#frontmatter">Read the frontmatter</a></li>
+      <li><a href="#validate-and-test">Validate and test a draft</a></li>
+      <li><a href="#add-resources">Add a reference or template</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="/assets/site.js?v=c14a35b761" defer></script>
+</body>
+</html>

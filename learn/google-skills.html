@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use skills in Google developer tools — skills.yaml</title>
+<meta name="description" content="Install and verify Agent Skills in Antigravity, Gemini CLI, and the Google Agent Development Kit.">
+<link rel="canonical" href="https://skills-yaml.tech/learn/google-skills.html">
+<meta property="og:title" content="Use skills in Google developer tools — skills.yaml">
+<meta property="og:description" content="Install and verify Agent Skills in Antigravity, Gemini CLI, and the Google Agent Development Kit.">
+<meta property="og:url" content="https://skills-yaml.tech/learn/google-skills.html">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=9744fac2f0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html">Catalog</a>
+      <a href="/learn/" aria-current="location">Learn</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+
+  <nav class="docs-sidebar" aria-label="Learning center">
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Understand and build</p>
+    <ul>
+      <li><a href="/learn/what-are-agent-skills.html">What are Agent Skills?</a></li>
+      <li><a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></li>
+      <li><a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Use skills in your agent</p>
+    <ul>
+      <li><a href="/learn/claude-skills.html">Use skills in Claude</a></li>
+      <li><a href="/learn/google-skills.html" aria-current="page">Use skills in Google developer tools</a></li>
+      <li><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Review and maintain</p>
+    <ul>
+      <li><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></li>
+      <li><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/guide.html">Authoring guide</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb"><a href="/learn/">Agent Skills learning center</a></p>
+        <h1>Use skills in Google developer tools</h1>
+        <p class="docs-lead">Put a skill folder where Antigravity or Gemini CLI can discover it, or attach it explicitly to an agent you build with Google’s Agent Development Kit.</p>
+      </header>
+
+      <section id="choose-your-tool">
+        <h2>Choose your Google developer tool</h2>
+        <p>Product details checked November 27, 2026. Google set June 18, 2026 as the transition date from Gemini CLI to Antigravity CLI for free Gemini Code Assist for individuals and Google AI Pro and Ultra users. Google says Gemini CLI access continues through Gemini Code Assist Standard or Enterprise licenses and paid Gemini or Gemini Enterprise Agent Platform API keys. <a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/">Google’s Gemini CLI transition announcement</a></p>
+        <p>Use the same <code>release-notes/</code> folder from the first-skill tutorial. Keep <code>name: release-notes</code> and a description in the frontmatter. The Agent Skills specification requires both fields, and the name must match the folder. Antigravity infers the name from the folder when it is omitted. <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter</a> · <a href="https://antigravity.google/docs/skills#frontmatter-fields">Antigravity frontmatter</a> · <a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Skill setup by Google developer tool">
+          <table class="dtable">
+            <thead>
+              <tr><th scope="col">Tool</th><th scope="col">Workspace or agent</th><th scope="col">Personal</th><th scope="col">Discovery check</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Antigravity App, CLI, standalone IDE</th>
+                <td><code>.agents/skills/release-notes/</code></td>
+                <td><code>~/.gemini/config/skills/release-notes/</code></td>
+                <td>App and CLI accept <code>/release-notes</code>. The IDE lists the skill in Customizations. See the steps below for additional personal locations.</td>
+              </tr>
+              <tr>
+                <th scope="row">Gemini CLI</th>
+                <td><code>.agents/skills/release-notes/</code> or <code>.gemini/skills/release-notes/</code></td>
+                <td><code>~/.agents/skills/release-notes/</code> or <code>~/.gemini/skills/release-notes/</code></td>
+                <td>Look for <code>release-notes</code> in <code>/skills list</code>.</td>
+              </tr>
+              <tr>
+                <th scope="row">Agent Development Kit (ADK) for Python</th>
+                <td>Load the folder and attach it via <code>SkillToolset</code>.</td>
+                <td>Set by the SDK application.</td>
+                <td>Check the run trace for <code>load_skill</code> with <code>release-notes</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><a href="https://antigravity.google/docs/skills#skills-by-surface">Antigravity skill locations by surface</a> · <a href="https://geminicli.com/docs/cli/skills/#discovery-tiers">Gemini CLI discovery tiers</a> · <a href="https://adk.dev/skills/">Skills for ADK agents</a></p>
+      </section>
+
+      <section id="antigravity">
+        <h2>Install and invoke a skill in Antigravity</h2>
+        <p>Copy the entire skill folder into <code>.agents/skills/</code> at your workspace root for a project skill, or into <code>~/.gemini/config/skills/</code> for a personal skill. The App and CLI also scan parent folders up to the repository root. <a href="https://antigravity.google/docs/skills#skills-by-surface">Antigravity setup by surface</a></p>
+        <pre><code>.agents/skills/release-notes/SKILL.md</code></pre>
+
+        <h3>Antigravity App</h3>
+        <ol>
+          <li>Open the project containing the skill and start a conversation in that project.</li>
+          <li>Look for <code>/release-notes</code> in the message box to check discovery. Select it and send the sample change notes below. The agent can also choose a skill by relevance when you ask for a draft. <a href="https://antigravity.google/docs/skills#invoking-skills-in-the-antigravity-app">Antigravity App invocation</a></li>
+          <li>Compare the response with the expected draft below.</li>
+        </ol>
+
+        <h3>Antigravity CLI</h3>
+        <ol>
+          <li>Run <code>agy</code> from the workspace directory. The CLI also discovers personal skills under <code>~/.gemini/antigravity-cli/skills/</code> and <code>~/.gemini/skills/</code>. Use <code>~/.gemini/config/skills/</code> for a personal copy shared with the App. <a href="https://antigravity.google/docs/getting-started/">Antigravity quickstart</a> · <a href="https://antigravity.google/docs/skills#cli-skill-locations">Antigravity CLI skill locations</a></li>
+          <li>Check for <code>/release-notes</code> in the interactive prompt. If you copied the folder during the session, run <code>/skills reload</code> or start a new conversation to refresh the slash commands. <a href="https://antigravity.google/docs/skills#slash-command-conversion">Antigravity CLI slash commands</a></li>
+          <li>Send <code>/release-notes</code> with the sample change notes and compare the response with the expected draft below.</li>
+        </ol>
+
+        <h3>Standalone Antigravity IDE</h3>
+        <ol>
+          <li>Open your workspace in the standalone IDE. It also supports the legacy personal location at <code>~/.gemini/antigravity/skills/</code>. <a href="https://antigravity.google/docs/skills#antigravity-ide-skill-locations">Antigravity IDE skill locations</a></li>
+          <li>Open <strong>Customizations</strong> in the agent side panel and confirm that <code>release-notes</code> appears. <a href="https://antigravity.google/docs/skills#antigravity-ide-skill-locations">Antigravity IDE discovery check</a></li>
+          <li>Send the verification prompt below, including the skill name. Antigravity exposes skill names and descriptions to the agent and reads the full instructions when it selects a skill. Compare the response with the expected draft. <a href="https://antigravity.google/docs/skills#how-the-agent-uses-skills">How Antigravity uses skills</a></li>
+        </ol>
+      </section>
+
+      <section id="gemini-cli">
+        <h2>Discover and approve a skill in Gemini CLI</h2>
+        <p>If your account still uses Gemini CLI, copy the whole folder to <code>.agents/skills/release-notes/</code> at your workspace root, or choose another Gemini CLI location from the table. Run <code>gemini</code> from the project directory. On startup, Gemini CLI gives the agent the name and description of each enabled skill. Workspace copies take precedence over personal copies, then extension and built-in copies. Within the same scope, <code>.agents/skills/</code> wins over <code>.gemini/skills/</code> for the same name. <a href="https://geminicli.com/docs/cli/skills/#discovery-tiers">Gemini CLI discovery and precedence</a></p>
+        <ol>
+          <li>Use <code>/skills reload</code> if the session was already open. Run <code>/skills list</code> and look for <code>release-notes</code>. <a href="https://geminicli.com/docs/cli/skills/#managing-skills">Gemini CLI skill commands</a></li>
+          <li>Ask Gemini to use the skill with the verification prompt below. When Gemini selects the skill, it calls <code>activate_skill</code>. Review the name, purpose and directory in the confirmation. <a href="https://geminicli.com/docs/cli/skills/#how-it-works">Gemini CLI activation and consent</a></li>
+          <li>Approve the expected skill and directory. The CLI loads the instructions and gives the agent read access to bundled files. The activation confirmation identifies which copy the agent selected. Compare the resulting draft with the expected output below. <a href="https://geminicli.com/docs/cli/skills/#how-it-works">Gemini CLI resource access</a></li>
+        </ol>
+      </section>
+
+      <section id="adk">
+        <h2>Attach a skill to an ADK agent</h2>
+        <p>Use Python ADK <code>1.25.0</code> or later. In an existing ADK project, put the folder at <code>skills/release-notes/</code> next to the agent package’s <code>agent.py</code>. Load it from that module and attach the toolset to <code>root_agent</code>. For an existing agent, add the toolset to its current tools and keep its configured model. <a href="https://adk.dev/skills/#get-started">ADK SkillToolset setup</a></p>
+        <pre><code>from pathlib import Path
+
+from google.adk import Agent
+from google.adk.skills import load_skill_from_dir
+from google.adk.tools.skill_toolset import SkillToolset
+
+skill_dir = Path(__file__).parent / "skills" / "release-notes"
+release_notes = load_skill_from_dir(skill_dir)
+
+root_agent = Agent(
+    name="release_notes_agent",
+    model="gemini-flash-latest",
+    tools=[SkillToolset(skills=[release_notes])],
+)</code></pre>
+        <ol>
+          <li>With model credentials configured, run <code>adk web</code> from the directory containing the agent package. Open the printed URL and select the package in the agent dropdown. <a href="https://adk.dev/runtime/web-interface/#start-the-web-interface">Start the ADK web interface</a></li>
+          <li>Send the verification prompt below. <code>SkillToolset</code> exposes the skill metadata to the model, which calls <code>load_skill</code> to read the instructions for a matching task. <a href="https://adk.dev/skills/#system-instructions-for-using-skills">ADK skill loading</a></li>
+          <li>Inspect the run’s events for a successful <code>load_skill</code> call for <code>release-notes</code>, then compare the response with the expected draft. <a href="https://adk.dev/runtime/web-interface/">ADK web interface event history</a></li>
+        </ol>
+      </section>
+
+      <section id="verify">
+        <h2>Verify a release-notes draft</h2>
+        <p>Try this sample after setup. In the Antigravity App or CLI, use <code>/release-notes</code> in place of the first sentence and include the three change notes.</p>
+        <pre><code>Use the release-notes skill to draft release notes from these change notes.
+
+- Confirmed: The activity log now offers CSV export.
+- Confirmed: Fixed duplicate entries in the activity log after a refresh.
+- Unverified: CSV export may be twice as fast as the previous internal prototype.</code></pre>
+        <p>Expect a draft in the conversation with the export under <strong>Added</strong> and the duplicate-entry fix under <strong>Fixed</strong>. The speed claim belongs only under <strong>Needs confirmation</strong>. For the missing-input check, start a fresh conversation and invoke the skill without any change notes. Expect the agent to ask for the notes and wait.</p>
+        <p>Before enabling a shared skill, <a href="/learn/review-skill-safety.html">review the instructions and resources it can use</a>. If the skill is missing or behaves differently across tools, <a href="/learn/port-and-troubleshoot.html">check discovery, selection and execution</a>.</p>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-prev" href="/learn/claude-skills.html"><span>Previous</span>Use skills in Claude</a>
+        <a class="pager-next" href="/learn/openai-skills.html"><span>Next</span>Use skills in Codex, ChatGPT and the OpenAI API</a>
+      </nav>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#choose-your-tool">Choose your Google developer tool</a></li>
+      <li><a href="#antigravity">Install and invoke a skill in Antigravity</a></li>
+      <li><a href="#gemini-cli">Discover and approve a skill in Gemini CLI</a></li>
+      <li><a href="#adk">Attach a skill to an ADK agent</a></li>
+      <li><a href="#verify">Verify a release-notes draft</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="/assets/site.js?v=c14a35b761" defer></script>
+</body>
+</html>

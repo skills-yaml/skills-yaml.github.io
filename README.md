@@ -9,6 +9,8 @@ a little JavaScript; no build step beyond the catalog generator.
 ```txt
 index.html                 landing page
 catalog.html               generated catalog: metapackages, then skills
+guide.html                 skills-yaml registry authoring guide
+learn/                     Agent Skills learning center and articles
 metapackages/<scope>/      generated page per metapackage (registry bundle)
 assets/style.css           the whole stylesheet
 assets/site.js             copy buttons, catalog filtering, page outline
@@ -26,8 +28,9 @@ catalog and a page at `metapackages/<scope>/<name>.html` listing its scope and
 member skills at their pinned versions. Every catalog, preview, and member entry
 links to its published contents on GitHub; metapackage links follow the pinned
 version rather than latest. Catalog JSON exposes each `source_url`. That directory
-is rewritten on every
-run, so do not edit it by hand. It needs Python 3 and nothing else.
+is rewritten on every run, so do not edit it by hand. The learning articles are
+hand-maintained; the generator only refreshes their asset version strings. It
+needs Python 3 and nothing else.
 
 ```sh
 python3 scripts/build_catalog.py --registry ../registry

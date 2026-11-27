@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use skills in Claude — skills.yaml</title>
+<meta name="description" content="Install and verify a release-notes skill in Claude chat, Claude Code, or the Claude Messages API.">
+<link rel="canonical" href="https://skills-yaml.tech/learn/claude-skills.html">
+<meta property="og:title" content="Use skills in Claude — skills.yaml">
+<meta property="og:description" content="Install and verify a release-notes skill in Claude chat, Claude Code, or the Claude Messages API.">
+<meta property="og:url" content="https://skills-yaml.tech/learn/claude-skills.html">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=9744fac2f0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html">Catalog</a>
+      <a href="/learn/" aria-current="location">Learn</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+
+  <nav class="docs-sidebar" aria-label="Learning center">
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Understand and build</p>
+    <ul>
+      <li><a href="/learn/what-are-agent-skills.html">What are Agent Skills?</a></li>
+      <li><a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></li>
+      <li><a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Use skills in your agent</p>
+    <ul>
+      <li><a href="/learn/claude-skills.html" aria-current="page">Use skills in Claude</a></li>
+      <li><a href="/learn/google-skills.html">Use skills in Google developer tools</a></li>
+      <li><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Review and maintain</p>
+    <ul>
+      <li><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></li>
+      <li><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/guide.html">Authoring guide</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb"><a href="/learn/">Agent Skills learning center</a></p>
+        <h1>Use skills in Claude</h1>
+        <p class="docs-lead">Upload a ZIP in Claude, place the skill folder on disk for Claude Code, or list the uploaded skill in a Messages API request. Then check that Claude can use it to draft release notes.</p>
+      </header>
+
+      <section id="choose-your-claude-surface">
+        <h2>Choose your Claude surface</h2>
+        <p>These setup instructions reflect Claude’s product documentation as of <time datetime="2026-11-27">November 27, 2026</time>. Use the <a href="/learn/write-your-first-skill.html">release-notes skill from the first-skill guide</a> for all three recipes.</p>
+        <ul>
+          <li><strong>Claude chat.</strong> You or your organization makes the skill available in Customize. Claude can select it when your request matches its description. <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude">Claude Help Center on using skills</a>.</li>
+          <li><strong>Claude Code.</strong> For a local installation, you put the skill folder in a project or personal directory. You can invoke it yourself or let Claude select it. <a href="https://code.claude.com/docs/en/skills">Claude Code skills documentation</a>.</li>
+          <li><strong>Messages API.</strong> Your application uploads the skill to an API workspace and lists it in the request. Claude can select it from the skills the application supplies. <a href="https://platform.claude.com/docs/en/build-with-claude/skills-guide">Claude Platform guide to skills in the API</a>.</li>
+        </ul>
+      </section>
+
+      <section id="upload-to-claude">
+        <h2>Upload the skill to Claude</h2>
+        <p>Package the enclosing <code>release-notes</code> folder. Opening the archive should show this structure, with <code>SKILL.md</code> one level below the archive root and <code>name: release-notes</code> in its frontmatter. <a href="https://support.claude.com/en/articles/12512198-how-to-create-custom-skills">Claude Help Center on packaging custom skills</a>.</p>
+        <pre><code>release-notes.zip
+└── release-notes/
+    └── SKILL.md</code></pre>
+        <p>With <code>zip</code> installed, run <code>zip -r release-notes.zip release-notes/</code> from the directory containing the skill folder.</p>
+        <ol>
+          <li>In a personal account, go to <strong>Settings → Capabilities</strong> and enable <strong>Code execution and file creation</strong>, labeled <strong>Create and edit files</strong> in the updated layout. In a managed organization, the owner can check <strong>Cloud code execution and file creation</strong>, <strong>Skills</strong>, and <strong>User-created skills</strong> under <strong>Organization settings → Plugins &amp; skills → Policy</strong>.</li>
+          <li>Open <strong>Customize → Skills</strong>. Select <strong>+</strong>, then <strong>Create skill</strong>, then <strong>Upload a skill</strong>. Choose <code>release-notes.zip</code>.</li>
+          <li>Find <code>release-notes</code> in the skills list and check that it is enabled. If your owner already provisioned the skill, check your organization’s skills before uploading another copy.</li>
+        </ol>
+        <p>If the skills section is missing or grayed out, start with the code execution setting. If the list is visible and the upload action is absent, check your organization’s creation policy and your role. <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude">Claude Help Center on enabling, uploading, and troubleshooting skills</a>.</p>
+        <p>Start a fresh chat and send the verification prompt below. To check automatic selection, start another fresh chat and replace the first line with <code>Draft release notes from these change notes.</code></p>
+        <pre><code>Use the release-notes skill to draft release notes from these change notes.
+
+- Confirmed: The activity log now offers CSV export.
+- Confirmed: Fixed duplicate entries in the activity log after a refresh.
+- Unverified: CSV export may be twice as fast as the previous internal prototype.</code></pre>
+        <p>An enabled toggle confirms availability. Check the turn’s activity details if Claude shows them. A skill-use entry naming <code>release-notes</code> or a visible read of that skill’s <code>SKILL.md</code> is evidence that it loaded. If the turn exposes no activation evidence, record activation as unknown and score the draft against the <a href="#check-the-draft">checks below</a>. To compare the drafts, repeat the task in a fresh chat with the skill toggled off.</p>
+      </section>
+
+      <section id="install-in-claude-code">
+        <h2>Install the folder in Claude Code</h2>
+        <p>For a skill shared with a repository, copy the folder to <code>.claude/skills/release-notes/</code> at the repository root. For a skill you want across projects on this machine, use <code>~/.claude/skills/release-notes/</code>. Keep <code>SKILL.md</code> directly inside the <code>release-notes</code> directory. <a href="https://code.claude.com/docs/en/skills#choose-where-skills-load">Claude Code skill locations</a>.</p>
+        <p>Open Claude Code from the project. Run <code>/skills</code> and look for <code>release-notes</code> in the scope you chose. If you copied the folder during the session and it is missing, run <code>/reload-skills</code> and check again. Claude Code can also show skills from your signed-in Claude account, so check the source when the same name appears. <a href="https://code.claude.com/docs/en/skills">Claude Code documentation on discovery, synced skills, and reload</a>.</p>
+        <p>Invoke the local skill explicitly by putting its slash command and your source notes in the same message.</p>
+        <pre><code>/release-notes Confirmed: The activity log now offers CSV export. Confirmed: Fixed duplicate entries in the activity log after a refresh. Unverified: CSV export may be twice as fast as the previous internal prototype.</code></pre>
+        <p>Successful slash-command invocation checks that the command resolves. To test automatic selection, start a new session and use the chat prompt with the first line replaced by <code>Draft release notes from these change notes.</code> Look for a call to the <code>Skill</code> tool naming <code>release-notes</code> in the session activity, then score the draft. On supported versions, <code>/skill-doctor</code> reports usage for skills in your session. <a href="https://code.claude.com/docs/en/skills#find-unused-skills">Claude Code skill usage reports</a></p>
+        <p>If the slash command works and the plain request misses, check the skill description, the visibility setting in <code>/skills</code>, and any restrictions on the <code>Skill</code> tool. The Claude Code frontmatter field <code>disable-model-invocation: true</code> reserves the skill for direct invocation. <a href="https://code.claude.com/docs/en/skills#control-who-invokes-a-skill">Claude Code invocation controls</a> · <a href="https://code.claude.com/docs/en/skills#restrict-claudes-skill-access">Claude Code skill permissions</a></p>
+      </section>
+
+      <section id="configure-the-messages-api">
+        <h2>Configure the Messages API</h2>
+        <h3>Upload the skill to your API workspace</h3>
+        <p>Make an API key for the workspace available as <code>ANTHROPIC_API_KEY</code>. Run this from the directory containing <code>release-notes/</code>. The one-file upload places <code>SKILL.md</code> at the upload root. You can also upload the chat ZIP with its enclosing folder. The Skills API is generally available and requires no beta header. <a href="https://platform.claude.com/docs/en/build-with-claude/skills-guide#creating-a-skill">Claude Platform upload formats</a> · <a href="https://platform.claude.com/docs/en/api/skills/create">Create Skill API reference</a></p>
+        <pre><code>curl --fail-with-body https://api.anthropic.com/v1/skills \
+  -H "Authorization: Bearer ${ANTHROPIC_API_KEY}" \
+  -H 'anthropic-version: 2026-10-21' \
+  -F 'files[]=@release-notes/SKILL.md;filename=SKILL.md'</code></pre>
+        <p>Save the response’s <code>id</code> (<code>skill_…</code>) and <code>latest_version_id</code> (<code>skver_…</code>). Use a key from the same workspace when you send the Messages request. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#sharing-scope">Claude Platform workspace sharing</a></p>
+        <h3>Send a Messages request with the skill</h3>
+        <p>Replace both placeholders below with the IDs from the upload. Pinning the version makes later tests use the same skill instructions. Use <code>latest</code> to pick up new versions as you develop. Include the code execution tool and use a model that supports it. <a href="https://platform.claude.com/docs/en/build-with-claude/skills-guide#using-skills-in-messages">Claude Platform Messages configuration</a> · <a href="https://platform.claude.com/docs/en/build-with-claude/skills-guide#versioning">Claude Platform skill versioning</a></p>
+        <pre><code>curl --fail-with-body https://api.anthropic.com/v1/messages \
+  -H "Authorization: Bearer ${ANTHROPIC_API_KEY}" \
+  -H 'anthropic-version: 2026-10-21' \
+  -H 'Content-Type: application/json' \
+  --data-binary @- &lt;&lt;'JSON'
+{
+  "model": "claude-opus-5-5",
+  "max_tokens": 4096,
+  "container": {
+    "skills": [
+      {"type": "custom", "skill_id": "YOUR_SKILL_ID", "version": "YOUR_SKILL_VERSION_ID"}
+    ]
+  },
+  "tools": [
+    {"type": "code_execution_20250825", "name": "code_execution"}
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Use the release-notes skill to draft release notes from these change notes.\n\n- Confirmed: The activity log now offers CSV export.\n- Confirmed: Fixed duplicate entries in the activity log after a refresh.\n- Unverified: CSV export may be twice as fast as the previous internal prototype."
+    }
+  ]
+}
+JSON</code></pre>
+        <p>A successful response confirms that the API accepted the request. Claude decides whether to read the skill. Inspect the response’s <code>content</code> blocks for code execution activity that shows a successful read of <code>/skills/release-notes/SKILL.md</code>. If the response shows only generic code execution or draft text, leave activation unverified. For a baseline, send the same prompt in a fresh request with the <code>container</code> field removed, keeping the model and tool the same. <a href="https://platform.claude.com/docs/en/build-with-claude/skills-guide#how-skills-are-loaded">How Claude reads skills</a> · <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></p>
+        <p>The Messages API skill runs in Anthropic’s code execution container. The container has no internet access or runtime package installation, and any script dependencies must be available in that environment. If release notes need input from an external service, have the application fetch the permitted data and pass it in the request. Use the Claude Code recipe above for discovery from local project files. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#limitations-and-constraints">Claude Platform runtime constraints</a>.</p>
+        <p>When adding scripts or moving this skill between hosts, check the permissions and dependencies against the destination. <a href="/learn/review-skill-safety.html">Review a skill before you run it</a> · <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a>.</p>
+      </section>
+
+      <section id="check-the-draft">
+        <h2>Check the draft</h2>
+        <ul>
+          <li>The response starts with <strong>Release notes draft</strong>.</li>
+          <li><strong>Added</strong> covers CSV export for the activity log. <strong>Fixed</strong> covers duplicate entries after a refresh.</li>
+          <li><strong>Needs confirmation</strong> contains the speed claim. The release notes contain only the confirmed changes.</li>
+          <li>The draft stays in the conversation or API response for review.</li>
+        </ul>
+        <p>Record which run showed activation and which checks the draft passed. Then try a fresh run with no change notes. The skill should ask for them and wait. <a href="/learn/write-your-first-skill.html#validate-and-test">Release-notes fixture and expected output</a></p>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-prev" href="/learn/evaluate-and-improve.html"><span>Previous</span>Evaluate and improve a skill</a>
+        <a class="pager-next" href="/learn/google-skills.html"><span>Next</span>Use skills in Google developer tools</a>
+      </nav>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#choose-your-claude-surface">Choose your Claude surface</a></li>
+      <li><a href="#upload-to-claude">Upload the skill to Claude</a></li>
+      <li><a href="#install-in-claude-code">Install the folder in Claude Code</a></li>
+      <li><a href="#configure-the-messages-api">Configure the Messages API</a></li>
+      <li><a href="#check-the-draft">Check the draft</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="/assets/site.js?v=c14a35b761" defer></script>
+</body>
+</html>

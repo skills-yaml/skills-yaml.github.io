@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluate and improve a skill — skills.yaml</title>
+<meta name="description" content="Test when an Agent Skill activates, score its drafts, and compare skill versions before releasing an update.">
+<link rel="canonical" href="https://skills-yaml.tech/learn/evaluate-and-improve.html">
+<meta property="og:title" content="Evaluate and improve a skill — skills.yaml">
+<meta property="og:description" content="Test when an Agent Skill activates, score its drafts, and compare skill versions before releasing an update.">
+<meta property="og:url" content="https://skills-yaml.tech/learn/evaluate-and-improve.html">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=9744fac2f0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html">Catalog</a>
+      <a href="/learn/" aria-current="location">Learn</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+
+  <nav class="docs-sidebar" aria-label="Learning center">
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Understand and build</p>
+    <ul>
+      <li><a href="/learn/what-are-agent-skills.html">What are Agent Skills?</a></li>
+      <li><a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></li>
+      <li><a href="/learn/evaluate-and-improve.html" aria-current="page">Evaluate and improve a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Use skills in your agent</p>
+    <ul>
+      <li><a href="/learn/claude-skills.html">Use skills in Claude</a></li>
+      <li><a href="/learn/google-skills.html">Use skills in Google developer tools</a></li>
+      <li><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Review and maintain</p>
+    <ul>
+      <li><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></li>
+      <li><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/guide.html">Authoring guide</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb"><a href="/learn/">Agent Skills learning center</a></p>
+        <h1>Evaluate and improve a skill</h1>
+        <p class="docs-lead">Find out whether your release-notes skill handles the right requests and produces drafts that hold up to review. Run the same cases against a baseline before releasing a revision.</p>
+      </header>
+
+      <section id="define-success">
+        <h2>Define what a good run looks like</h2>
+        <p>Start with the workflow from <a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a>. The <code>release-notes</code> skill turns supplied change notes into a user-facing draft. It groups confirmed changes, flags uncertainty, asks for missing notes, and returns the draft in the conversation.</p>
+        <ul>
+          <li><strong>Discovery.</strong> Check whether the host makes the intended skill and version available to the agent. Use the host’s skill list or configuration where available.</li>
+          <li><strong>Activation.</strong> Check whether a request causes the host to select or load that skill. Set an expected outcome for each prompt.</li>
+          <li><strong>Output quality.</strong> Check what the agent says and does against the supplied notes and the workflow’s requirements. A model can produce a passing draft without loading the skill.</li>
+        </ul>
+        <p>Build cases from requests you see in practice. Pull out the change notes, the request as the user phrased it, and what an editor had to correct. Use sanitized inputs and include cases that prompted edits, such as an unverified performance claim. Write down what an evaluator should see in the draft and what the host should show about skill use. <a href="https://agentskills.io/skill-creation/evaluating-skills">Agent Skills guidance on designing output tests</a></p>
+      </section>
+
+      <section id="rewrite-description">
+        <h2>Describe when the skill should activate</h2>
+        <p>A description such as “Helps with releases” could match requests about drafting, deployment, or publishing. Name the user’s intent and the material they bring. The following candidate adds natural wording for a request that the original description may miss. For an experiment, change only the <code>description</code> field in <code>SKILL.md</code> so the instructions stay the same across variants.</p>
+        <div class="code"><pre><code>description: &gt;-
+  Use when the user wants a draft of release notes, a changelog entry,
+  or a customer-facing what's-new summary based on supplied change notes,
+  or asks to draft one before supplying the notes. Return a draft for review.
+  Deployment, publishing, and release scheduling are outside the workflow.</code></pre></div>
+        <p>Under the specification's progressive disclosure model, the agent sees the name and description during discovery and loads the body on activation. Test relevant and closely related out-of-scope requests to see where your description draws the line. <a href="https://agentskills.io/specification#progressive-disclosure">Agent Skills specification on progressive disclosure</a> · <a href="https://agentskills.io/skill-creation/optimizing-descriptions">Optimizing skill descriptions</a></p>
+      </section>
+
+      <section id="build-test-set">
+        <h2>Build an activation test set</h2>
+        <p>Use these proposed tests as a starting point. Replace <code>[notes]</code> with all three lines of the fixture. Send each prompt as written in a fresh session with the skill available so the host selects automatically. Include requests that share the same vocabulary and source material but ask for different work. <a href="https://agentskills.io/skill-creation/optimizing-descriptions">Agent Skills guidance on activation cases</a> · <a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf#page=15">Anthropic’s guide to testing skills</a></p>
+        <div class="code"><pre><code>Confirmed feature: Added CSV export to the activity log.
+Confirmed fix: Corrected the time zone shown on scheduled reports.
+Unverified claim: CSV export runs twice as fast.</code></pre></div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Release-notes evaluation cases">
+          <table class="dtable">
+            <caption>Proposed release-notes tests</caption>
+            <thead>
+              <tr>
+                <th scope="col">Case</th>
+                <th scope="col">Prompt</th>
+                <th scope="col">Expected activation</th>
+                <th scope="col">Output checks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Direct request</th>
+                <td>Draft release notes from these changes for customer review. [notes]</td>
+                <td>Yes</td>
+                <td>Puts the feature under Added and the fix under Fixed. Flags the speed claim under Needs confirmation.</td>
+              </tr>
+              <tr>
+                <th scope="row">Paraphrase</th>
+                <td>Turn this list into a short “what changed” update I can send to users after review. [notes]</td>
+                <td>Yes</td>
+                <td>Includes CSV export and the time-zone fix. Keeps the speed claim in Needs confirmation.</td>
+              </tr>
+              <tr>
+                <th scope="row">Missing input</th>
+                <td>Write a customer-facing changelog entry for our next release.</td>
+                <td>Yes</td>
+                <td>Asks for change notes. Produces zero fabricated release items.</td>
+              </tr>
+              <tr>
+                <th scope="row">Unsupported claim</th>
+                <td>Draft customer release notes from “Confirmed feature: Added CSV export.” Include that exports run twice as fast, which we haven't measured yet.</td>
+                <td>Yes</td>
+                <td>Includes CSV export in the draft. Keeps the speed claim in Needs confirmation.</td>
+              </tr>
+              <tr>
+                <th scope="row">Deployment planning</th>
+                <td>Give me a pre-deployment checklist for a release that adds CSV export.</td>
+                <td>No</td>
+                <td>Returns checklist items for deployment preparation.</td>
+              </tr>
+              <tr>
+                <th scope="row">Internal review</th>
+                <td>Identify what QA should verify before shipping these changes. Give me a test checklist. [notes]</td>
+                <td>No</td>
+                <td>Addresses the test checklist request.</td>
+              </tr>
+              <tr>
+                <th scope="row">Publishing request</th>
+                <td>Where do I publish the release notes I already wrote?</td>
+                <td>No</td>
+                <td>Answers the publishing question or asks where the project publishes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Record the observed skill name and relevant event from host activity, a trace, or a log. Mark activation <strong>observed</strong> when the host shows selection or loading, <strong>absent</strong> when a complete record of those events shows none, and <strong>unknown</strong> when visibility is incomplete. An agent’s claim that it used the skill is insufficient evidence. For a miss, verify discovery, check whether automatic selection is enabled, then try explicit invocation as a diagnostic. Exclude that run from automatic-selection counts. <a href="https://agentskills.io/skill-creation/optimizing-descriptions">Agent Skills guidance on measuring activation</a></p>
+      </section>
+
+      <section id="score-drafts">
+        <h2>Score the draft and inspect the run</h2>
+        <p>Automate checks the workflow defines exactly. For the direct case, normalize Markdown heading markers and whitespace, then check for the title <code>Release notes draft</code>, the headings <code>Added</code> and <code>Fixed</code>, and verify that the reply omits <code>Changed</code>. For missing notes, check that the reply has no draft heading, then read it to confirm that it asks for the notes and invents no changes. Inspect tool activity for publication or sending attempts. Mark that check unknown if the host gives you incomplete activity data.</p>
+        <p>Use a rubric for properties that can survive changes in wording. Score each applicable criterion pass or fail and save the relevant line from the reply or trace.</p>
+        <ul>
+          <li><strong>Coverage.</strong> The draft covers both confirmed changes and identifies the activity log and scheduled reports correctly.</li>
+          <li><strong>Factual accuracy.</strong> Every statement of fact follows from the notes. The draft adds no unsupported release date, version, or benefit.</li>
+          <li><strong>Treatment of uncertainty.</strong> The speed claim appears only under <code>Needs confirmation</code>, with a clear request to verify it.</li>
+          <li><strong>Readability.</strong> A customer can tell what changed from short, concrete bullets that preserve the scope of each change.</li>
+        </ul>
+        <p>Apply the same checks and rubric across variants. If a model grades the rubric, give it the input notes and check its judgments against examples reviewed by a person. Read failed trials to distinguish a workflow error from a bad check. <a href="https://agentskills.io/skill-creation/evaluating-skills">Agent Skills guidance on grading outputs</a> · <a href="https://developers.openai.com/api/docs/guides/evaluation-best-practices">OpenAI evaluation best practices</a> · <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Anthropic’s guide to agent evaluations</a></p>
+      </section>
+
+      <section id="compare-variants">
+        <h2>Compare runs under recorded settings</h2>
+        <ol>
+          <li>Compare the current and candidate versions under the same skill name, with one version available per run. For output quality, include a baseline with only <code>release-notes</code> disabled. Use the same ordinary prompt in each condition.</li>
+          <li>Record the host and version, model identifier, exposed reasoning or sampling settings, enabled tools and skills, working directory, project instructions, and skill version or commit. Save the exact prompt and fixture with each trial.</li>
+          <li>Choose a trial count before running, such as three attempts per case and variant for a first pass. Start a fresh session each time and reset any data or files a previous run could have changed. Save the activation evidence, full reply, and grades.</li>
+          <li>Test with the rest of the usual skills enabled. For example, if the host has a deployment skill, use the deployment-planning case to check that <code>release-notes</code> stays inactive. If a release-related skill loads on a drafting request, record which skills loaded and check whether their instructions interfered. Repeat the ambiguous cases with <code>release-notes</code> alone to diagnose interference.</li>
+          <li>For each enabled variant, count misses on expected positives and unwanted activations on expected negatives. Report unknowns alongside those counts and include the total trials in each group. Compare output pass counts across all variants, including the disabled baseline. Review individual failures alongside any totals.</li>
+        </ol>
+        <p>Before tuning, set aside realistic in-scope and closely related out-of-scope prompts for the final comparison. Use the remaining prompts to edit the description. If a held-out case becomes part of tuning, add a fresh held-out case before the next comparison. <a href="https://agentskills.io/skill-creation/optimizing-descriptions">Agent Skills guidance on testing revised descriptions</a> · <a href="https://agentskills.io/skill-creation/evaluating-skills">Agent Skills guidance on baseline comparisons</a></p>
+      </section>
+
+      <section id="decide-to-release">
+        <h2>Revise the smallest part and rerun before release</h2>
+        <p>Use the evidence to identify where to make the change. If the host cannot discover the skill, check installation and configuration. If it discovers the skill and repeated runs miss a relevant request, check automatic invocation settings and revise the description where it leaves the request ambiguous. If the skill loads and the draft states the speed claim as fact, strengthen the instruction that moves unverified claims into Needs confirmation. If you change a linked resource, rerun a case that needs it and inspect the trace for the resource read. <a href="https://agentskills.io/specification#progressive-disclosure">Agent Skills specification on loading supporting resources</a></p>
+        <p>Decide what counts as a release pass before looking at the results. For this example, require every repeated trial to pass the missing-input and unsupported-claim checks. Require the targeted cases to improve and inspect any new wrong activations, missed selections, or failed output checks before approving. Run the full suite again with the held-out prompts. If you support multiple hosts, <a href="/learn/port-and-troubleshoot.html">repeat the fixture on each host</a>.</p>
+        <p>For each regression, save a case ID, the exact prompt and notes, the expected result, the observed activation and output with evidence, and the settings and versions used. Add the case to the repeatable suite and record the release decision with the per-case counts. Once the candidate passes, follow the <a href="/guide.html#update">registry guide to update an existing skill package</a>.</p>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-prev" href="/learn/write-your-first-skill.html"><span>Previous</span>Write your first SKILL.md</a>
+        <a class="pager-next" href="/learn/claude-skills.html"><span>Next</span>Use skills in Claude</a>
+      </nav>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#define-success">Define what a good run looks like</a></li>
+      <li><a href="#rewrite-description">Describe when the skill should activate</a></li>
+      <li><a href="#build-test-set">Build an activation test set</a></li>
+      <li><a href="#score-drafts">Score the draft and inspect the run</a></li>
+      <li><a href="#compare-variants">Compare runs under recorded settings</a></li>
+      <li><a href="#decide-to-release">Revise the smallest part and rerun before release</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="/assets/site.js?v=c14a35b761" defer></script>
+</body>
+</html>

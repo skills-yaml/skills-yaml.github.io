@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What are Agent Skills? — skills.yaml</title>
+<meta name="description" content="Learn what an Agent Skill contains, how an agent loads it, and when to use one for recurring work like drafting release notes.">
+<link rel="canonical" href="https://skills-yaml.tech/learn/what-are-agent-skills.html">
+<meta property="og:title" content="What are Agent Skills? — skills.yaml">
+<meta property="og:description" content="Learn what an Agent Skill contains, how an agent loads it, and when to use one for recurring work like drafting release notes.">
+<meta property="og:url" content="https://skills-yaml.tech/learn/what-are-agent-skills.html">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=9744fac2f0">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="docs-header">
+  <div class="docs-header-inner">
+    <a class="docs-logo" href="/">skills<span>.</span>yaml</a>
+    <nav aria-label="Primary">
+      <a href="/index.html#disk">How it works</a>
+      <a href="/index.html#manifest">Manifest</a>
+      <a href="/index.html#commands">Commands</a>
+      <a href="/catalog.html">Catalog</a>
+      <a href="/learn/" aria-current="location">Learn</a>
+      <a href="/guide.html">Guide</a>
+      <a href="https://github.com/skills-yaml/skm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+
+  <nav class="docs-sidebar" aria-label="Learning center">
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Understand and build</p>
+    <ul>
+      <li><a href="/learn/what-are-agent-skills.html" aria-current="page">What are Agent Skills?</a></li>
+      <li><a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></li>
+      <li><a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Use skills in your agent</p>
+    <ul>
+      <li><a href="/learn/claude-skills.html">Use skills in Claude</a></li>
+      <li><a href="/learn/google-skills.html">Use skills in Google developer tools</a></li>
+      <li><a href="/learn/openai-skills.html">Use skills in Codex, ChatGPT and the OpenAI API</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Review and maintain</p>
+    <ul>
+      <li><a href="/learn/review-skill-safety.html">Review a skill before you run it</a></li>
+      <li><a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Registry</p>
+    <ul>
+      <li><a href="/guide.html">Authoring guide</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="docs-main">
+    <article class="docs-page">
+
+      <header class="docs-title">
+        <p class="docs-crumb"><a href="/learn/">Agent Skills learning center</a></p>
+        <h1>What are Agent Skills?</h1>
+        <p class="docs-lead">An Agent Skill is a folder of reusable instructions and optional resources. For weekly release notes, the skill holds your drafting procedure and each request supplies the latest changes.</p>
+      </header>
+
+      <section id="a-repeatable-task">
+        <h2>A repeatable task with a consistent output</h2>
+        <p>Every Friday, you turn a fresh set of change notes into a customer-facing draft. The changes vary each week, but the procedure stays the same. Group the user-facing changes, use plain language, flag unverified or breaking changes for review, and return a draft for the release owner.</p>
+        <p>An Agent Skill captures that procedure in a folder the agent can load for a matching task. Keep the rules, output format, and examples in the skill. Supply the current release’s notes with the request. The same skill can then guide the next draft when it’s available in the agent’s environment. <a href="https://www.anthropic.com/research/equipping-agents-for-the-real-world-with-agent-skills">Anthropic’s introduction to Agent Skills</a></p>
+      </section>
+
+      <section id="inside-a-skill-folder">
+        <h2>What lives in a skill folder</h2>
+        <p>The open Agent Skills specification requires <code>SKILL.md</code>. Its YAML frontmatter, enclosed by lines containing <code>---</code>, has two required fields. The <code>name</code> matches the enclosing folder, such as <code>release-notes</code>. The <code>description</code> says what the skill does and when to use it. The Markdown body below the frontmatter holds the workflow, including how to handle missing input and what to return. <a href="https://agentskills.io/specification#skill-md-format">Agent Skills file format</a></p>
+        <p>A text-only release-notes skill can start with that single file. As the workflow grows, the skill can point to a style guide in <code>references/</code> and a draft template in <code>assets/</code>. The instructions tell the agent when to open each file using a path relative to the skill folder. Workflows that need executable helpers may add them in <code>scripts/</code>, subject to the host’s runtime and permissions. <a href="https://agentskills.io/specification#optional-directories">Agent Skills optional directories</a> · <a href="https://agentskills.io/specification#file-references">File references</a></p>
+        <pre><code>release-notes/
+├── SKILL.md
+├── references/
+│   └── style-guide.md
+└── assets/
+    └── draft-template.md</code></pre>
+      </section>
+
+      <section id="how-an-agent-loads-a-skill">
+        <h2>How an agent finds and loads a skill</h2>
+        <p>Suppose you ask, “Draft this week’s customer release notes. The activity log now offers CSV export, and refreshing the log no longer creates duplicate entries.” Agent Skills uses a staged loading pattern called <em>progressive disclosure</em>. <a href="https://agentskills.io/specification#progressive-disclosure">Agent Skills specification on progressive disclosure</a></p>
+        <ol>
+          <li><strong>Discover the metadata.</strong> The host, meaning the application or runtime that runs the agent, makes the names and descriptions of available skills visible. The <code>release-notes</code> description identifies requests to draft a release note or changelog entry from supplied changes.</li>
+          <li><strong>Activate the skill.</strong> A host may match your request against that description or let you select the skill explicitly. On activation the agent reads the full <code>SKILL.md</code> instructions. In this example, the CSV export goes under “Added” and the duplicate-entry fix goes under “Fixed.”</li>
+          <li><strong>Open resources as needed.</strong> If the instructions call for checking the product’s terminology, the agent opens <code>references/style-guide.md</code>. It uses the supplied changes as evidence and returns a draft in the conversation for the release owner to review.</li>
+        </ol>
+        <p>Setup and selection depend on the host. Follow the guide for <a href="/learn/claude-skills.html">Claude</a>, <a href="/learn/google-skills.html">Google developer tools</a>, or <a href="/learn/openai-skills.html">Codex, ChatGPT and the OpenAI API</a>.</p>
+      </section>
+
+      <section id="choose-the-right-mechanism">
+        <h2>Choose the right mechanism</h2>
+        <dl>
+          <dt><strong>Prompt</strong></dt>
+          <dd>Give instructions for the task in front of you. Ask for a shorter opening paragraph or supply the changes for this week’s release.</dd>
+          <dt><strong>Project instructions</strong></dt>
+          <dd>Set guidance that applies across work in a project, such as the product name and house style for customer-facing copy. The file and when it loads depend on the host. <a href="https://code.claude.com/docs/en/memory">Claude Code project instructions</a> · <a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md">Codex project instructions</a></dd>
+          <dt><strong>Skill</strong></dt>
+          <dd>Save a procedure that applies to requests of a particular kind. The release-notes skill can use the project’s house style and follow its own rules for grouping changes and flagging uncertainty. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Anthropic’s Agent Skills overview</a></dd>
+          <dt><strong>Connector</strong></dt>
+          <dd>Connect the host to a particular service, such as the issue tracker. A connector is the integration that gives the agent access to that service’s data or actions within its permissions. It may use MCP to expose a tool for fetching completed tickets. The skill can then guide the agent through drafting from the results. <a href="https://developers.openai.com/plugins/concepts/skills">OpenAI on combining skills and server tools</a></dd>
+          <dt><strong>Model Context Protocol (MCP)</strong></dt>
+          <dd>MCP is an open protocol for connecting AI applications to tools, data, and other capabilities. If an issue tracker integration uses MCP, the MCP server exposes the available capabilities and the protocol defines how the host communicates with it. <a href="https://modelcontextprotocol.io/docs/getting-started/intro">Model Context Protocol introduction</a></dd>
+          <dt><strong>Plugin</strong></dt>
+          <dd>Install components together in a host that supports plugins. A release workflow plugin could package the drafting skill and a configuration for the issue tracker’s MCP server. <a href="https://developers.openai.com/plugins/concepts/plugins">OpenAI plugin architecture</a></dd>
+        </dl>
+        <p>The host and connected service determine which tools and data the agent can access. Drafting from pasted notes works with the skill alone. If the workflow starts reading a tracker, <a href="/learn/review-skill-safety.html">review the skill and its access before enabling it</a>.</p>
+      </section>
+
+      <section id="read-the-directory-guide">
+        <h2>Read the Skills Directory guide with its limits in mind</h2>
+        <p>Skills Directory illustrates focused workflows, staged loading, and the role of MCP. Its descriptions of memory, resource limits, and portability need qualification. <a href="https://www.skillsdirectory.com/docs/what-are-claude-skills">What Are Claude Skills? from Skills Directory</a></p>
+        <ul>
+          <li><strong>Persistence.</strong> A skill makes saved instructions and resources available in later sessions when the host loads them. For the release-notes workflow, each run still needs the changes for that release. Products can offer separate features that store information across sessions. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Anthropic’s Agent Skills overview</a> · <a href="https://code.claude.com/docs/en/memory">Claude Code memory</a></li>
+          <li><strong>Resource limits.</strong> Loading reference files on demand reduces what the host loads up front. Once the agent reads a file, its contents use available context, and scripts run within the host’s runtime limits. <a href="https://agentskills.io/specification#progressive-disclosure">Agent Skills specification on staged loading</a></li>
+          <li><strong>Portability.</strong> The shared format helps you reuse the folder in hosts that support it. Installation, invocation, permissions, and the availability of tools or script runtimes still depend on the destination. Test the workflow there. <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+        </ul>
+        <p>The directory’s format guide also shows top-level fields such as <code>version</code> and <code>requires</code>. For a portable skill, use the specification’s field list. Its optional <code>metadata</code> mapping can hold a version string, and <code>compatibility</code> can describe environment requirements. <a href="https://www.skillsdirectory.com/docs/skill-md-format">Skills Directory format guide</a> · <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter specification</a></p>
+      </section>
+
+      <section id="decide-what-to-save">
+        <h2>Decide what to save for next week</h2>
+        <p>If you only need to rewrite one draft, paste it into a prompt with the changes you want. If you’ll draft release notes every week from supplied material, save the recurring procedure as a skill and keep the weekly changes in each request. If you also want the agent to fetch change history, give it access to the tracker through a connector or another tool supported by the host, then define how the drafting workflow uses those records.</p>
+      </section>
+
+      <nav class="pager" aria-label="Pages">
+        <a class="pager-prev" href="/learn/"><span>Previous</span>Agent Skills learning center</a>
+        <a class="pager-next" href="/learn/write-your-first-skill.html"><span>Next</span>Write your first SKILL.md</a>
+      </nav>
+    </article>
+  </main>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="docs-toc-title">On this page</p>
+    <ul>
+      <li><a href="#a-repeatable-task">A repeatable task with a consistent output</a></li>
+      <li><a href="#inside-a-skill-folder">What lives in a skill folder</a></li>
+      <li><a href="#how-an-agent-loads-a-skill">How an agent finds and loads a skill</a></li>
+      <li><a href="#choose-the-right-mechanism">Choose the right mechanism</a></li>
+      <li><a href="#read-the-directory-guide">Read the Skills Directory guide with its limits in mind</a></li>
+      <li><a href="#decide-what-to-save">Decide what to save for next week</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+<script src="/assets/site.js?v=c14a35b761" defer></script>
+</body>
+</html>

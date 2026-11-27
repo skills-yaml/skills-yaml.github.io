@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=b9570faf57">
+<link rel="stylesheet" href="assets/style.css?v=9744fac2f0">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -27,6 +27,7 @@
       <a href="index.html#manifest">Manifest</a>
       <a href="index.html#commands">Commands</a>
       <a href="catalog.html">Catalog</a>
+      <a href="/learn/">Learn</a>
       <a href="guide.html" aria-current="page">Guide</a>
       <a href="https://github.com/skills-yaml/skm">GitHub</a>
     </nav>
@@ -44,6 +45,10 @@
       <li><a href="index.html#manifest">The manifest</a></li>
       <li><a href="index.html#commands">Commands</a></li>
       <li><a href="index.html#guardrails">Guardrails</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
     </ul>
     <p class="docs-sidebar-group">Registry</p>
     <ul>
@@ -64,6 +69,7 @@
       </header>
 
       <p>A skill is a folder that contains a <code>SKILL.md</code> file. The file holds the instructions an agent follows when a task calls for the skill, and the folder can also hold reference documents, templates or scripts that those instructions point to.</p>
+      <p>If you’re starting with an unpackaged skill, visit the <a href="/learn/">Agent Skills learning center</a> to write and test it in your agent before publishing a package.</p>
       <p>To share a skill through a registry, you publish it as a package: the same skill, but versioned, so that people can pin the exact release they rely on. skm then reads the package from the registry and links it into the skill folder of every agent a project uses. See also: <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">SKILL_STRUCTURE.md</a> and <a href="https://github.com/skills-yaml/registry/blob/main/VERSIONING.md">VERSIONING.md</a> (skills-yaml registry).</p>
 
       <div class="hint hint-info" role="note">

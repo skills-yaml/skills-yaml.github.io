@@ -22,6 +22,7 @@ import re
 import shutil
 import sys
 from datetime import date
+from glob import glob
 from urllib.parse import quote
 
 SCALARS = ("name", "description", "version", "deprecated", "superseded_by")
@@ -342,6 +343,7 @@ def metapackage_page_html(metapackage):
       <a href="/index.html#manifest">Manifest</a>
       <a href="/index.html#commands">Commands</a>
       <a href="/catalog.html" aria-current="page">Catalog</a>
+      <a href="/learn/">Learn</a>
       <a href="/guide.html">Guide</a>
       <a href="https://github.com/skills-yaml/skm">GitHub</a>
     </nav>
@@ -359,6 +361,10 @@ def metapackage_page_html(metapackage):
       <li><a href="/index.html#manifest">The manifest</a></li>
       <li><a href="/index.html#commands">Commands</a></li>
       <li><a href="/index.html#guardrails">Guardrails</a></li>
+    </ul>
+    <p class="docs-sidebar-group">Learn</p>
+    <ul>
+      <li><a href="/learn/">Agent Skills learning center</a></li>
     </ul>
     <p class="docs-sidebar-group">Registry</p>
     <ul>
@@ -559,7 +565,11 @@ def main():
     inject(os.path.join(args.site, "index.html"), "PREVIEW", preview_html(skills))
 
     pages = write_metapackage_pages(args.site, metapackages)
-    digests = version_assets(args.site, ("index.html", "catalog.html", "guide.html", *pages))
+    learning_pages = sorted(
+        os.path.relpath(path, args.site)
+        for path in glob(os.path.join(args.site, "learn", "*.html"))
+    )
+    digests = version_assets(args.site, ("index.html", "catalog.html", "guide.html", *learning_pages, *pages))
 
     print(f"catalog: {len(skills)} skills and {len(metapackages)} metapackages across {len(categories)} categories")
     for name, digest in sorted(digests.items()):

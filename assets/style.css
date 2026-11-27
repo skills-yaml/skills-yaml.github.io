@@ -166,6 +166,15 @@ strong { font-weight: 600; }
 .docs-page h4 { font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 8px; letter-spacing: -0.01em; }
 .docs-page .step { scroll-margin-top: calc(var(--header) + 20px); }
 
+/* Lists and examples in the learning articles. */
+.docs-page section > ul:not(.preview), .docs-page section > ol:not(.stepper) { padding-left: 1.5rem; margin: 12px 0 18px; }
+.docs-page section > ul:not(.preview) > li { list-style: disc; margin: 6px 0; }
+.docs-page section > ol:not(.stepper) > li { list-style: decimal; margin: 6px 0; }
+.docs-page section > dl:not(.fields) { margin: 12px 0 18px; }
+.docs-page section > dl:not(.fields) dt { font-weight: 600; margin-top: 12px; }
+.docs-page section > dl:not(.fields) dd { margin: 2px 0 0 1rem; color: var(--text-2); }
+.docs-page section > pre { margin: 12px 0 18px; padding: 14px 16px; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-2); font-size: 13.5px; line-height: 1.7; }
+
 .docs-page :not(pre) > code {
   font-size: 0.86em; padding: 0.12em 0.36em; border-radius: 5px;
   background: var(--bg-3); border: 1px solid var(--line); color: var(--text);
