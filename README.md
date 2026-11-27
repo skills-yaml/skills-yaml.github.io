@@ -49,6 +49,10 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000>.
 
+Cloudflare's email protection can rewrite code examples containing text such as
+`git@github.com` or `files=@release-notes.zip`. In HTML examples, split the
+`@` as `<span>@</span>` so the page displays and copies the original command.
+
 ## Deploying
 
 `.github/workflows/pages.yml` checks out this repo and the registry, regenerates
