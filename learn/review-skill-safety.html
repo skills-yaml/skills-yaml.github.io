@@ -83,8 +83,8 @@
           </li>
           <li class="step">
             <h4>Read the whole package</h4>
-            <p>Start with <code>SKILL.md</code>. Check which requests match its description, who can invoke it, and what the host does with its frontmatter. Follow the links to scripts, templates, and reference files. If the skill ships as part of a plugin or repository, check what settings, hooks, and connectors come with it. <a href="https://code.claude.com/docs/en/skills#add-supporting-files">Claude Code skill files</a></p>
-            <p>Read examples and templates for instructions too. A Markdown file alone can ask the agent to read files, run a shell command, or send data through a connector. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#security-considerations">Anthropic’s skill security guidance</a></p>
+            <p>Start with <code>SKILL.md</code>. Check which requests match its description, who can invoke it, and what the host does with its frontmatter. Follow the links to scripts, templates, and reference files. If the skill ships as part of a plugin or repository, check what settings, hooks, and connectors come with it.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
+            <p>Read examples and templates for instructions too. A Markdown file alone can ask the agent to read files, run a shell command, or send data through a connector.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></p>
           </li>
         </ol>
       </section>
@@ -98,17 +98,17 @@
           <li><strong>Writes.</strong> List the files or records the action creates, edits, or deletes. Include logs and generated files that could contain input data.</li>
           <li><strong>Network and connectors.</strong> Record the service, account, destination, and data sent. A lookup can send query text or identifiers. For a publishing step, check the target page and who can see it.</li>
         </ul>
-        <p>If you can’t verify a dependency, file scope, or destination, leave that behavior disabled and ask the publisher for details. If the host scans uploads, use the result alongside your own review. <a href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt">ChatGPT upload checks</a></p>
+        <p>If you can’t verify a dependency, file scope, or destination, leave that behavior disabled and ask the publisher for details. ChatGPT scans uploaded skills before making them available.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup> Use the scan result alongside your own review.</p>
       </section>
 
       <section id="check-host-permissions">
         <h2>Check permissions in the host you will use</h2>
-        <p>Check the actual session settings. For each action you traced, find which file paths, shell commands, network destinations, and connector accounts are available. Check what the host allows automatically, blocks, or asks you to approve. For private data, check where prompts, files, and outputs are processed and stored. <a href="https://developers.openai.com/api/docs/guides/tools-skills/#risks-and-safety">OpenAI API skill safety</a></p>
+        <p>Check the actual session settings. For each action you traced, find which file paths, shell commands, network destinations, and connector accounts are available. Check what the host allows automatically, blocks, or asks you to approve. For private data, check where prompts, files, and outputs are processed and stored.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup></p>
         <div class="hint hint-warning" role="note">
           <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75 18 17H2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="14.4" r="0.95" fill="currentColor"/></svg>
           <div>
-            <p>In Claude Code, <code>allowed-tools</code> preapproves the listed tools for the turn that invokes the skill, subject to the host’s permission rules. Regular session permissions still govern other tools. If the list only names <code>Read</code>, check shell, write, and connector permissions too. <a href="https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill">Claude Code tool approvals</a></p>
-            <p><code>claude -p</code> skips the trust prompt. Project skill grants and hooks can apply even in a folder you’ve never trusted. Claude Code checks trust separately for <code>permissions.allow</code> and <code>additionalDirectories</code> in <code>.claude/settings.json</code>. Test headless workflows in a clean directory with reviewed settings. <a href="https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder">Claude Code workspace trust</a></p>
+            <p>In Claude Code, <code>allowed-tools</code> preapproves the listed tools for the turn that invokes the skill, subject to the host’s permission rules. Regular session permissions still govern other tools. If the list only names <code>Read</code>, check shell, write, and connector permissions too.<sup class="citation"><a href="#source-5" aria-label="Source 5">[5]</a></sup></p>
+            <p><code>claude -p</code> skips the trust prompt. Project skill grants and hooks can apply even in a folder you’ve never trusted. Claude Code checks trust separately for <code>permissions.allow</code> and <code>additionalDirectories</code> in <code>.claude/settings.json</code>.<sup class="citation"><a href="#source-6" aria-label="Source 6">[6]</a></sup> Test headless workflows in a clean directory with reviewed settings.</p>
           </div>
         </div>
         <p>Repeat this check when you move a skill to another host. <a href="/learn/claude-skills.html">Claude setup</a> · <a href="/learn/google-skills.html">Google developer tools setup</a> · <a href="/learn/openai-skills.html">OpenAI setup</a></p>
@@ -136,9 +136,21 @@
           <dt><strong>Enable the draft-only version</strong></dt>
           <dd>Check that it uses the supplied notes and returns the draft in chat with no unexpected tool activity.</dd>
           <dt><strong>Ask for changes before enabling automatic publication</strong></dt>
-          <dd>Show the user the exact draft, destination, and audience. Require approval before the write. If the host can’t enforce approval, leave publication to the user. <a href="https://developers.openai.com/api/docs/guides/tools-skills/#require-approval-for-sensitive-actions">OpenAI guidance on approval</a></dd>
+          <dd>Show the user the exact draft, destination, and audience. Require approval before the write.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup> If the host can’t enforce approval, leave publication to the user.</dd>
         </dl>
         <p>Pin the reviewed version if you can. Compare changes and rerun the relevant tests before updating. Review again if a dependency, remote file, connector account, destination, host, or kind of input changes. Keep the last reviewed version or disable the skill while you check the change. <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol>
+          <li id="source-1"><a href="https://code.claude.com/docs/en/skills#add-supporting-files">Claude Code, Add supporting files</a></li>
+          <li id="source-2"><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#security-considerations">Claude Platform, Agent Skills security considerations</a></li>
+          <li id="source-3"><a href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt">OpenAI Help Center, Uploaded skills in ChatGPT</a></li>
+          <li id="source-4"><a href="https://developers.openai.com/api/docs/guides/tools-skills/#risks-and-safety">OpenAI API, Skill risks and safety</a></li>
+          <li id="source-5"><a href="https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill">Claude Code, Pre-approve tools for a skill</a></li>
+          <li id="source-6"><a href="https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder">Claude Code, What runs before you trust a folder</a></li>
+        </ol>
       </section>
 
       <nav class="pager" aria-label="Pages">
@@ -156,6 +168,7 @@
       <li><a href="#check-host-permissions">Check permissions in the host you will use</a></li>
       <li><a href="#rehearse-with-fixtures">Rehearse with sample notes and limited access</a></li>
       <li><a href="#record-a-decision">Record the decision and when to review again</a></li>
+      <li><a href="#sources">Sources</a></li>
     </ul>
   </aside>
 

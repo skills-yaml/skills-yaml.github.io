@@ -75,9 +75,9 @@
 
       <section id="portable-files">
         <h2>Identify what travels with the skill</h2>
-        <p>Start with the <a href="/learn/write-your-first-skill.html">release-notes skill you authored</a>. Copy the whole <code>release-notes/</code> folder. Keep the <code>SKILL.md</code> frontmatter (<code>name</code> and <code>description</code>), the Markdown workflow, and any bundled files together. Use the skill name for the folder and preserve relative paths like <code>references/style-guide.md</code>. GitHub Copilot also uses this folder format and can discover project skills in <code>.agents/skills/</code>. <a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot skill structure and locations</a></p>
-        <p>Check which settings the destination reads. Claude Code uses <code>disable-model-invocation: true</code> in frontmatter to restrict automatic selection. Codex uses <code>policy.allow_implicit_invocation: false</code> in <code>agents/openai.yaml</code>. <a href="https://code.claude.com/docs/en/skills#control-who-invokes-a-skill">Claude Code invocation settings</a> · <a href="https://learn.chatgpt.com/docs/build-skills#optional-metadata">Codex invocation policy</a></p>
-        <p>Check the destination’s runtime and permissions before <a href="/learn/review-skill-safety.html">running an adapted skill</a> that needs a script or connector. Document required executables, libraries, and network access in the skill. For example, the Claude API uses a code execution container with preconfigured dependencies and no network access. The release-notes example needs only the supplied text. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Claude API skill runtime</a></p>
+        <p>Start with the <a href="/learn/write-your-first-skill.html">release-notes skill you authored</a>. Copy the whole <code>release-notes/</code> folder. Keep the <code>SKILL.md</code> frontmatter (<code>name</code> and <code>description</code>), the Markdown workflow, and any bundled files together. Use the skill name for the folder and preserve relative paths like <code>references/style-guide.md</code>. GitHub Copilot also uses this folder format and can discover project skills in <code>.agents/skills/</code>.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
+        <p>Check which settings the destination reads. Claude Code uses <code>disable-model-invocation: true</code> in frontmatter to restrict automatic selection.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup> Codex uses <code>policy.allow_implicit_invocation: false</code> in <code>agents/openai.yaml</code>.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
+        <p>Check the destination’s runtime and permissions before <a href="/learn/review-skill-safety.html">running an adapted skill</a> that needs a script or connector. Document required executables, libraries, and network access in the skill. For example, the Claude API uses a code execution container with preconfigured dependencies and no network access.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup> The release-notes example needs only the supplied text.</p>
       </section>
 
       <section id="move-between-hosts">
@@ -85,20 +85,20 @@
         <p>Use the same reviewed folder in each local CLI and start the sessions at the project root. Copy or update the folder directly under the discovery directory, so <code>SKILL.md</code> sits one level below it.</p>
 
         <h3>Claude Code</h3>
-        <p>Place the folder at <code>.claude/skills/release-notes/</code>. Check <code>/skills</code> and run <code>/reload-skills</code> if a new copy is missing. Invoke <code>/release-notes</code> with the test prompt and changes below. If another copy shares the name, check user and enterprise installs. Enterprise skills take precedence over personal skills, which take precedence over project skills. Plugin commands use a namespace. <a href="https://code.claude.com/docs/en/skills">Claude Code skill discovery and invocation</a></p>
+        <p>Place the folder at <code>.claude/skills/release-notes/</code>. Check <code>/skills</code> and run <code>/reload-skills</code> if a new copy is missing. Invoke <code>/release-notes</code> with the test prompt and changes below. If another copy shares the name, check user and enterprise installs. Enterprise skills take precedence over personal skills, which take precedence over project skills. Plugin commands use a namespace.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></p>
 
         <h3>Codex CLI</h3>
-        <p>Place the folder at <code>.agents/skills/release-notes/</code>. Check <code>/skills</code> or type <code>$release-notes</code> and select the skill before adding the test prompt. Restart Codex if the copy fails to appear. Codex scans <code>.agents/skills/</code> from the working directory up to the repository root, and multiple entries with the same name can appear in its selectors. Check the path of the copy you select. <a href="https://learn.chatgpt.com/docs/build-skills">Codex skill discovery and invocation</a></p>
+        <p>Place the folder at <code>.agents/skills/release-notes/</code>. Check <code>/skills</code> or type <code>$release-notes</code> and select the skill before adding the test prompt. Restart Codex if the copy fails to appear. Codex scans <code>.agents/skills/</code> from the working directory up to the repository root, and multiple entries with the same name can appear in its selectors. Check the path of the copy you select.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
 
         <h3>Gemini CLI</h3>
-        <p>Gemini CLI can use the same workspace <code>.agents/skills/release-notes/</code> copy. Run <code>/skills reload</code> after adding it and check <code>/skills list</code>. For a named test, ask Gemini to use <code>release-notes</code> and watch for <code>activate_skill</code>. Approve activation after checking the directory shown in the prompt. Workspace skills take precedence over user, extension, and built-in skills, in that order. Within the workspace or user tier, the <code>.agents/skills/</code> alias wins over <code>.gemini/skills/</code>. <a href="https://geminicli.com/docs/cli/skills/">Gemini CLI skill discovery and activation</a></p>
+        <p>Gemini CLI can use the same workspace <code>.agents/skills/release-notes/</code> copy. Run <code>/skills reload</code> after adding it and check <code>/skills list</code>. For a named test, ask Gemini to use <code>release-notes</code> and watch for <code>activate_skill</code>. Approve activation after checking the directory shown in the prompt. Workspace skills take precedence over user, extension, and built-in skills, in that order. Within the workspace or user tier, the <code>.agents/skills/</code> alias wins over <code>.gemini/skills/</code>.<sup class="citation"><a href="#source-5" aria-label="Source 5">[5]</a></sup></p>
 
         <p>For other surfaces and install methods, see the host guides. <a href="/learn/claude-skills.html">Claude</a> · <a href="/learn/google-skills.html">Google developer tools</a> · <a href="/learn/openai-skills.html">Codex, ChatGPT, and the OpenAI API</a></p>
       </section>
 
       <section id="find-first-failure">
         <h2>Find the first failing stage</h2>
-        <p>Find the first stage that failed. The host presents skill descriptions to the model, loads the instructions on activation, and reads supporting files when the workflow needs them. <a href="https://geminicli.com/docs/cli/skills/#how-it-works">Gemini CLI skill lifecycle</a></p>
+        <p>Find the first stage that failed. The host presents skill descriptions to the model, loads the instructions on activation, and reads supporting files when the workflow needs them.<sup class="citation"><a href="#source-5" aria-label="Source 5">[5]</a></sup></p>
 
         <div class="table-wrap" tabindex="0" role="region" aria-label="Skill troubleshooting">
           <table class="dtable">
@@ -131,7 +131,7 @@
         </div>
         <div class="hint hint-info" role="note">
           <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
-          <div><p><strong>Codex catalog budget.</strong> A skill can exist on disk while missing from the model’s initial catalog. By default the catalog uses at most 2% of the model’s context window, with an 8,000-character fallback when that window is unknown. Codex shortens descriptions first and may omit entries and show a warning in large skill sets. If named selection works but automatic matching still misses, retry with fewer skills enabled or inspect <code>skills.max_context_tokens</code>. The budget applies to the initial list. Codex reads the full instructions for a selected skill. <a href="https://learn.chatgpt.com/docs/build-skills">OpenAI guidance on the Codex catalog budget</a></p></div>
+          <div><p><strong>Codex catalog budget.</strong> A skill can exist on disk while missing from the model’s initial catalog. By default the catalog uses at most 2% of the model’s context window, with an 8,000-character fallback when that window is unknown. Codex shortens descriptions first and may omit entries and show a warning in large skill sets. If named selection works but automatic matching still misses, retry with fewer skills enabled or inspect <code>skills.max_context_tokens</code>. The budget applies to the initial list. Codex reads the full instructions for a selected skill.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p></div>
         </div>
       </section>
 
@@ -151,8 +151,20 @@
 
       <section id="share-the-package">
         <h2>Share the verified package</h2>
-        <p>When you publish through skills-yaml, use <code>metadata.skm-version</code> to mark the package release and <code>metadata.skm-dependencies</code> if the package depends on other registry skills. A consumer’s <code>skills.yaml</code> declares packages and version pins for <code>skm</code>. The skill’s portable instructions and resources still live inside its folder. <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">Registry package structure</a></p>
+        <p>When you publish through skills-yaml, use <code>metadata.skm-version</code> to mark the package release and <code>metadata.skm-dependencies</code> if the package depends on other registry skills. A consumer’s <code>skills.yaml</code> declares packages and version pins for <code>skm</code>. The skill’s portable instructions and resources still live inside its folder.<sup class="citation"><a href="#source-6" aria-label="Source 6">[6]</a></sup></p>
         <p>Follow the <a href="/guide.html#package">registry packaging and publishing guide</a> to share the tested folder. Then <a href="/guide.html#install">install the published version</a> in a clean project and repeat the fixture on your supported hosts.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol>
+          <li id="source-1"><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot documentation on adding agent skills</a></li>
+          <li id="source-2"><a href="https://code.claude.com/docs/en/skills">Claude Code documentation on extending Claude with skills</a></li>
+          <li id="source-3"><a href="https://learn.chatgpt.com/docs/build-skills">OpenAI Build skills documentation for ChatGPT and Codex</a></li>
+          <li id="source-4"><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Anthropic documentation on Agent Skills in the Claude API</a></li>
+          <li id="source-5"><a href="https://geminicli.com/docs/cli/skills/">Gemini CLI documentation on skill discovery and activation</a></li>
+          <li id="source-6"><a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">skills-yaml registry package structure</a></li>
+        </ol>
       </section>
 
       <nav class="pager" aria-label="Pages">
@@ -170,6 +182,7 @@
       <li><a href="#find-first-failure">Find the first failing stage</a></li>
       <li><a href="#repeat-the-fixture">Repeat the same fixture on each host</a></li>
       <li><a href="#share-the-package">Share the verified package</a></li>
+      <li><a href="#sources">Sources</a></li>
     </ul>
   </aside>
 

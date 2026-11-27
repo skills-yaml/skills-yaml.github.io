@@ -175,6 +175,11 @@ strong { font-weight: 600; }
 .docs-page section > dl:not(.fields) dd { margin: 2px 0 0 1rem; color: var(--text-2); }
 .docs-page section > pre { margin: 12px 0 18px; padding: 14px 16px; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-2); font-size: 13.5px; line-height: 1.7; }
 
+/* Numbered source notes in the learning articles. */
+.citation { font-size: 0.72em; line-height: 0; margin-left: 0.12em; }
+#sources ol { font-size: 14px; color: var(--text-2); }
+#sources li { scroll-margin-top: calc(var(--header) + 20px); }
+
 .docs-page :not(pre) > code {
   font-size: 0.86em; padding: 0.12em 0.36em; border-radius: 5px;
   background: var(--bg-3); border: 1px solid var(--line); color: var(--text);

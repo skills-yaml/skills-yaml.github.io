@@ -101,7 +101,7 @@ description: &gt;
 5. Return the draft and any confirmation items in the conversation. Never publish or send the draft elsewhere.
 </pre>
         </div>
-        <p>The agent first sees the name and description. Phrases such as “release-note draft” and “draft changelog entry” tell it when the skill applies. The Markdown body tells it what to do with confirmed changes, unverified claims and missing notes. <a href="https://developers.openai.com/plugins/build/skills">OpenAI guidance on writing skills</a></p>
+        <p>The agent first sees the name and description.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup> Phrases such as “release-note draft” and “draft changelog entry” tell it when the skill applies. The Markdown body tells it what to do with confirmed changes, unverified claims and missing notes.</p>
       </section>
 
       <section id="frontmatter">
@@ -111,14 +111,14 @@ description: &gt;
           <li>Match <code>name</code> to the folder name. Use 1–64 characters and stick to lowercase letters <code>a–z</code>, digits and single hyphens between words.</li>
           <li>Keep <code>description</code> to 1–1,024 characters. Say what the skill does and when to use it. The YAML <code>&gt;</code> folds the two indented lines into a single description.</li>
         </ul>
-        <p>Claude also reserves <code>anthropic</code> and <code>claude</code> in skill names and rejects XML tags in descriptions. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#skill-structure">Claude's skill file requirements</a></p>
+        <p>Claude also reserves <code>anthropic</code> and <code>claude</code> in skill names and rejects XML tags in descriptions.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></p>
         <p>Start with the two required fields. If you need extra information, put author and version under <code>metadata</code> as strings. Describe runtime requirements in <code>compatibility</code> using up to 500 characters. Check your agent's documentation before adding tool configuration.</p>
       </section>
 
       <section id="validate-and-test">
         <h2>Validate and test a draft</h2>
         <h3>Check the file format</h3>
-        <p>From the directory that contains <code>release-notes/</code>, check the frontmatter with Anthropic's <code>quick_validate.py</code>. These macOS and Linux commands use Git and Python 3 and install PyYAML in a virtual environment. <a href="https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/quick_validate.py">Anthropic's validator</a></p>
+        <p>From the directory that contains <code>release-notes/</code>, check the frontmatter with Anthropic's <code>quick_validate.py</code>.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup> These macOS and Linux commands use Git and Python 3 and install PyYAML in a virtual environment.</p>
         <div class="code">
           <div class="code-title">Terminal<button class="copy" type="button">Copy</button></div>
           <pre>git clone --depth 1 https://github.com/anthropics/skills.git anthropic-skills
@@ -157,15 +157,26 @@ python3 -m venv .skill-validation
           <li>“Turn these confirmed changes and open questions into a customer-facing changelog entry.” Include the sample notes. Expect the agent to load <code>release-notes</code>.</li>
           <li>“Explain how CSV export works in an activity log.” Expect the agent to answer without loading <code>release-notes</code>. It shares the topic of the sample but asks for an explanation.</li>
         </ul>
-        <p>Repeat automatic activation checks when results vary. If the agent loads the skill for unrelated work, narrow the description. If it loads the skill and produces a poor draft, tighten the instructions and repeat the explicit test. <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a> · <a href="https://developers.openai.com/blog/eval-skills">OpenAI’s guide to skill evals</a></p>
+        <p>Repeat automatic activation checks when results vary. If the agent loads the skill for unrelated work, narrow the description. If it loads the skill and produces a poor draft, tighten the instructions and repeat the explicit test.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup> <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></p>
       </section>
 
       <section id="add-resources">
         <h2>Add a reference or template</h2>
-        <p>Save a house style guide at <code>release-notes/references/style-guide.md</code>. Add a drafting step that tells the agent when to read it. Link directly from <code>SKILL.md</code> using a path relative to the skill folder. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-deeply-nested-references">Claude's guidance on references</a></p>
+        <p>Save a house style guide at <code>release-notes/references/style-guide.md</code>. Add a drafting step that tells the agent when to read it. Link directly from <code>SKILL.md</code> using a path relative to the skill folder.<sup class="citation"><a href="#source-5" aria-label="Source 5">[5]</a></sup></p>
         <pre><code>For customer-facing drafts, read [the style guide](references/style-guide.md) before writing.</code></pre>
-        <p>Put reusable templates such as <code>release-template.md</code> in <code>assets/</code>. Use <code>scripts/</code> when the agent needs to run a repeatable check, such as validating draft headings. Give the command, working directory, inputs, and expected result. List any runtime or packages it needs and check that the agent can run it. <a href="https://developers.openai.com/plugins/build/skills">OpenAI guidance on supporting files</a></p>
+        <p>Put reusable templates such as <code>release-template.md</code> in <code>assets/</code>. Use <code>scripts/</code> when the agent needs to run a repeatable check, such as validating draft headings. Give the command, working directory, inputs, and expected result. List any runtime or packages it needs and check that the agent can run it.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
         <p>When you want to distribute a tested skill through the registry, use the packaging guide. <a href="/guide.html#package">Package a skill for skills-yaml</a></p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol>
+          <li id="source-1"><a href="https://developers.openai.com/plugins/build/skills">OpenAI Developers · Build skills</a></li>
+          <li id="source-2"><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#skill-structure">Claude Platform Docs · Skill structure</a></li>
+          <li id="source-3"><a href="https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/quick_validate.py">Anthropic · Skill frontmatter validator</a></li>
+          <li id="source-4"><a href="https://developers.openai.com/blog/eval-skills">OpenAI Developers · Testing Agent Skills Systematically with Evals</a></li>
+          <li id="source-5"><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-deeply-nested-references">Claude Platform Docs · Referencing supporting files</a></li>
+        </ol>
       </section>
 
       <nav class="pager" aria-label="Pages">
@@ -183,6 +194,7 @@ python3 -m venv .skill-validation
       <li><a href="#frontmatter">Read the frontmatter</a></li>
       <li><a href="#validate-and-test">Validate and test a draft</a></li>
       <li><a href="#add-resources">Add a reference or template</a></li>
+      <li><a href="#sources">Sources</a></li>
     </ul>
   </aside>
 

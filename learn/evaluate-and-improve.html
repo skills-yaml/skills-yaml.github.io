@@ -80,7 +80,7 @@
 
       <section id="rewrite-description">
         <h2>Describe when the skill should activate</h2>
-        <p>Say what the skill does and when to use it. “Helps with releases” also fits deployment and publishing, so describe the actual request. To test a rewrite, change only <code>description</code> in <code>SKILL.md</code>. ChatGPT and Codex use that field to match requests to skills. <a href="https://learn.chatgpt.com/docs/build-skills#how-chatgpt-and-codex-use-skills">OpenAI’s skill invocation guide</a></p>
+        <p>Say what the skill does and when to use it. “Helps with releases” also fits deployment and publishing, so describe the actual request. To test a rewrite, change only <code>description</code> in <code>SKILL.md</code>. ChatGPT and Codex use that field to match requests to skills.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
         <div class="code">
           <div class="code-title">SKILL.md</div>
           <pre>description: &gt;-
@@ -92,7 +92,7 @@
 
       <section id="build-test-set">
         <h2>Build an activation test set</h2>
-        <p>Replace <code>[notes]</code> with the three lines below. Send each prompt in a fresh session without explicitly selecting the skill. Add real examples where you have them, including requests that use release vocabulary for other work. <a href="https://developers.openai.com/blog/eval-skills#4-use-a-small-targeted-prompt-set-to-catch-regressions-early">OpenAI’s guide to testing skills</a></p>
+        <p>Replace <code>[notes]</code> with the three lines below. Send each prompt in a fresh session without explicitly selecting the skill. Add real examples where you have them, including requests that use release vocabulary for other work.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></p>
         <div class="code"><pre><code>Confirmed feature: Added CSV export to the activity log.
 Confirmed fix: Corrected the time zone shown on scheduled reports.
 Unverified claim: CSV export runs twice as fast.</code></pre></div>
@@ -164,15 +164,15 @@ Unverified claim: CSV export runs twice as fast.</code></pre></div>
           <li>The speed claim appears only in <code>Needs confirmation</code>, with a note to verify it.</li>
           <li>The draft uses clear customer-facing language and adds no unsupported dates, versions or benefits.</li>
         </ul>
-        <p>Check the activity log for attempts to send or publish the draft. If the log gives you only part of the activity, record that check as unknown. If a model grades the text, first compare its scores with drafts a person has graded. <a href="https://developers.openai.com/api/docs/guides/evaluation-best-practices#create-and-combine-different-types-of-evaluators">OpenAI’s guidance on grading</a></p>
+        <p>Check the activity log for attempts to send or publish the draft. If the log gives you only part of the activity, record that check as unknown. If a model grades the text, first compare its scores with drafts a person has graded.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
       </section>
 
       <section id="compare-variants">
         <h2>Compare runs under recorded settings</h2>
         <ol>
           <li>Set aside a few realistic prompts before you edit the skill. Include a drafting request and a related request the skill should leave alone. Save these for the final comparison.</li>
-          <li>Run the same prompts against the current and revised skill, with one version installed at a time. Run them with <code>release-notes</code> disabled for a draft-quality baseline. Keep the model, project and other enabled skills the same. <a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf#page=16">Anthropic’s skill testing guide</a></li>
-          <li>Start a fresh session for each attempt. Begin with three attempts per prompt and version to see where results vary. Keep the agent and model versions, skill settings, prompt, notes, reply and activity evidence for each run. <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Anthropic’s guide to agent evaluations</a></li>
+          <li>Run the same prompts against the current and revised skill, with one version installed at a time. Run them with <code>release-notes</code> disabled for a draft-quality baseline.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup> Keep the model, project and other enabled skills the same.</li>
+          <li>Start a fresh session for each attempt. Begin with three attempts per prompt and version to see where results vary.<sup class="citation"><a href="#source-5" aria-label="Source 5">[5]</a></sup> Keep the agent and model versions, skill settings, prompt, notes, reply and activity evidence for each run.</li>
           <li>Compare misses, unwanted activations and unknowns for the two enabled versions. Compare draft scores across all three conditions. If another skill seems to interfere, check which skills loaded and rerun that case with <code>release-notes</code> alone.</li>
         </ol>
       </section>
@@ -182,6 +182,17 @@ Unverified claim: CSV export runs twice as fast.</code></pre></div>
         <p>Fix installation or configuration if the skill is missing from the agent. Revise the description if automatic selection repeatedly misses a drafting request. Revise the body if the skill loads and the draft gets the facts wrong.</p>
         <p>Rerun the suite with the held-out prompts. For this skill, require every attempt to ask for missing notes and keep unsupported claims out of the customer draft when those checks apply. Check that the change fixed the problem it targeted and review any new failures. Turn each regression into a saved case with its prompt, expected result, observed result and settings.</p>
         <p>If you support several agents, <a href="/learn/port-and-troubleshoot.html">repeat the tests in each one</a>. Once the revision passes, follow the <a href="/guide.html#update">registry guide to update the package</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol>
+          <li id="source-1"><a href="https://learn.chatgpt.com/docs/build-skills#how-chatgpt-and-codex-use-skills">OpenAI, How ChatGPT and Codex use skills</a></li>
+          <li id="source-2"><a href="https://developers.openai.com/blog/eval-skills#4-use-a-small-targeted-prompt-set-to-catch-regressions-early">OpenAI, Testing Agent Skills Systematically with Evals</a></li>
+          <li id="source-3"><a href="https://developers.openai.com/api/docs/guides/evaluation-best-practices#create-and-combine-different-types-of-evaluators">OpenAI, Evaluation best practices</a></li>
+          <li id="source-4"><a href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf#page=16">Anthropic, The Complete Guide to Building Skills for Claude, chapter 3</a></li>
+          <li id="source-5"><a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Anthropic, Demystifying evals for AI agents</a></li>
+        </ol>
       </section>
 
       <nav class="pager" aria-label="Pages">
@@ -200,6 +211,7 @@ Unverified claim: CSV export runs twice as fast.</code></pre></div>
       <li><a href="#score-drafts">Score the draft and inspect the run</a></li>
       <li><a href="#compare-variants">Compare runs under recorded settings</a></li>
       <li><a href="#decide-to-release">Revise the smallest part and rerun before release</a></li>
+      <li><a href="#sources">Sources</a></li>
     </ul>
   </aside>
 

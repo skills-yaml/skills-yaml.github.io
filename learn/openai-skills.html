@@ -80,9 +80,9 @@
           <div class="code-title">Project skill path</div>
           <pre>.agents/skills/release-notes/SKILL.md</pre>
         </div>
-        <p>Open Codex CLI or the IDE extension in the repository. Run <code>/skills</code> or type <code>$</code> to select <code>release-notes</code>. Codex looks for <code>.agents/skills/</code> from the working directory up to the Git root.</p>
+        <p>Open Codex CLI or the IDE extension in the repository. Run <code>/skills</code> or type <code>$</code> to select <code>release-notes</code>. Codex looks for <code>.agents/skills/</code> from the working directory up to the Git root.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
 
-        <p>Use <code>~/.agents/skills/</code> for personal skills across repositories. If the skill is missing, check its path and restart Codex. If two skills have the same name, check their paths to find the intended copy. <a href="https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills">Codex skill locations</a></p>
+        <p>Use <code>~/.agents/skills/</code> for personal skills across repositories. If the skill is missing, check its path and restart Codex. If two skills have the same name, check their paths to find the intended copy.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
 
         <h3 id="verify-draft">Verify the draft</h3>
         <div class="code">
@@ -98,25 +98,25 @@
 
       <section id="chatgpt">
         <h2>Install a shared or uploaded skill in ChatGPT</h2>
-        <p>Workspace-managed skills are available to eligible Business, Enterprise, Healthcare, and Edu users. If you can’t see the Skills tab or upload option, check your workspace permissions. <a href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt">ChatGPT workspace settings</a></p>
+        <p>Workspace-managed skills are available to eligible Business, Enterprise, Healthcare, and Edu users. If you can’t see the Skills tab or upload option, check your workspace permissions.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></p>
         <ol>
           <li>Open <strong>Plugins</strong> in the sidebar, then select <strong>Skills</strong> in the Plugin Directory.</li>
-          <li>Select <strong>Add</strong>, then <strong>Upload from your computer</strong> to upload your copy. For a shared copy, find it under <strong>Shared with me</strong> or <strong>Shared by</strong> your workspace, then choose <strong>Install</strong> from its menu.</li>
-          <li>Check <strong>Installed</strong> for <code>release-notes</code>. In a new chat, type <code>@</code>, select the skill, then paste the <a href="#verify-draft">drafting request and sample notes</a> after the selected mention. Check that the draft sorts the confirmed changes and keeps the speed claim under <strong>Needs confirmation</strong>.</li>
+          <li>Select <strong>Add</strong>, then <strong>Upload from your computer</strong> to upload your copy. For a shared copy, find it under <strong>Shared with me</strong> or <strong>Shared by</strong> your workspace, then choose <strong>Install</strong> from its menu.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></li>
+          <li>Check <strong>Installed</strong> for <code>release-notes</code>. In a new chat, type <code>@</code>, select the skill, then paste the <a href="#verify-draft">drafting request and sample notes</a> after the selected mention.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup> Check that the draft sorts the confirmed changes and keeps the speed claim under <strong>Needs confirmation</strong>.</li>
         </ol>
-        <p>ChatGPT scans uploads. Review a skill yourself before installing or sharing it. <a href="/learn/review-skill-safety.html">Review a skill before you run it</a></p>
-        <p>In the desktop app, open <strong>Skills</strong> in the sidebar to see standalone skills across projects. Plugins can also distribute skills to Chat and Work on the web, desktop, and mobile. <a href="https://learn.chatgpt.com/docs/build-skills">Standalone skills and plugins</a></p>
+        <p>ChatGPT scans uploads.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup> Review a skill yourself before installing or sharing it. <a href="/learn/review-skill-safety.html">Review a skill before you run it</a></p>
+        <p>In the desktop app, open <strong>Skills</strong> in the sidebar to see standalone skills across projects. Plugins can also distribute skills to Chat and Work on the web, desktop, and mobile.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
       </section>
 
       <section id="api">
         <h2>Provision a skill in the OpenAI API</h2>
-        <p>Attach skills to the shell environment in the Responses API, or register the directory containing them in an Agents API sandbox. <a href="https://developers.openai.com/api/docs/guides/tools-skills">OpenAI API skills</a></p>
+        <p>Attach skills to the shell environment in the Responses API, or register the directory containing them in an Agents API sandbox.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
 
         <h3>Responses API with hosted shell</h3>
         <ol>
           <li>From the directory containing <code>release-notes/</code>, run the commands below to upload a ZIP with <code>release-notes/</code> as its only top-level folder.</li>
-          <li>Record the skill ID and version. Check <code>GET /v1/skills/{skill_id}/versions/{version}</code> before attaching the new version. If retrieval briefly returns <code>404</code> after upload, retry with a short backoff and a timeout.</li>
-          <li>On the Responses API request, add the <code>shell</code> tool entry below to <code>tools</code>, using your uploaded ID and version. In <code>input</code>, ask the model to use the <code>release-notes</code> skill to draft from the <a href="#verify-draft">sample change notes</a>. <a href="https://developers.openai.com/api/docs/guides/tools-skills#use-skills-with-hosted-shell">Hosted shell request examples</a></li>
+          <li>Record the skill ID and version. Check <code>GET /v1/skills/{skill_id}/versions/{version}</code> before attaching the new version. If retrieval briefly returns <code>404</code> after upload, retry with a short backoff and a timeout.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></li>
+          <li>On the Responses API request, add the <code>shell</code> tool entry below to <code>tools</code>, using your uploaded ID and version. In <code>input</code>, ask the model to use the <code>release-notes</code> skill to draft from the <a href="#verify-draft">sample change notes</a>.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></li>
         </ol>
         <div class="code">
           <div class="code-title">Upload the skill package<button class="copy" type="button">Copy</button></div>
@@ -137,14 +137,14 @@ curl --fail-with-body https://api.openai.com/v1/skills \
   }
 }</pre>
         </div>
-        <p>You can also supply an <code>inline</code> skill entry with the skill name, description, and base64-encoded ZIP in the hosted environment’s <code>skills</code> array.</p>
+        <p>You can also supply an <code>inline</code> skill entry with the skill name, description, and base64-encoded ZIP in the hosted environment’s <code>skills</code> array.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
 
         <h3>Responses API with local shell</h3>
         <p>Copy <code>release-notes/</code> into your shell executor’s runtime. Set the shell environment type to <code>local</code> and add the skill’s <code>name</code>, <code>description</code>, and runtime folder <code>path</code> to <code>environment.skills</code>.</p>
-        <p>Send the same prompt as in hosted mode. Run each <code>shell_call</code> in your executor and return a <code>shell_call_output</code> with the original call ID. <a href="https://developers.openai.com/api/docs/guides/tools-skills#use-skills-with-local-shell-mode">Local shell setup and executor example</a></p>
+        <p>Send the same prompt as in hosted mode. Run each <code>shell_call</code> in your executor and return a <code>shell_call_output</code> with the original call ID.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
 
         <h3>Agents API sandbox</h3>
-        <p>For an existing self-hosted sandbox, copy the skill into <code>/workspace/skills/release-notes/</code> inside that sandbox. When creating the session, register its existing parent directory in <code>environment.capability_directories</code>, as shown below. Use an absolute path inside the sandbox. <a href="https://developers.openai.com/api/docs/guides/tools-skills#agents-api">Agents API capability directories</a></p>
+        <p>For an existing self-hosted sandbox, copy the skill into <code>/workspace/skills/release-notes/</code> inside that sandbox. When creating the session, register its existing parent directory in <code>environment.capability_directories</code>, as shown below. Use an absolute path inside the sandbox.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
         <div class="code">
           <div class="code-title">Agents API session configuration<button class="copy" type="button">Copy</button></div>
           <pre>{
@@ -160,8 +160,17 @@ curl --fail-with-body https://api.openai.com/v1/skills \
 
       <section id="openai-metadata">
         <h2>Configure optional OpenAI metadata</h2>
-        <p>Add <code>agents/openai.yaml</code> inside the skill folder if you need OpenAI-specific settings. The file can customize the ChatGPT desktop display, declare MCP tool dependencies, or set invocation policy. Set <code>policy.allow_implicit_invocation</code> to <code>false</code> to disable automatic selection in Codex. You can still invoke <code>$release-notes</code> explicitly. <a href="https://learn.chatgpt.com/docs/build-skills#optional-metadata">OpenAI’s optional metadata reference</a></p>
+        <p>Add <code>agents/openai.yaml</code> inside the skill folder if you need OpenAI-specific settings. The file can customize the ChatGPT desktop display, declare MCP tool dependencies, or set invocation policy. Set <code>policy.allow_implicit_invocation</code> to <code>false</code> to disable automatic selection in Codex. You can still invoke <code>$release-notes</code> explicitly.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
         <p>Keep the reusable instructions in <code>SKILL.md</code> so you can use the same workflow in another host. <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol>
+          <li id="source-1"><a href="https://learn.chatgpt.com/docs/build-skills">ChatGPT Learn — Build skills for ChatGPT and Codex</a></li>
+          <li id="source-2"><a href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt">OpenAI Help Center — Skills in ChatGPT workspaces</a></li>
+          <li id="source-3"><a href="https://developers.openai.com/api/docs/guides/tools-skills">OpenAI API — Skills for Responses shell and Agents API sandboxes</a></li>
+        </ol>
       </section>
 
       <nav class="pager" aria-label="Pages">
@@ -178,6 +187,7 @@ curl --fail-with-body https://api.openai.com/v1/skills \
       <li><a href="#chatgpt">Install a shared or uploaded skill in ChatGPT</a></li>
       <li><a href="#api">Provision a skill in the OpenAI API</a></li>
       <li><a href="#openai-metadata">Configure optional OpenAI metadata</a></li>
+      <li><a href="#sources">Sources</a></li>
     </ul>
   </aside>
 

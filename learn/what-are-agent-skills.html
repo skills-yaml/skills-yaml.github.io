@@ -81,8 +81,8 @@
 
       <section id="inside-a-skill-folder">
         <h2>What lives in a skill folder</h2>
-        <p>Start with <code>release-notes/SKILL.md</code>. Put the <code>name</code> and <code>description</code> in a YAML header between two lines of three dashes. Use <code>release-notes</code> as the name and say in the description that the skill drafts release notes or changelog entries from supplied changes. Write the steps in Markdown below the header. <a href="https://learn.chatgpt.com/docs/build-skills">OpenAI’s skill format</a></p>
-        <p>Add a style guide in <code>references/</code> or a draft template in <code>assets/</code> when you need one. In <code>SKILL.md</code>, say when to open each file and give its path from the skill folder. You can also put helpers in <code>scripts/</code> if the agent can run them. <a href="https://antigravity.google/docs/build-plugins/#agent-skills">Antigravity’s skill folder layout</a></p>
+        <p>Start with <code>release-notes/SKILL.md</code>. Put the <code>name</code> and <code>description</code> in a YAML header between two lines of three dashes. Use <code>release-notes</code> as the name and say in the description that the skill drafts release notes or changelog entries from supplied changes. Write the steps in Markdown below the header.<sup class="citation"><a href="#source-1" aria-label="Source 1">[1]</a></sup></p>
+        <p>Add a style guide in <code>references/</code> or a draft template in <code>assets/</code> when you need one. In <code>SKILL.md</code>, say when to open each file and give its path from the skill folder. You can also put helpers in <code>scripts/</code> if the agent can run them.<sup class="citation"><a href="#source-2" aria-label="Source 2">[2]</a></sup></p>
         <div class="code">
           <div class="code-title">Skill folder</div>
           <pre>release-notes/
@@ -96,7 +96,7 @@
 
       <section id="how-an-agent-loads-a-skill">
         <h2>How an agent finds and loads a skill</h2>
-        <p>Ask for a draft from two confirmed changes. The activity log now offers CSV export, and a refresh no longer creates duplicate entries. The agent can load the skill in three stages. This is called <em>progressive disclosure</em>. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">How Claude loads skills</a></p>
+        <p>Ask for a draft from two confirmed changes. The activity log now offers CSV export, and a refresh no longer creates duplicate entries. The agent can load the skill in three stages. This is called <em>progressive disclosure</em>.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></p>
         <ol>
           <li><strong>Discovery.</strong> The agent sees the names and descriptions of available skills. Your request matches the description for <code>release-notes</code>.</li>
           <li><strong>Activation.</strong> Once the skill is selected, the agent reads <code>SKILL.md</code>. The steps put the CSV export under “Added” and the duplicate-entry fix under “Fixed.”</li>
@@ -111,25 +111,25 @@
           <dt>Prompt</dt>
           <dd>Supply this week’s changes or ask for a shorter draft.</dd>
           <dt>Project instructions</dt>
-          <dd>Save guidance for work across the project, such as which product names to use in customer-facing copy. <a href="https://code.claude.com/docs/en/memory">Claude Code project instructions</a></dd>
+          <dd>Save guidance for work across the project, such as which product names to use in customer-facing copy.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup></dd>
           <dt>Skill</dt>
           <dd>Save the steps you repeat each week, including how to group changes and flag claims for review.</dd>
           <dt>Connector</dt>
-          <dd>Connect a specific service, such as your issue tracker. With the right permissions, the connector can give the agent a tool to fetch completed tickets. <a href="https://developers.openai.com/plugins/concepts/skills">OpenAI on skills and server tools</a></dd>
+          <dd>Connect a specific service, such as your issue tracker. With the right permissions, the connector can give the agent a tool to fetch completed tickets.<sup class="citation"><a href="#source-5" aria-label="Source 5">[5]</a></sup></dd>
           <dt>Model Context Protocol (MCP)</dt>
-          <dd>Use this open protocol to connect AI applications to tools and data. An issue tracker connector can use MCP to expose tools through a server. The protocol defines how the application and server communicate. <a href="https://modelcontextprotocol.io/docs/getting-started/intro">MCP documentation</a></dd>
+          <dd>Use this open protocol to connect AI applications to tools and data. An issue tracker connector can use MCP to expose tools through a server. The protocol defines how the application and server communicate.<sup class="citation"><a href="#source-6" aria-label="Source 6">[6]</a></sup></dd>
           <dt>Plugin</dt>
-          <dd>Install related components together. A plugin could package the release-notes skill with the tracker’s MCP server configuration. <a href="https://developers.openai.com/plugins/concepts/plugins">OpenAI plugin architecture</a></dd>
+          <dd>Install related components together. A plugin could package the release-notes skill with the tracker’s MCP server configuration.<sup class="citation"><a href="#source-7" aria-label="Source 7">[7]</a></sup></dd>
         </dl>
       </section>
 
       <section id="read-the-directory-guide">
         <h2>Read the Skills Directory guide with its limits in mind</h2>
-        <p>Skills Directory describes skills as lasting memory, calls reference capacity unlimited, and says one skill works across platforms. Here’s what those claims mean for a weekly release draft. <a href="https://www.skillsdirectory.com/docs/what-are-claude-skills">What Are Claude Skills? from Skills Directory</a></p>
+        <p>Skills Directory describes skills as lasting memory, calls reference capacity unlimited, and says one skill works across platforms.<sup class="citation"><a href="#source-8" aria-label="Source 8">[8]</a></sup></p>
         <ul>
-          <li><strong>Memory.</strong> The saved skill carries your drafting steps into later sessions where it’s available. Give it the current changes each time. Claude Code’s auto memory is a separate feature. <a href="https://code.claude.com/docs/en/memory">Claude Code memory</a></li>
-          <li><strong>Resources.</strong> A bundled reference uses context when the agent reads it. Open only the files needed for the draft and keep those files short enough to use. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Claude’s rules for loading resources</a></li>
-          <li><strong>Portability.</strong> You can reuse the skill folder in another agent that supports it. Check that agent’s installation steps, invocation, permissions, and tool support. Claude Code, for example, documents which frontmatter options are specific to it. <a href="https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code">Claude Code frontmatter</a></li>
+          <li><strong>Memory.</strong> The saved skill carries your drafting steps into later sessions where it’s available. Give it the current changes each time. Claude Code’s auto memory is a separate feature.<sup class="citation"><a href="#source-4" aria-label="Source 4">[4]</a></sup></li>
+          <li><strong>Resources.</strong> A bundled reference uses context when the agent reads it. Open only the files needed for the draft and keep those files short enough to use.<sup class="citation"><a href="#source-3" aria-label="Source 3">[3]</a></sup></li>
+          <li><strong>Portability.</strong> You can reuse the skill folder in another agent that supports it. Check that agent’s installation steps, invocation, permissions, and tool support. Claude Code, for example, documents which frontmatter options are specific to it.<sup class="citation"><a href="#source-9" aria-label="Source 9">[9]</a></sup></li>
         </ul>
       </section>
 
@@ -137,6 +137,21 @@
         <h2>Decide what to save for next week</h2>
         <p>For a one-off draft, put the changes and instructions in a prompt. For a weekly draft, put the steps in the skill and paste the latest changes each time.</p>
         <p>If you later need to fetch changes from a tracker, give the agent access through a connector and tell the skill which records to use. <a href="/learn/review-skill-safety.html">Review the skill and its access before enabling it</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol>
+          <li id="source-1"><a href="https://learn.chatgpt.com/docs/build-skills">OpenAI · Build skills</a></li>
+          <li id="source-2"><a href="https://antigravity.google/docs/build-plugins/#agent-skills">Google Antigravity · Agent skills in plugins</a></li>
+          <li id="source-3"><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Claude Platform · Agent Skills</a></li>
+          <li id="source-4"><a href="https://code.claude.com/docs/en/memory">Claude Code · How Claude remembers your project</a></li>
+          <li id="source-5"><a href="https://developers.openai.com/plugins/concepts/skills">OpenAI · Skills and MCP tools</a></li>
+          <li id="source-6"><a href="https://modelcontextprotocol.io/docs/getting-started/intro">Model Context Protocol · What is MCP?</a></li>
+          <li id="source-7"><a href="https://developers.openai.com/plugins/concepts/plugins">OpenAI · Plugin architecture</a></li>
+          <li id="source-8"><a href="https://www.skillsdirectory.com/docs/what-are-claude-skills">Skills Directory · What Are Claude Skills?</a></li>
+          <li id="source-9"><a href="https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code">Claude Code · Using skill frontmatter outside Claude Code</a></li>
+        </ol>
       </section>
 
       <nav class="pager" aria-label="Pages">
@@ -155,6 +170,7 @@
       <li><a href="#choose-the-right-mechanism">Choose the right mechanism</a></li>
       <li><a href="#read-the-directory-guide">Read the Skills Directory guide with its limits in mind</a></li>
       <li><a href="#decide-what-to-save">Decide what to save for next week</a></li>
+      <li><a href="#sources">Sources</a></li>
     </ul>
   </aside>
 
