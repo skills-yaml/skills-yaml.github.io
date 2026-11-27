@@ -75,53 +75,70 @@
 
       <section id="trace-the-package">
         <h2>Trace the package to a known revision</h2>
-        <p>Keep a third-party skill outside your agent’s discovery paths while you inspect it. Identify who maintains it and compare the download or shared copy with the publisher’s repository or release. Record the source URL and exact commit, uploaded version, or archive checksum. Use that identity to check that the copy you install matches the one you reviewed. An archive checksum identifies the bytes you checked. Verify the publisher separately.</p>
-        <p>Read <code>SKILL.md</code> from frontmatter through examples. Check what requests the description can match, who can invoke the skill, and which settings the target host recognizes. Follow its references and inventory the entire bundle, including <code>scripts/</code>, <code>references/</code>, <code>assets/</code>, and any extra files. When a skill comes from a plugin or repository, also check which companion settings, hooks, or connectors the installation would load. <a href="https://agentskills.io/specification">Agent Skills specification</a></p>
-        <p>Review instructions in examples, templates, and reference files as carefully as the main workflow. Even a package made entirely of Markdown can tell the agent to read unrelated files, send data through a connector, or run a shell command. Compare those instructions with the skill’s stated purpose. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#security-considerations">Anthropic’s security considerations</a></p>
+        <p>Keep third-party skills outside the directories your agent scans until you’ve reviewed them.</p>
+        <ol class="stepper">
+          <li class="step">
+            <h4>Find the publisher and version</h4>
+            <p>Compare the download with the publisher’s repository or release. Record the source URL and exact commit, uploaded version, or archive checksum. Check that the copy you install matches the one you reviewed.</p>
+          </li>
+          <li class="step">
+            <h4>Read the whole package</h4>
+            <p>Start with <code>SKILL.md</code>. Check which requests match its description, who can invoke it, and what the host does with its frontmatter. Follow the links to scripts, templates, and reference files. If the skill ships as part of a plugin or repository, check what settings, hooks, and connectors come with it. <a href="https://code.claude.com/docs/en/skills#add-supporting-files">Claude Code skill files</a></p>
+            <p>Read examples and templates for instructions too. A Markdown file alone can ask the agent to read files, run a shell command, or send data through a connector. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#security-considerations">Anthropic’s skill security guidance</a></p>
+          </li>
+        </ol>
       </section>
 
       <section id="inspect-actions">
         <h2>Inspect scripts, dependencies and destinations</h2>
-        <p>For each step, write down what starts it, which tool or command it uses, what data it can reach, and what effect you expect. Trace optional steps and error handling as well as the main workflow.</p>
+        <p>For each action, note what triggers it, which tool it calls, and what you expect to happen. Check optional steps and what happens when a command fails.</p>
         <ul>
-          <li><strong>Reads.</strong> Identify the expected inputs and any additional paths, environment variables, credentials, or connector records the step can read. Check whether a directory search reaches beyond the requested files.</li>
-          <li><strong>Execution.</strong> Read scripts and follow local imports, subprocesses, and shell snippets. Check dependency manifests and lockfiles, and inspect any install hooks or runtime downloads that could run additional code. Treat fetched instructions and unpinned dependencies as inputs that can change after review. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#security-considerations">Anthropic’s guidance on external sources</a></li>
-          <li><strong>Writes.</strong> Identify the file paths or records the step creates, overwrites, or deletes. Include generated artifacts and logs if they can contain input data.</li>
-          <li><strong>Network and connectors.</strong> Record the service, account, destination, audience, and data sent. A lookup can transmit query text or identifiers. For a publishing step, verify the target page and who can see the final payload. If a destination is chosen at runtime, determine how it is selected and which destinations the host can enforce.</li>
+          <li><strong>Reads.</strong> List the input files, directory searches, environment variables, and connector records the action can access.</li>
+          <li><strong>Execution.</strong> Read each script and follow its imports, shell commands, and subprocesses. Check dependency versions, install hooks, and runtime downloads. A remote file or unpinned dependency can change between runs.</li>
+          <li><strong>Writes.</strong> List the files or records the action creates, edits, or deletes. Include logs and generated files that could contain input data.</li>
+          <li><strong>Network and connectors.</strong> Record the service, account, destination, and data sent. A lookup can send query text or identifiers. For a publishing step, check the target page and who can see it.</li>
         </ul>
-        <p>Keep any behavior with an unresolved dependency, file scope, or destination disabled while you ask the publisher for details. If the host offers a scan, include its result in your review. ChatGPT scans uploads and can require review or block a skill. The scan covers the upload, while your review also considers the data and tools available in your workflow. <a href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt">OpenAI Help on uploaded skills</a></p>
+        <p>If you can’t verify a dependency, file scope, or destination, leave that behavior disabled and ask the publisher for details. If the host scans uploads, use the result alongside your own review. <a href="https://help.openai.com/en/articles/20001066-skills-in-chatgpt">ChatGPT upload checks</a></p>
       </section>
 
       <section id="check-host-permissions">
         <h2>Check permissions in the host you will use</h2>
-        <p>Check the effective settings for the session, project, or workspace where the skill will run. Match each action to readable and writable paths, execution tools, outbound network rules, and the scopes of signed-in connector accounts. Record which actions are automatically allowed, blocked, or presented for approval. Use host controls to enforce the boundary you need. If the workflow handles private data, confirm where prompts, files, traces, and outputs are processed or retained. <a href="https://developers.openai.com/api/docs/guides/tools-skills/#risks-and-safety">OpenAI API risks and safety guidance</a></p>
-        <h3>Claude Code permissions during skill invocation</h3>
-        <p>In Claude Code, <code>allowed-tools</code> preapproves the listed tools for the turn that invokes the skill, subject to the host’s permission rules. Tools outside that list remain available according to the session’s regular permissions. If a skill lists <code>Read</code>, for example, check the session’s shell, write, and connector permissions too. Also inspect any hooks or embedded shell commands that can run when the skill loads. <a href="https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill">Claude Code skill tool approvals</a></p>
-        <p>Check the launch mode as part of the review. In a noninteractive <code>claude -p</code> session, Claude Code skips the interactive trust dialog and can use a project skill’s <code>allowed-tools</code> grants and hooks even in a folder you’ve never trusted. Anthropic documents separate trust checks for ordinary <code>permissions.allow</code> and <code>additionalDirectories</code> entries in <code>.claude/settings.json</code>. Use a clean fixture directory and load only the reviewed configuration when testing a headless workflow. <a href="https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder">Claude Code workspace trust by launch mode</a></p>
-        <p>A skill’s instructions can request a tool action. The host determines whether the tool and permissions are available. Check the settings on the surface you use and repeat the check when you move the skill. See the setup guides for <a href="/learn/claude-skills.html">Claude</a>, <a href="/learn/google-skills.html">Google developer tools</a>, and <a href="/learn/openai-skills.html">Codex, ChatGPT and the OpenAI API</a>.</p>
+        <p>Check the actual session settings. For each action you traced, find which file paths, shell commands, network destinations, and connector accounts are available. Check what the host allows automatically, blocks, or asks you to approve. For private data, check where prompts, files, and outputs are processed and stored. <a href="https://developers.openai.com/api/docs/guides/tools-skills/#risks-and-safety">OpenAI API skill safety</a></p>
+        <div class="hint hint-warning" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75 18 17H2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="14.4" r="0.95" fill="currentColor"/></svg>
+          <div>
+            <p>In Claude Code, <code>allowed-tools</code> preapproves the listed tools for the turn that invokes the skill, subject to the host’s permission rules. Regular session permissions still govern other tools. If the list only names <code>Read</code>, check shell, write, and connector permissions too. <a href="https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill">Claude Code tool approvals</a></p>
+            <p><code>claude -p</code> skips the trust prompt. Project skill grants and hooks can apply even in a folder you’ve never trusted. Claude Code checks trust separately for <code>permissions.allow</code> and <code>additionalDirectories</code> in <code>.claude/settings.json</code>. Test headless workflows in a clean directory with reviewed settings. <a href="https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder">Claude Code workspace trust</a></p>
+          </div>
+        </div>
+        <p>Repeat this check when you move a skill to another host. <a href="/learn/claude-skills.html">Claude setup</a> · <a href="/learn/google-skills.html">Google developer tools setup</a> · <a href="/learn/openai-skills.html">OpenAI setup</a></p>
       </section>
 
       <section id="rehearse-with-fixtures">
         <h2>Rehearse with sample notes and limited access</h2>
-        <p>After the file review, stage the reviewed revision in a scratch session. Use synthetic input, allow access only to the fixture directory where possible, and keep production credentials and unrelated workspace files out of reach. Disable unnecessary connectors and block external calls that the test does not need. For a workflow that genuinely needs an external service, exercise the action through a test account or mock endpoint with limited scope.</p>
-        <p>For the text-only <code>release-notes</code> skill, explicitly select the reviewed copy and try this fixture. <a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></p>
-        <pre><code>Draft release notes from these sample notes.
+        <p>Run the reviewed version in a scratch session with sample data. Limit file access to the test directory, keep production credentials out of the session, and disable connectors and network access the test doesn’t need. Use a test account or mock endpoint if the workflow needs an external service.</p>
+        <p>Select the <code>release-notes</code> skill from the first-skill tutorial and try this prompt. <a href="/learn/write-your-first-skill.html">Write your first SKILL.md</a></p>
+        <div class="code">
+          <div class="code-title">Test prompt<button class="copy" type="button">Copy</button></div>
+          <pre>Draft release notes from these sample notes.
 - Confirmed: Fixed duplicate entries in the activity log after a refresh.
-- Unverified: The activity log loads twice as fast.</code></pre>
-        <p>Expect one confirmed fix in the draft and the performance claim listed for confirmation. The draft should come back in the conversation. Check the available tool trace for commands, unrelated reads, writes, or external calls. Compare the fixture directory before and after the run to catch unexpected files. Then try a prompt with no release notes and expect a request for the missing input. If the skill can activate automatically, run a nearby but unrelated request and check that the skill stays inactive.</p>
-        <p>For a skill that legitimately writes or sends data, verify in the test environment that declining approval leaves the target unchanged, and that approving it affects only the expected target and payload. Record the fixture input, expected and observed behavior, blocked attempts, and gaps in the available trace. Use the run as evidence for the paths it exercised.</p>
+- Unverified: The activity log loads twice as fast.</pre>
+        </div>
+        <p>Expect a draft in chat with one confirmed fix and the performance claim marked for confirmation. Check the tool trace for unexpected commands, reads, writes, and external calls. Check the test directory for changes.</p>
+        <p>Try again with no notes. The skill should ask for them. If the skill can start on its own, try a similar request outside its scope and check that it stays inactive.</p>
+        <p>For workflows with external writes, test both approval outcomes. Declining should leave the target untouched. Approving should send only the expected data to the expected target. Record what happened, what the host blocked, and what you couldn’t observe.</p>
       </section>
 
       <section id="record-a-decision">
         <h2>Record the decision and when to review again</h2>
-        <p>Keep the source and exact revision, reviewer and date, host and effective permissions, fixture results, and any approval conditions together. Apply the decision to the reviewed revision and environment. This hypothetical review shows how the decision changes when the author proposes a publishing step.</p>
+        <p>Record the source, revision, reviewer, date, host settings, test results, and approval conditions. For the release-notes example, apply the decision to the version you tested.</p>
         <dl>
-          <dt><strong>Enable the draft-only revision</strong></dt>
-          <dd>The package reads supplied notes and returns a draft in chat. It requests no scripts, dependencies, or external tools. Enable it in the tested configuration after the fixture results match the expected behavior and the available trace shows only the expected file access.</dd>
-          <dt><strong>Request changes to automatic publication</strong></dt>
-          <dd>The proposed revision asks to use a connected publishing account to write the draft to the public changelog. That adds an external write and exposes the draft to a public audience. Keep the draft-only revision enabled. Before enabling any publishing flow, make the user review the exact text, destination and audience, then require their explicit approval for that write. If the host cannot enforce approval before the tool call, have the user publish manually. <a href="https://developers.openai.com/api/docs/guides/tools-skills/#require-approval-for-sensitive-actions">OpenAI guidance on approval for sensitive actions</a></dd>
+          <dt><strong>Enable the draft-only version</strong></dt>
+          <dd>Check that it uses the supplied notes and returns the draft in chat with no unexpected tool activity.</dd>
+          <dt><strong>Ask for changes before enabling automatic publication</strong></dt>
+          <dd>Show the user the exact draft, destination, and audience. Require approval before the write. If the host can’t enforce approval, leave publication to the user. <a href="https://developers.openai.com/api/docs/guides/tools-skills/#require-approval-for-sensitive-actions">OpenAI guidance on approval</a></dd>
         </dl>
-        <p>Pin the reviewed revision where the host or installer supports it. Before switching versions, compare the new bundle with your review record and rerun the fixtures that exercise the changes. Recheck the decision when the same revision starts using a changed dependency, remote resource, host, connector account, destination, or class of input. When you can’t verify the change, keep the last reviewed version in use if available or disable the skill until you can review the new behavior. <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></p>
+        <p>Pin the reviewed version if you can. Compare changes and rerun the relevant tests before updating. Review again if a dependency, remote file, connector account, destination, host, or kind of input changes. Keep the last reviewed version or disable the skill while you check the change. <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></p>
       </section>
 
       <nav class="pager" aria-label="Pages">

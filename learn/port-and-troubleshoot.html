@@ -75,9 +75,9 @@
 
       <section id="portable-files">
         <h2>Identify what travels with the skill</h2>
-        <p>Start with the <a href="/learn/write-your-first-skill.html">release-notes skill you authored</a>. Copy the whole <code>release-notes/</code> folder. Its portable core is <code>SKILL.md</code> with YAML frontmatter containing <code>name</code> and <code>description</code>, the Markdown workflow, and any bundled references, scripts, or assets. Keep the folder name aligned with <code>name</code>. Preserve the spelling and case of each relative path, such as <code>references/style-guide.md</code> if you added the optional style guide. <a href="https://agentskills.io/specification">Agent Skills specification</a></p>
-        <p>Check how the destination discovers and invokes the folder, which metadata it reads, and what the session can access. Claude Code’s <code>disable-model-invocation: true</code> and Codex’s <code>policy.allow_implicit_invocation: false</code> in <code>agents/openai.yaml</code> both restrict automatic selection on their respective hosts. Cloud and app surfaces can use different installation and activation mechanisms. <a href="https://code.claude.com/docs/en/skills">Claude Code skill settings</a> · <a href="https://learn.chatgpt.com/docs/build-skills">OpenAI Build skills</a> · <a href="https://agentskills.io/client-implementation/adding-skills-support">Agent Skills client implementation guide</a></p>
-        <p>The example needs only the supplied change notes. An adapted skill may depend on a shell, interpreter, library, executable, connector, or service account. Document those requirements in the skill when useful, then check the runtime and permissions on the destination before <a href="/learn/review-skill-safety.html">you run it</a>. <a href="https://agentskills.io/specification#compatibility-field">Agent Skills compatibility field</a></p>
+        <p>Start with the <a href="/learn/write-your-first-skill.html">release-notes skill you authored</a>. Copy the whole <code>release-notes/</code> folder. Keep the <code>SKILL.md</code> frontmatter (<code>name</code> and <code>description</code>), the Markdown workflow, and any bundled files together. Use the skill name for the folder and preserve relative paths like <code>references/style-guide.md</code>. GitHub Copilot also uses this folder format and can discover project skills in <code>.agents/skills/</code>. <a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills">GitHub Copilot skill structure and locations</a></p>
+        <p>Check which settings the destination reads. Claude Code uses <code>disable-model-invocation: true</code> in frontmatter to restrict automatic selection. Codex uses <code>policy.allow_implicit_invocation: false</code> in <code>agents/openai.yaml</code>. <a href="https://code.claude.com/docs/en/skills#control-who-invokes-a-skill">Claude Code invocation settings</a> · <a href="https://learn.chatgpt.com/docs/build-skills#optional-metadata">Codex invocation policy</a></p>
+        <p>Check the destination’s runtime and permissions before <a href="/learn/review-skill-safety.html">running an adapted skill</a> that needs a script or connector. Document required executables, libraries, and network access in the skill. For example, the Claude API uses a code execution container with preconfigured dependencies and no network access. The release-notes example needs only the supplied text. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Claude API skill runtime</a></p>
       </section>
 
       <section id="move-between-hosts">
@@ -98,7 +98,7 @@
 
       <section id="find-first-failure">
         <h2>Find the first failing stage</h2>
-        <p>Check discovery first, then activation, resource access and execution, and finally the draft. The model usually sees a short catalog before loading the full <code>SKILL.md</code> during activation. It reads supporting files when the workflow calls for them. Each stage has its own evidence. <a href="https://agentskills.io/client-implementation/adding-skills-support">Agent Skills discovery and loading lifecycle</a></p>
+        <p>Find the first stage that failed. The host presents skill descriptions to the model, loads the instructions on activation, and reads supporting files when the workflow needs them. <a href="https://geminicli.com/docs/cli/skills/#how-it-works">Gemini CLI skill lifecycle</a></p>
 
         <div class="table-wrap" tabindex="0" role="region" aria-label="Skill troubleshooting">
           <table class="dtable">
@@ -129,23 +129,29 @@
             </tbody>
           </table>
         </div>
-        <p>In Codex, a skill can exist on disk while missing from the model’s initial catalog. By default the catalog uses at most 2% of the model’s context window, with an 8,000-character fallback when that window is unknown. Codex shortens descriptions first and may omit entries and show a warning in large skill sets. If named selection works but automatic matching still misses, retry with fewer skills enabled or inspect <code>skills.max_context_tokens</code>. The budget applies to the initial list. Codex reads the full instructions for a selected skill. <a href="https://learn.chatgpt.com/docs/build-skills">OpenAI guidance on the Codex catalog budget</a></p>
+        <div class="hint hint-info" role="note">
+          <svg class="hint-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="6.4" r="1" fill="currentColor"/></svg>
+          <div><p><strong>Codex catalog budget.</strong> A skill can exist on disk while missing from the model’s initial catalog. By default the catalog uses at most 2% of the model’s context window, with an 8,000-character fallback when that window is unknown. Codex shortens descriptions first and may omit entries and show a warning in large skill sets. If named selection works but automatic matching still misses, retry with fewer skills enabled or inspect <code>skills.max_context_tokens</code>. The budget applies to the initial list. Codex reads the full instructions for a selected skill. <a href="https://learn.chatgpt.com/docs/build-skills">OpenAI guidance on the Codex catalog budget</a></p></div>
+        </div>
       </section>
 
       <section id="repeat-the-fixture">
         <h2>Repeat the same fixture on each host</h2>
         <p>In a fresh session, use the host’s named invocation above and submit the prompt below. In a second fresh session, send the same prompt without naming or selecting the skill. Keep the installed copy, input, and model settings the same for both runs on that host. Record whether the intended copy loaded using the host’s available activation evidence, such as Gemini CLI’s activation prompt. A passing draft can also come from the model on its own. <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></p>
-        <pre><code>Draft release notes from these change notes.
+        <div class="code">
+          <div class="code-title">Release-notes test prompt<button class="copy" type="button">Copy</button></div>
+          <pre><code>Draft release notes from these change notes.
 
 - Confirmed: The activity log now offers CSV export.
 - Confirmed: Fixed duplicate entries in the activity log after a refresh.
 - Unverified: CSV export may be twice as fast as the previous internal prototype.</code></pre>
+        </div>
         <p>Check for CSV export under <code>Added</code>, the duplicate-entry fix under <code>Fixed</code>, and the speed claim only under <code>Needs confirmation</code>. The draft should stay in the conversation. Record the host and version, model, skill source path, invocation method, evidence of activation, and which checks passed. After making a change, repeat the failing run with the same notes.</p>
       </section>
 
       <section id="share-the-package">
         <h2>Share the verified package</h2>
-        <p>When you publish through skills-yaml, use <code>metadata.skm-version</code> to mark the package release and <code>metadata.skm-dependencies</code> if the package depends on other registry skills. A consumer’s <code>skills.yaml</code> declares packages and version pins for <code>skm</code>. The skill’s portable instructions and resources still live inside its folder. <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter</a> · <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">Registry package structure</a></p>
+        <p>When you publish through skills-yaml, use <code>metadata.skm-version</code> to mark the package release and <code>metadata.skm-dependencies</code> if the package depends on other registry skills. A consumer’s <code>skills.yaml</code> declares packages and version pins for <code>skm</code>. The skill’s portable instructions and resources still live inside its folder. <a href="https://github.com/skills-yaml/registry/blob/main/SKILL_STRUCTURE.md">Registry package structure</a></p>
         <p>Follow the <a href="/guide.html#package">registry packaging and publishing guide</a> to share the tested folder. Then <a href="/guide.html#install">install the published version</a> in a clean project and repeat the fixture on your supported hosts.</p>
       </section>
 

@@ -75,66 +75,68 @@
 
       <section id="a-repeatable-task">
         <h2>A repeatable task with a consistent output</h2>
-        <p>Every Friday, you turn a fresh set of change notes into a customer-facing draft. The changes vary each week, but the procedure stays the same. Group the user-facing changes, use plain language, flag unverified or breaking changes for review, and return a draft for the release owner.</p>
-        <p>An Agent Skill captures that procedure in a folder the agent can load for a matching task. Keep the rules, output format, and examples in the skill. Supply the current release’s notes with the request. The same skill can then guide the next draft when it’s available in the agent’s environment. <a href="https://www.anthropic.com/research/equipping-agents-for-the-real-world-with-agent-skills">Anthropic’s introduction to Agent Skills</a></p>
+        <p>Every Friday, turn a fresh set of changes into a customer-facing draft. Group the confirmed changes, use plain language, and flag anything that still needs checking.</p>
+        <p>Save those steps and the draft format in a skill called <code>release-notes</code>. When you ask for the next draft, give the agent that week’s changes.</p>
       </section>
 
       <section id="inside-a-skill-folder">
         <h2>What lives in a skill folder</h2>
-        <p>The open Agent Skills specification requires <code>SKILL.md</code>. Its YAML frontmatter, enclosed by lines containing <code>---</code>, has two required fields. The <code>name</code> matches the enclosing folder, such as <code>release-notes</code>. The <code>description</code> says what the skill does and when to use it. The Markdown body below the frontmatter holds the workflow, including how to handle missing input and what to return. <a href="https://agentskills.io/specification#skill-md-format">Agent Skills file format</a></p>
-        <p>A text-only release-notes skill can start with that single file. As the workflow grows, the skill can point to a style guide in <code>references/</code> and a draft template in <code>assets/</code>. The instructions tell the agent when to open each file using a path relative to the skill folder. Workflows that need executable helpers may add them in <code>scripts/</code>, subject to the host’s runtime and permissions. <a href="https://agentskills.io/specification#optional-directories">Agent Skills optional directories</a> · <a href="https://agentskills.io/specification#file-references">File references</a></p>
-        <pre><code>release-notes/
+        <p>Start with <code>release-notes/SKILL.md</code>. Put the <code>name</code> and <code>description</code> in a YAML header between two lines of three dashes. Use <code>release-notes</code> as the name and say in the description that the skill drafts release notes or changelog entries from supplied changes. Write the steps in Markdown below the header. <a href="https://learn.chatgpt.com/docs/build-skills">OpenAI’s skill format</a></p>
+        <p>Add a style guide in <code>references/</code> or a draft template in <code>assets/</code> when you need one. In <code>SKILL.md</code>, say when to open each file and give its path from the skill folder. You can also put helpers in <code>scripts/</code> if the agent can run them. <a href="https://antigravity.google/docs/build-plugins/#agent-skills">Antigravity’s skill folder layout</a></p>
+        <div class="code">
+          <div class="code-title">Skill folder</div>
+          <pre>release-notes/
 ├── SKILL.md
 ├── references/
 │   └── style-guide.md
 └── assets/
-    └── draft-template.md</code></pre>
+    └── draft-template.md</pre>
+        </div>
       </section>
 
       <section id="how-an-agent-loads-a-skill">
         <h2>How an agent finds and loads a skill</h2>
-        <p>Suppose you ask, “Draft this week’s customer release notes. The activity log now offers CSV export, and refreshing the log no longer creates duplicate entries.” Agent Skills uses a staged loading pattern called <em>progressive disclosure</em>. <a href="https://agentskills.io/specification#progressive-disclosure">Agent Skills specification on progressive disclosure</a></p>
+        <p>Ask for a draft from two confirmed changes. The activity log now offers CSV export, and a refresh no longer creates duplicate entries. The agent can load the skill in three stages. This is called <em>progressive disclosure</em>. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">How Claude loads skills</a></p>
         <ol>
-          <li><strong>Discover the metadata.</strong> The host, meaning the application or runtime that runs the agent, makes the names and descriptions of available skills visible. The <code>release-notes</code> description identifies requests to draft a release note or changelog entry from supplied changes.</li>
-          <li><strong>Activate the skill.</strong> A host may match your request against that description or let you select the skill explicitly. On activation the agent reads the full <code>SKILL.md</code> instructions. In this example, the CSV export goes under “Added” and the duplicate-entry fix goes under “Fixed.”</li>
-          <li><strong>Open resources as needed.</strong> If the instructions call for checking the product’s terminology, the agent opens <code>references/style-guide.md</code>. It uses the supplied changes as evidence and returns a draft in the conversation for the release owner to review.</li>
+          <li><strong>Discovery.</strong> The agent sees the names and descriptions of available skills. Your request matches the description for <code>release-notes</code>.</li>
+          <li><strong>Activation.</strong> Once the skill is selected, the agent reads <code>SKILL.md</code>. The steps put the CSV export under “Added” and the duplicate-entry fix under “Fixed.”</li>
+          <li><strong>Resources.</strong> If a step calls for checking product terminology, the agent opens <code>references/style-guide.md</code>. It returns the draft for the release owner to review.</li>
         </ol>
-        <p>Setup and selection depend on the host. Follow the guide for <a href="/learn/claude-skills.html">Claude</a>, <a href="/learn/google-skills.html">Google developer tools</a>, or <a href="/learn/openai-skills.html">Codex, ChatGPT and the OpenAI API</a>.</p>
+        <p>Setup and selection vary by product. Follow the guide for <a href="/learn/claude-skills.html">Claude</a>, <a href="/learn/google-skills.html">Google developer tools</a>, or <a href="/learn/openai-skills.html">Codex, ChatGPT and the OpenAI API</a>.</p>
       </section>
 
       <section id="choose-the-right-mechanism">
         <h2>Choose the right mechanism</h2>
-        <dl>
-          <dt><strong>Prompt</strong></dt>
-          <dd>Give instructions for the task in front of you. Ask for a shorter opening paragraph or supply the changes for this week’s release.</dd>
-          <dt><strong>Project instructions</strong></dt>
-          <dd>Set guidance that applies across work in a project, such as the product name and house style for customer-facing copy. The file and when it loads depend on the host. <a href="https://code.claude.com/docs/en/memory">Claude Code project instructions</a> · <a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md">Codex project instructions</a></dd>
-          <dt><strong>Skill</strong></dt>
-          <dd>Save a procedure that applies to requests of a particular kind. The release-notes skill can use the project’s house style and follow its own rules for grouping changes and flagging uncertainty. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Anthropic’s Agent Skills overview</a></dd>
-          <dt><strong>Connector</strong></dt>
-          <dd>Connect the host to a particular service, such as the issue tracker. A connector is the integration that gives the agent access to that service’s data or actions within its permissions. It may use MCP to expose a tool for fetching completed tickets. The skill can then guide the agent through drafting from the results. <a href="https://developers.openai.com/plugins/concepts/skills">OpenAI on combining skills and server tools</a></dd>
-          <dt><strong>Model Context Protocol (MCP)</strong></dt>
-          <dd>MCP is an open protocol for connecting AI applications to tools, data, and other capabilities. If an issue tracker integration uses MCP, the MCP server exposes the available capabilities and the protocol defines how the host communicates with it. <a href="https://modelcontextprotocol.io/docs/getting-started/intro">Model Context Protocol introduction</a></dd>
-          <dt><strong>Plugin</strong></dt>
-          <dd>Install components together in a host that supports plugins. A release workflow plugin could package the drafting skill and a configuration for the issue tracker’s MCP server. <a href="https://developers.openai.com/plugins/concepts/plugins">OpenAI plugin architecture</a></dd>
+        <dl class="fields">
+          <dt>Prompt</dt>
+          <dd>Supply this week’s changes or ask for a shorter draft.</dd>
+          <dt>Project instructions</dt>
+          <dd>Save guidance for work across the project, such as which product names to use in customer-facing copy. <a href="https://code.claude.com/docs/en/memory">Claude Code project instructions</a></dd>
+          <dt>Skill</dt>
+          <dd>Save the steps you repeat each week, including how to group changes and flag claims for review.</dd>
+          <dt>Connector</dt>
+          <dd>Connect a specific service, such as your issue tracker. With the right permissions, the connector can give the agent a tool to fetch completed tickets. <a href="https://developers.openai.com/plugins/concepts/skills">OpenAI on skills and server tools</a></dd>
+          <dt>Model Context Protocol (MCP)</dt>
+          <dd>Use this open protocol to connect AI applications to tools and data. An issue tracker connector can use MCP to expose tools through a server. The protocol defines how the application and server communicate. <a href="https://modelcontextprotocol.io/docs/getting-started/intro">MCP documentation</a></dd>
+          <dt>Plugin</dt>
+          <dd>Install related components together. A plugin could package the release-notes skill with the tracker’s MCP server configuration. <a href="https://developers.openai.com/plugins/concepts/plugins">OpenAI plugin architecture</a></dd>
         </dl>
-        <p>The host and connected service determine which tools and data the agent can access. Drafting from pasted notes works with the skill alone. If the workflow starts reading a tracker, <a href="/learn/review-skill-safety.html">review the skill and its access before enabling it</a>.</p>
       </section>
 
       <section id="read-the-directory-guide">
         <h2>Read the Skills Directory guide with its limits in mind</h2>
-        <p>Skills Directory illustrates focused workflows, staged loading, and the role of MCP. Its descriptions of memory, resource limits, and portability need qualification. <a href="https://www.skillsdirectory.com/docs/what-are-claude-skills">What Are Claude Skills? from Skills Directory</a></p>
+        <p>Skills Directory describes skills as lasting memory, calls reference capacity unlimited, and says one skill works across platforms. Here’s what those claims mean for a weekly release draft. <a href="https://www.skillsdirectory.com/docs/what-are-claude-skills">What Are Claude Skills? from Skills Directory</a></p>
         <ul>
-          <li><strong>Persistence.</strong> A skill makes saved instructions and resources available in later sessions when the host loads them. For the release-notes workflow, each run still needs the changes for that release. Products can offer separate features that store information across sessions. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Anthropic’s Agent Skills overview</a> · <a href="https://code.claude.com/docs/en/memory">Claude Code memory</a></li>
-          <li><strong>Resource limits.</strong> Loading reference files on demand reduces what the host loads up front. Once the agent reads a file, its contents use available context, and scripts run within the host’s runtime limits. <a href="https://agentskills.io/specification#progressive-disclosure">Agent Skills specification on staged loading</a></li>
-          <li><strong>Portability.</strong> The shared format helps you reuse the folder in hosts that support it. Installation, invocation, permissions, and the availability of tools or script runtimes still depend on the destination. Test the workflow there. <a href="/learn/port-and-troubleshoot.html">Port and troubleshoot a skill</a></li>
+          <li><strong>Memory.</strong> The saved skill carries your drafting steps into later sessions where it’s available. Give it the current changes each time. Claude Code’s auto memory is a separate feature. <a href="https://code.claude.com/docs/en/memory">Claude Code memory</a></li>
+          <li><strong>Resources.</strong> A bundled reference uses context when the agent reads it. Open only the files needed for the draft and keep those files short enough to use. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Claude’s rules for loading resources</a></li>
+          <li><strong>Portability.</strong> You can reuse the skill folder in another agent that supports it. Check that agent’s installation steps, invocation, permissions, and tool support. Claude Code, for example, documents which frontmatter options are specific to it. <a href="https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code">Claude Code frontmatter</a></li>
         </ul>
-        <p>The directory’s format guide also shows top-level fields such as <code>version</code> and <code>requires</code>. For a portable skill, use the specification’s field list. Its optional <code>metadata</code> mapping can hold a version string, and <code>compatibility</code> can describe environment requirements. <a href="https://www.skillsdirectory.com/docs/skill-md-format">Skills Directory format guide</a> · <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter specification</a></p>
       </section>
 
       <section id="decide-what-to-save">
         <h2>Decide what to save for next week</h2>
-        <p>If you only need to rewrite one draft, paste it into a prompt with the changes you want. If you’ll draft release notes every week from supplied material, save the recurring procedure as a skill and keep the weekly changes in each request. If you also want the agent to fetch change history, give it access to the tracker through a connector or another tool supported by the host, then define how the drafting workflow uses those records.</p>
+        <p>For a one-off draft, put the changes and instructions in a prompt. For a weekly draft, put the steps in the skill and paste the latest changes each time.</p>
+        <p>If you later need to fetch changes from a tracker, give the agent access through a connector and tell the skill which records to use. <a href="/learn/review-skill-safety.html">Review the skill and its access before enabling it</a>.</p>
       </section>
 
       <nav class="pager" aria-label="Pages">

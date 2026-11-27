@@ -75,7 +75,7 @@
 
       <section id="create-the-folder">
         <h2>Create release-notes/SKILL.md</h2>
-        <p>Create a folder called <code>release-notes</code> and save a plain-text file named <code>SKILL.md</code> inside it. Start with this single file. You can move the whole folder into the location your agent expects when you are ready to try it. <a href="https://agentskills.io/specification#directory-structure">Agent Skills directory structure</a></p>
+        <p>Create a folder named <code>release-notes</code> and save a plain-text file named <code>SKILL.md</code> inside it.</p>
         <pre><code>release-notes/
 └── SKILL.md</code></pre>
       </section>
@@ -101,38 +101,35 @@ description: &gt;
 5. Return the draft and any confirmation items in the conversation. Never publish or send the draft elsewhere.
 </pre>
         </div>
-        <p>The description gives an agent enough information to decide when to load the skill. Here, “release-note draft” and “draft changelog entry” describe the user's intent. The body covers what to do after activation. It names the evidence to use, the exception for missing notes, and the structure of a finished draft. Keep instructions specific to the workflow so the body stays short as you refine it. <a href="https://agentskills.io/skill-creation/best-practices">Best practices for skill creators</a> · <a href="https://agentskills.io/skill-creation/optimizing-descriptions">Optimizing skill descriptions</a></p>
+        <p>The agent first sees the name and description. Phrases such as “release-note draft” and “draft changelog entry” tell it when the skill applies. The Markdown body tells it what to do with confirmed changes, unverified claims and missing notes. <a href="https://developers.openai.com/plugins/build/skills">OpenAI guidance on writing skills</a></p>
       </section>
 
       <section id="frontmatter">
         <h2>Read the frontmatter</h2>
-        <p>The specification requires <code>name</code> and <code>description</code>. <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter specification</a></p>
+        <p>Include <code>name</code> and <code>description</code> in the YAML at the top of the file.</p>
         <ul>
-          <li><code>name</code> must match the parent folder exactly. Use 1–64 characters made up of lowercase letters (<code>a-z</code>), digits (<code>0-9</code>), and hyphens. Hyphens cannot appear at either end or in consecutive pairs.</li>
-          <li><code>description</code> must be 1–1,024 characters. Describe what the skill does and when to use it. The YAML <code>&gt;</code> folds the indented lines in the example into a single description. Keep both lines indented with spaces.</li>
+          <li>Match <code>name</code> to the folder name. Use 1–64 characters and stick to lowercase letters <code>a–z</code>, digits and single hyphens between words.</li>
+          <li>Keep <code>description</code> to 1–1,024 characters. Say what the skill does and when to use it. The YAML <code>&gt;</code> folds the two indented lines into a single description.</li>
         </ul>
-        <p>Use the optional fields when they serve the skill. <a href="https://agentskills.io/specification#frontmatter">Agent Skills optional fields</a></p>
-        <ul>
-          <li><code>license</code> identifies the license by name or points to a bundled license file.</li>
-          <li><code>compatibility</code> documents specific environment requirements, such as system packages. Use 1–500 characters if supplied.</li>
-          <li><code>metadata</code> holds additional properties as string keys and string values. For example, put <code>version: "1.0"</code> under <code>metadata</code> to keep the version a string.</li>
-          <li><code>allowed-tools</code> is experimental. It lists preapproved tools as a space-separated string. Whether a host honors it depends on its implementation.</li>
-        </ul>
-        <p>The Skills Directory guide lists <code>version</code>, <code>author</code>, <code>tags</code>, and <code>requires</code> as optional top-level fields. The Agent Skills reference validator rejects these extra top-level fields. Put author and version under <code>metadata</code> as strings, and describe runtime requirements in <code>compatibility</code>. <a href="https://www.skillsdirectory.com/docs/skill-md-format#optional-fields">Skills Directory optional fields</a> · <a href="https://agentskills.io/specification#frontmatter">Agent Skills frontmatter specification</a></p>
+        <p>Claude also reserves <code>anthropic</code> and <code>claude</code> in skill names and rejects XML tags in descriptions. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#skill-structure">Claude's skill file requirements</a></p>
+        <p>Start with the two required fields. If you need extra information, put author and version under <code>metadata</code> as strings. Describe runtime requirements in <code>compatibility</code> using up to 500 characters. Check your agent's documentation before adding tool configuration.</p>
       </section>
 
       <section id="validate-and-test">
         <h2>Validate and test a draft</h2>
         <h3>Check the file format</h3>
-        <p>With Git and Python 3.11 or later available, run these commands from the directory that contains <code>release-notes/</code>. They install the official reference validator in a virtual environment and pass the skill folder to it. The commands below use a macOS or Linux shell. The reference library also provides Windows installation steps. <a href="https://github.com/agentskills/agentskills/blob/main/skills-ref/README.md#installation">Reference library installation</a> · <a href="https://agentskills.io/specification#validation">Agent Skills validation</a></p>
-        <pre><code>git clone https://github.com/agentskills/agentskills.git
-python3 -m venv .skills-ref-venv
-.skills-ref-venv/bin/python -m pip install ./agentskills/skills-ref
-.skills-ref-venv/bin/skills-ref validate ./release-notes</code></pre>
-        <p>Look for <code>Valid skill: release-notes</code>. Use the validator's errors to fix frontmatter or folder naming, then run it again. The following prompts check how the agent uses the instructions.</p>
+        <p>From the directory that contains <code>release-notes/</code>, check the frontmatter with Anthropic's <code>quick_validate.py</code>. These macOS and Linux commands use Git and Python 3 and install PyYAML in a virtual environment. <a href="https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/quick_validate.py">Anthropic's validator</a></p>
+        <div class="code">
+          <div class="code-title">Terminal<button class="copy" type="button">Copy</button></div>
+          <pre>git clone --depth 1 https://github.com/anthropics/skills.git anthropic-skills
+python3 -m venv .skill-validation
+.skill-validation/bin/python -m pip install PyYAML
+.skill-validation/bin/python anthropic-skills/skills/skill-creator/scripts/quick_validate.py ./release-notes</pre>
+        </div>
+        <p>Expect <code>Skill is valid!</code> Check that <code>name</code> matches the folder yourself. Then use the prompts below to test activation and the draft.</p>
 
         <h3>Try a draft in your agent</h3>
-        <p>Once the validator accepts the frontmatter and folder name, install the skill in your host and explicitly select it for the first test. Follow the setup guide for your host. <a href="/learn/claude-skills.html">Claude</a> · <a href="/learn/google-skills.html">Google developer tools</a> · <a href="/learn/openai-skills.html">Codex, ChatGPT, and the OpenAI API</a></p>
+        <p>Install the skill and select it explicitly for the first test. Follow the setup guide for your agent. <a href="/learn/claude-skills.html">Claude</a> · <a href="/learn/google-skills.html">Google developer tools</a> · <a href="/learn/openai-skills.html">Codex, ChatGPT, and the OpenAI API</a></p>
         <p>Paste this prompt with its sample change notes.</p>
         <pre><code>Use the release-notes skill to draft release notes from these change notes.
 
@@ -155,20 +152,19 @@ python3 -m venv .skills-ref-venv
         <p>In a fresh conversation, select the skill again and ask it to draft release notes without supplying any notes. It should ask you to paste them and wait. For both tests, check that the agent returns its work in the conversation and makes no attempt to publish or send it.</p>
 
         <h3>Check when the skill loads</h3>
-        <p>If your agent supports automatic activation, run each prompt in a fresh conversation without explicitly selecting the skill. Check the agent's skill indicator or execution trace, if available. <a href="https://agentskills.io/skill-creation/optimizing-descriptions#testing-whether-a-description-triggers">Testing whether a description triggers</a></p>
+        <p>If your agent supports automatic activation, try each prompt in a fresh conversation. Leave the skill unselected and check the agent’s skill indicator or execution trace.</p>
         <ul>
           <li>“Turn these confirmed changes and open questions into a customer-facing changelog entry.” Include the sample notes. Expect the agent to load <code>release-notes</code>.</li>
           <li>“Explain how CSV export works in an activity log.” Expect the agent to answer without loading <code>release-notes</code>. It shares the topic of the sample but asks for an explanation.</li>
         </ul>
-        <p>Repeat automatic activation checks when results vary. If the agent loads the skill for unrelated work, narrow the description. If it loads the skill and produces a poor draft, tighten the instructions and repeat the explicit test. <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a></p>
+        <p>Repeat automatic activation checks when results vary. If the agent loads the skill for unrelated work, narrow the description. If it loads the skill and produces a poor draft, tighten the instructions and repeat the explicit test. <a href="/learn/evaluate-and-improve.html">Evaluate and improve a skill</a> · <a href="https://developers.openai.com/blog/eval-skills">OpenAI’s guide to skill evals</a></p>
       </section>
 
       <section id="add-resources">
         <h2>Add a reference or template</h2>
-        <p>When you have a house style to apply, save it in <code>release-notes/references/style-guide.md</code>. In <code>SKILL.md</code>, add a step that tells the agent when to read the guide. Link straight from <code>SKILL.md</code> to the file using a path relative to <code>release-notes/</code>. <a href="https://agentskills.io/specification#file-references">Agent Skills file references</a></p>
+        <p>Save a house style guide at <code>release-notes/references/style-guide.md</code>. Add a drafting step that tells the agent when to read it. Link directly from <code>SKILL.md</code> using a path relative to the skill folder. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-deeply-nested-references">Claude's guidance on references</a></p>
         <pre><code>For customer-facing drafts, read [the style guide](references/style-guide.md) before writing.</code></pre>
-        <p>Use <code>assets/</code> for static resources. For example, save a required output template as <code>assets/release-template.md</code> and point to it in the drafting step. Keep detailed guidance in <code>references/</code> and tell the agent which task calls for each file. <a href="https://agentskills.io/specification#optional-directories">Agent Skills optional directories</a></p>
-        <p>Use <code>scripts/</code> for a repeatable check the agent can run, such as a script that validates draft headings. If you add one, document the command, where to run it, its input and output, and any runtime or package requirements. Use <code>compatibility</code> for environment prerequisites such as a minimum Python version. Confirm that the host allows script execution and tell the agent how to proceed if the script is unavailable. <a href="https://agentskills.io/skill-creation/using-scripts">Using scripts in skills</a></p>
+        <p>Put reusable templates such as <code>release-template.md</code> in <code>assets/</code>. Use <code>scripts/</code> when the agent needs to run a repeatable check, such as validating draft headings. Give the command, working directory, inputs, and expected result. List any runtime or packages it needs and check that the agent can run it. <a href="https://developers.openai.com/plugins/build/skills">OpenAI guidance on supporting files</a></p>
         <p>When you want to distribute a tested skill through the registry, use the packaging guide. <a href="/guide.html#package">Package a skill for skills-yaml</a></p>
       </section>
 
